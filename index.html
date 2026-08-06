@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smashbox Productions — Commercial Photography &amp; Film, Pune</title>
+<meta name="description" content="Smashbox Productions is a Pune-based commercial photography and film studio. Since 2008 we've lit products, spaces and brands for architects, jewellers, restaurants, manufacturers and e-commerce labels.">
+<meta name="theme-color" content="#07070A">
+
+<!-- theme is resolved before first paint so the page never flashes -->
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('sbx-theme');
+    if(t !== 'dark' && t !== 'light') t = 'dark';    // dark is the default
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2307070A'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232E7FD4' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%232E7FD4'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ============ PRELOADER : light meter ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-mark">
+      <svg viewBox="0 0 100 100" class="loader-aperture">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="50" cy="50" r="34" opacity=".25"/>
+        </g>
+        <g class="loader-blades" fill="currentColor">
+          <path d="M50 50 L50 12 A38 38 0 0 1 82.9 31 Z"/>
+          <path d="M50 50 L82.9 31 A38 38 0 0 1 82.9 69 Z"/>
+          <path d="M50 50 L82.9 69 A38 38 0 0 1 50 88 Z"/>
+          <path d="M50 50 L50 88 A38 38 0 0 1 17.1 69 Z"/>
+          <path d="M50 50 L17.1 69 A38 38 0 0 1 17.1 31 Z"/>
+          <path d="M50 50 L17.1 31 A38 38 0 0 1 50 12 Z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-meta">
+      <span class="loader-label">Setting exposure</span>
+      <span class="loader-num" id="loaderNum">00</span>
+    </div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+  </div>
+</div>
+
+<!-- ============ CURSOR : viewfinder + key light ============ -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor-dot"></span>
+  <span class="cursor-af">
+    <i></i><i></i><i></i><i></i>
+  </span>
+  <span class="cursor-label" id="cursorLabel"></span>
+</div>
+<div class="keylight" id="keylight" aria-hidden="true"></div>
+
+<a class="skip" href="#work">Skip to work</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-shell glass">
+    <a class="brand" href="#top" aria-label="Smashbox Productions, home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="37" height="37" rx="11" fill="none" stroke="url(#bg1)" stroke-width="2"/>
+        <circle cx="20" cy="20" r="8.5" fill="none" stroke="url(#bg1)" stroke-width="2.4"/>
+        <circle cx="20" cy="20" r="3" fill="var(--accent)"/>
+        <defs>
+          <linearGradient id="bg1" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0" stop-color="var(--accent-hi)"/><stop offset="1" stop-color="var(--accent)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="brand-text">Smashbox Productions</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#studio">Studio</a>
+    </nav>
+
+    <div class="nav-end">
+      <!-- skiper-ui / skiper26 theme toggle — circle variant, blur on, starts top right -->
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="sr-only">Switch theme</span>
+        <svg class="tt" viewBox="0 0 24 24" aria-hidden="true">
+          <g class="tt-sun">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </g>
+          <g class="tt-moon">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </g>
+        </svg>
+      </button>
+      <a class="btn btn-primary btn-sm magnet" href="#contact"><span>Book a shoot</span></a>
+      <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu glass" id="mobileMenu" hidden>
+  <a href="#work">Work</a>
+  <a href="#services">Services</a>
+  <a href="#process">Process</a>
+  <a href="#studio">Studio</a>
+  <a href="#faq">FAQ</a>
+  <a class="btn btn-primary" href="#contact"><span>Book a shoot</span></a>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-beam" aria-hidden="true"></div>
+
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <p class="eyebrow reveal">
+        <span class="eyebrow-dot"></span>Est. 2008 &nbsp;·&nbsp; Pune, India
+      </p>
+
+      <h1 class="hero-title">
+        <span class="line"><span>We make brands</span></span>
+        <span class="line"><span>impossible to</span></span>
+        <span class="line"><span><em>ignore</em>.</span></span>
+      </h1>
+
+      <p class="hero-sub reveal" data-delay="1">
+        Commercial photography and film for the people who make things —
+        products, spaces, food, jewellery, machines. Eighteen years of lighting
+        them so they sell.
+      </p>
+
+      <form class="hero-form reveal" data-delay="2" id="heroForm" novalidate>
+        <div class="field glass">
+          <input type="email" id="heroEmail" name="email" placeholder="your@email.com" aria-label="Your email address" required>
+          <button class="btn btn-primary magnet" type="submit"><span>Let's talk</span></button>
+        </div>
+        <p class="field-note">Tell us what you're shooting. We reply within one working day.</p>
+      </form>
+
+      <ul class="hero-facts reveal" data-delay="3">
+        <li><b>18+</b><span>years lighting brands</span></li>
+        <li><b>400+</b><span>commercial projects</span></li>
+        <li><b>12</b><span>industries served</span></li>
+      </ul>
+    </div>
+
+    <!-- The light table: cursor-driven exposure -->
+    <div class="lighttable" id="lighttable" aria-label="Selected work from the Smashbox portfolio">
+      <!-- STOCK IMAGERY — placeholder Pexels photos, see ASSETS.md to swap -->
+      <figure class="tile tile-a" data-tile style="--r:1">
+        <img src="https://images.pexels.com/photos/31719545/pexels-photo-31719545.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Portrait lit against a red seamless backdrop with a single softbox" loading="eager" fetchpriority="high">
+        <figcaption>Fashion</figcaption>
+      </figure>
+      <figure class="tile tile-b" data-tile style="--r:2">
+        <img src="https://images.pexels.com/photos/2732096/pexels-photo-2732096.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Diamond ring photographed on a black rippled surface" loading="eager">
+        <figcaption>Jewellery</figcaption>
+      </figure>
+      <figure class="tile tile-c" data-tile style="--r:3">
+        <img src="https://images.pexels.com/photos/36090199/pexels-photo-36090199.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Numbered storage silos at an industrial site" loading="lazy">
+        <figcaption>Industrial</figcaption>
+      </figure>
+      <figure class="tile tile-d" data-tile style="--r:4">
+        <img src="https://images.pexels.com/photos/22994309/pexels-photo-22994309.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Fine dining plate photographed from above on a blue ceramic dish" loading="lazy">
+        <figcaption>Food</figcaption>
+      </figure>
+      <figure class="tile tile-e" data-tile style="--r:5">
+        <img src="https://images.pexels.com/photos/38310837/pexels-photo-38310837.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Modern marble interior with a floating staircase" loading="lazy">
+        <figcaption>Interiors</figcaption>
+      </figure>
+      <figure class="tile tile-f" data-tile style="--r:6">
+        <img src="https://images.pexels.com/photos/13898256/pexels-photo-13898256.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Lipstick standing on a plinth against a deep red background" loading="lazy">
+        <figcaption>Product</figcaption>
+      </figure>
+      <figure class="tile tile-g" data-tile style="--r:7">
+        <img src="https://images.pexels.com/photos/3062533/pexels-photo-3062533.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cinema camera built up on a rig during a shoot" loading="lazy">
+        <figcaption>Film</figcaption>
+      </figure>
+      <figure class="tile tile-h" data-tile style="--r:8">
+        <img src="https://images.pexels.com/photos/17594273/pexels-photo-17594273.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Timber louvred facade of a contemporary building" loading="lazy">
+        <figcaption>Architecture</figcaption>
+      </figure>
+
+      <!-- floating EXIF chips -->
+      <span class="chip chip-1 glass" data-float>f/1.4</span>
+      <span class="chip chip-2 glass" data-float>ISO&nbsp;100</span>
+      <span class="chip chip-3 glass" data-float>1/250s</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <i></i>
+  </div>
+</section>
+
+<!-- ============ CLIENT MARQUEE ============ -->
+<section class="clients" aria-label="Clients">
+  <div class="wrap clients-head">
+    <p class="eyebrow reveal"><span class="eyebrow-dot"></span>Brands we've lit</p>
+  </div>
+  <!-- PLACEHOLDER wordmarks — replace with real client logos -->
+  <div class="marquee" data-marquee>
+    <div class="marquee-track">
+      <span>Atelier&nbsp;Nine</span><i>·</i><span>Saffron&nbsp;&amp;&nbsp;Co</span><i>·</i><span>Norwell&nbsp;Interiors</span><i>·</i><span>Kavya&nbsp;Jewels</span><i>·</i><span>Deccan&nbsp;Forge</span><i>·</i><span>The&nbsp;Marbury</span><i>·</i><span>Studio&nbsp;Verd</span><i>·</i><span>Halcyon&nbsp;Hotels</span><i>·</i>
+      <span>Atelier&nbsp;Nine</span><i>·</i><span>Saffron&nbsp;&amp;&nbsp;Co</span><i>·</i><span>Norwell&nbsp;Interiors</span><i>·</i><span>Kavya&nbsp;Jewels</span><i>·</i><span>Deccan&nbsp;Forge</span><i>·</i><span>The&nbsp;Marbury</span><i>·</i><span>Studio&nbsp;Verd</span><i>·</i><span>Halcyon&nbsp;Hotels</span><i>·</i>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS + COMMITMENT ============ -->
+<section class="commit section">
+  <div class="wrap commit-grid">
+    <div class="stats">
+      <div class="stat reveal"><b data-count="18" data-suffix="+">0</b><span>Years behind the camera</span></div>
+      <div class="stat reveal" data-delay="1"><b data-count="400" data-suffix="+">0</b><span>Commercial projects</span></div>
+      <div class="stat reveal" data-delay="2"><b data-count="12" data-suffix="">0</b><span>Industries served</span></div>
+      <div class="stat reveal" data-delay="3"><b data-count="2008" data-plain="1">0</b><span>Studio founded</span></div>
+    </div>
+
+    <div class="commit-copy">
+      <p class="eyebrow reveal"><span class="eyebrow-dot"></span>How we think</p>
+      <h2 class="h2 reveal" data-delay="1">The <em>brief</em> gets more attention than the camera.</h2>
+      <p class="lede reveal" data-delay="2">
+        Who is this for, what should they feel, and what do you need them to do
+        next? Answer that and the lighting, the lens and the grade all follow.
+        It's why our work builds trust instead of just filling a feed.
+      </p>
+      <a class="link-arrow reveal" data-delay="3" href="#process">
+        See how we work
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process section" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow reveal"><span class="eyebrow-dot"></span>The process</p>
+      <h2 class="h2 reveal" data-delay="1">Four stages, <em>no surprises</em>.</h2>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-media">
+        <div class="process-frame glass" data-cursor="On set">
+          <!-- STOCK -->
+          <img class="pm-img is-on" data-step="0" src="https://images.pexels.com/photos/37425739/pexels-photo-37425739.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Two people talking through a brief in front of a reference wall" loading="lazy">
+          <img class="pm-img" data-step="1" src="https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Colour swatches and layouts spread across a table during art direction" loading="lazy">
+          <img class="pm-img" data-step="2" src="https://images.pexels.com/photos/19923619/pexels-photo-19923619.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Photographer silhouetted against a blazing softbox mid-shoot" loading="lazy">
+          <img class="pm-img" data-step="3" src="https://images.pexels.com/photos/15713296/pexels-photo-15713296.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Editor colour grading footage at a darkened suite" loading="lazy">
+          <div class="process-hud">
+            <span class="hud-meta" id="hudMeta">01 — DISCOVERY</span>
+          </div>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </div>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li class="step is-active reveal" data-step="0">
+          <span class="step-no">01</span>
+          <div>
+            <h3>Discovery</h3>
+            <p>We sit down with your brief, your audience and your competitors, then agree what the images actually need to achieve.</p>
+          </div>
+        </li>
+        <li class="step reveal" data-delay="1" data-step="1">
+          <span class="step-no">02</span>
+          <div>
+            <h3>Direction</h3>
+            <p>Mood boards, shot lists, styling, props and a lighting plan — signed off before a single light goes up.</p>
+          </div>
+        </li>
+        <li class="step reveal" data-delay="2" data-step="2">
+          <span class="step-no">03</span>
+          <div>
+            <h3>Production</h3>
+            <p>Studio or on location, with a full crew, tethered capture and you reviewing frames live as we shoot.</p>
+          </div>
+        </li>
+        <li class="step reveal" data-delay="3" data-step="3">
+          <span class="step-no">04</span>
+          <div>
+            <h3>Post &amp; delivery</h3>
+            <p>Retouching, colour grade and edit, delivered in every crop and format your channels need. Fast.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work section" id="work">
+  <div class="wrap">
+    <div class="section-head section-head--row">
+      <div>
+        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>Selected work</p>
+        <h2 class="h2 reveal" data-delay="1">The <em>contact sheet</em>.</h2>
+      </div>
+      <p class="section-note reveal" data-delay="2">A cross-section of recent commercial commissions. Filter by discipline.</p>
+    </div>
+
+    <div class="filters reveal" data-delay="2" role="tablist" aria-label="Filter work by discipline">
+      <button class="filter is-on" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button class="filter" data-filter="product" role="tab" aria-selected="false">Product</button>
+      <button class="filter" data-filter="food" role="tab" aria-selected="false">Food</button>
+      <button class="filter" data-filter="jewellery" role="tab" aria-selected="false">Jewellery</button>
+      <button class="filter" data-filter="interiors" role="tab" aria-selected="false">Interiors</button>
+      <button class="filter" data-filter="fashion" role="tab" aria-selected="false">Fashion</button>
+      <button class="filter" data-filter="industrial" role="tab" aria-selected="false">Industrial</button>
+      <button class="filter" data-filter="film" role="tab" aria-selected="false">Film</button>
+    </div>
+
+    <div class="work-grid" id="workGrid">
+      <!-- STOCK IMAGERY — swap srcs, keep data-cat -->
+      <a class="card wide" href="#contact" data-cat="product">
+        <div class="card-media"><img src="https://images.pexels.com/photos/30836149/pexels-photo-30836149.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Cosmetic tube photographed against a saturated yellow background" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Product</span>
+          <h3>Elf Power Grip</h3>
+          <p>Colour-blocked pack shots for a beauty launch</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card" href="#contact" data-cat="jewellery">
+        <div class="card-media"><img src="https://images.pexels.com/photos/19820885/pexels-photo-19820885.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Diamond necklace and earrings arranged on black" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Jewellery</span>
+          <h3>Kavya Jewels</h3>
+          <p>Bridal collection, 120 SKUs in four days</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card" href="#contact" data-cat="food">
+        <div class="card-media"><img src="https://images.pexels.com/photos/1327393/pexels-photo-1327393.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Plated main course styled for a restaurant menu" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Food &amp; beverage</span>
+          <h3>Saffron &amp; Co</h3>
+          <p>Menu relaunch and delivery-app library</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card" href="#contact" data-cat="interiors">
+        <div class="card-media"><img src="https://images.pexels.com/photos/13722872/pexels-photo-13722872.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Bright contemporary living space with a mezzanine" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Interiors</span>
+          <h3>Norwell Interiors</h3>
+          <p>Portfolio shoot across three residences</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card tall" href="#contact" data-cat="fashion">
+        <div class="card-media"><img src="https://images.pexels.com/photos/31870834/pexels-photo-31870834.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Model in a cobalt blue gown against a weathered wall" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Fashion</span>
+          <h3>Atelier Nine</h3>
+          <p>Lookbook for an independent couture label</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card" href="#contact" data-cat="industrial">
+        <div class="card-media"><img src="https://images.pexels.com/photos/15866139/pexels-photo-15866139.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Pipework and towers inside a working plant" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Industrial</span>
+          <h3>Deccan Forge</h3>
+          <p>Plant and process documentation, blue hour</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card wide" href="#contact" data-cat="film">
+        <div class="card-media"><img src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Camera operator shooting handheld during a brand film" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Brand film</span>
+          <h3>The Marbury</h3>
+          <p>Ninety-second brand film and six social cutdowns</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card" href="#contact" data-cat="product">
+        <div class="card-media"><img src="https://images.pexels.com/photos/6867431/pexels-photo-6867431.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Faceted perfume bottle lit with pink and blue gels" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">E-commerce</span>
+          <h3>Studio Verd</h3>
+          <p>Gelled still life for a fragrance drop</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+
+      <a class="card" href="#contact" data-cat="interiors">
+        <div class="card-media"><img src="https://images.pexels.com/photos/14590688/pexels-photo-14590688.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Warmly lit restaurant interior in the evening" loading="lazy"></div>
+        <div class="card-body">
+          <span class="card-cat">Hospitality</span>
+          <h3>Halcyon Hotels</h3>
+          <p>Rooms, restaurant and rooftop, one weekend</p>
+        </div>
+        <span class="card-af"><i></i><i></i><i></i><i></i></span>
+      </a>
+    </div>
+
+    <div class="work-more reveal">
+      <a class="btn btn-ghost magnet" href="#contact"><span>See the full portfolio</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow reveal"><span class="eyebrow-dot"></span>What we shoot</p>
+      <h2 class="h2 reveal" data-delay="1">Stills and motion, <em>one crew</em>.</h2>
+    </div>
+
+    <div class="svc-cols" id="svcCols">
+      <div class="svc-col">
+        <h3 class="svc-title reveal">Photography</h3>
+        <ul class="svc-list">
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/13898256/pexels-photo-13898256.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">01</span><span class="svc-name">Product photography</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/9853347/pexels-photo-9853347.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">02</span><span class="svc-name">E-commerce photography</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/22994309/pexels-photo-22994309.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">03</span><span class="svc-name">Food &amp; beverage</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/2732096/pexels-photo-2732096.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">04</span><span class="svc-name">Jewellery photography</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/31870834/pexels-photo-31870834.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">05</span><span class="svc-name">Fashion &amp; lifestyle</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/38310837/pexels-photo-38310837.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">06</span><span class="svc-name">Interiors &amp; architecture</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/15866139/pexels-photo-15866139.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">07</span><span class="svc-name">Industrial &amp; manufacturing</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/36645466/pexels-photo-36645466.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">08</span><span class="svc-name">Corporate portraits</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/14036253/pexels-photo-14036253.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">09</span><span class="svc-name">Hospitality photography</span></li>
+        </ul>
+      </div>
+
+      <div class="svc-col">
+        <h3 class="svc-title reveal">Film</h3>
+        <ul class="svc-list">
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">10</span><span class="svc-name">Brand films</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/3917681/pexels-photo-3917681.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">11</span><span class="svc-name">Corporate videos</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/18880006/pexels-photo-18880006.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">12</span><span class="svc-name">Product videos</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/17094508/pexels-photo-17094508.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">13</span><span class="svc-name">Social media content</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/3062533/pexels-photo-3062533.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">14</span><span class="svc-name">Promotional films</span></li>
+          <li class="svc reveal" data-img="https://images.pexels.com/photos/33231201/pexels-photo-33231201.jpeg?auto=compress&cs=tinysrgb&w=600"><span class="svc-n">15</span><span class="svc-name">Event coverage</span></li>
+        </ul>
+
+        <div class="svc-card glass reveal" data-delay="2">
+          <p class="svc-card-k">Not sure what you need?</p>
+          <p>Send us the product, the space or the deadline. We'll come back with a plan and a number.</p>
+          <a class="link-arrow" href="#contact">Start a project
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="svc-peek" id="svcPeek" aria-hidden="true"><img alt="" id="svcPeekImg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="industries" aria-label="Industries we work with">
+  <div class="wrap industries-head">
+    <p class="eyebrow reveal"><span class="eyebrow-dot"></span>Who we shoot for</p>
+  </div>
+  <div class="marquee marquee--pills" data-marquee>
+    <div class="marquee-track">
+      <span class="pill">Interior designers</span><span class="pill">Architects</span><span class="pill">Builders &amp; developers</span><span class="pill">Hotels &amp; restaurants</span><span class="pill">Manufacturing</span><span class="pill">Startups</span>
+      <span class="pill">Interior designers</span><span class="pill">Architects</span><span class="pill">Builders &amp; developers</span><span class="pill">Hotels &amp; restaurants</span><span class="pill">Manufacturing</span><span class="pill">Startups</span>
+    </div>
+  </div>
+  <div class="marquee marquee--pills" data-marquee data-reverse>
+    <div class="marquee-track">
+      <span class="pill">E-commerce brands</span><span class="pill">Jewellery brands</span><span class="pill">Fashion labels</span><span class="pill">Healthcare</span><span class="pill">Corporate</span><span class="pill">Food &amp; beverage</span>
+      <span class="pill">E-commerce brands</span><span class="pill">Jewellery brands</span><span class="pill">Fashion labels</span><span class="pill">Healthcare</span><span class="pill">Corporate</span><span class="pill">Food &amp; beverage</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MID CTA ============ -->
+<section class="section cta-mid-wrap">
+  <div class="wrap">
+    <div class="cta-mid glass reveal">
+      <div class="cta-mid-glow" aria-hidden="true"></div>
+      <div class="cta-mid-copy">
+        <h2>Your product deserves <em>better light</em>.</h2>
+        <p>Book a studio day or get us on location. Pune, Mumbai, anywhere the brief takes us.</p>
+      </div>
+      <a class="btn btn-light magnet" href="#contact"><span>Book a shoot</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDIO / TEAM ============ -->
+<section class="studio section" id="studio">
+  <div class="wrap">
+    <div class="studio-grid">
+      <div class="studio-copy">
+        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>The studio</p>
+        <h2 class="h2 reveal" data-delay="1">Founded in 2008 with <em>one softbox</em>.</h2>
+        <p class="lede reveal" data-delay="2">
+          Taher Husain started Smashbox Productions in Pune on a stubborn belief
+          that most product photography was lazy. Eighteen years on, the team
+          runs everything in-house — creative direction, styling, lighting,
+          capture, retouching and edit — so nothing gets lost between the brief
+          and the final file.
+        </p>
+
+        <ul class="why reveal" data-delay="3">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>High-end lighting and production quality</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Concepts tailored to each brand, never recycled</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast turnaround with meticulous retouching</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>One team from concept to final delivery</li>
+        </ul>
+      </div>
+
+      <div class="team">
+        <!-- STOCK PORTRAITS -->
+        <figure class="member member-lead reveal">
+          <img src="https://images.pexels.com/photos/36645466/pexels-photo-36645466.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Portrait of Taher Husain, founder" loading="lazy">
+          <figcaption><b>Taher Husain</b><span>Founder &amp; Director of Photography</span></figcaption>
+        </figure>
+        <figure class="member reveal" data-delay="1">
+          <img src="https://images.pexels.com/photos/29852852/pexels-photo-29852852.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Portrait of a team member" loading="lazy">
+          <figcaption><b>Aditi Rane</b><span>Creative Director</span></figcaption>
+        </figure>
+        <figure class="member reveal" data-delay="2">
+          <img src="https://images.pexels.com/photos/37605831/pexels-photo-37605831.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Portrait of a team member" loading="lazy">
+          <figcaption><b>Rohan Kale</b><span>Lead Retoucher</span></figcaption>
+        </figure>
+        <figure class="member reveal" data-delay="3">
+          <img src="https://images.pexels.com/photos/10657877/pexels-photo-10657877.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Portrait of a team member" loading="lazy">
+          <figcaption><b>Imran Shaikh</b><span>Cinematographer</span></figcaption>
+        </figure>
+        <figure class="member reveal" data-delay="4">
+          <img src="https://images.pexels.com/photos/11655430/pexels-photo-11655430.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Portrait of a team member" loading="lazy">
+          <figcaption><b>Neha Kulkarni</b><span>Producer &amp; Stylist</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="quotes section" aria-label="Client testimonials">
+  <div class="wrap">
+    <div class="section-head section-head--row">
+      <div>
+        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>Client notes</p>
+        <h2 class="h2 reveal" data-delay="1">What they said <em>after</em>.</h2>
+      </div>
+      <div class="q-nav reveal" data-delay="2">
+        <button class="q-btn magnet" id="qPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24"><path d="M19 12H6M13 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="q-btn q-btn--on magnet" id="qNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-rail" id="qRail" tabindex="0" aria-label="Testimonials, scrollable">
+    <div class="q-inner">
+      <figure class="q-card glass">
+        <div class="q-mark">“</div>
+        <blockquote>Our old catalogue looked like a spreadsheet. Taher's team relit the entire range and our conversion on the store went up within a month. The difference is embarrassing.</blockquote>
+        <figcaption>
+          <img src="https://images.pexels.com/photos/29852852/pexels-photo-29852852.jpeg?auto=compress&cs=tinysrgb&w=200" alt="" loading="lazy">
+          <span><b>Priya Deshmukh</b>Head of Brand, Kavya Jewels</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q-card glass">
+        <div class="q-mark">“</div>
+        <blockquote>They shot three residences in two days and understood the architecture better than some of the consultants on the project. Every frame is on our homepage now.</blockquote>
+        <figcaption>
+          <img src="https://images.pexels.com/photos/37605831/pexels-photo-37605831.jpeg?auto=compress&cs=tinysrgb&w=200" alt="" loading="lazy">
+          <span><b>Anand Menon</b>Principal Architect, Norwell</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q-card glass">
+        <div class="q-mark">“</div>
+        <blockquote>Food styling, lighting and delivery-app crops handled end to end. We approved almost everything on the first round, which never happens.</blockquote>
+        <figcaption>
+          <img src="https://images.pexels.com/photos/11655430/pexels-photo-11655430.jpeg?auto=compress&cs=tinysrgb&w=200" alt="" loading="lazy">
+          <span><b>Sana Merchant</b>Marketing Lead, Saffron &amp; Co</span>
+        </figcaption>
+      </figure>
+
+      <figure class="q-card glass">
+        <div class="q-mark">“</div>
+        <blockquote>A working foundry is a hard place to make look good. The blue-hour set they delivered is now the front of our investor deck.</blockquote>
+        <figcaption>
+          <img src="https://images.pexels.com/photos/4797690/pexels-photo-4797690.jpeg?auto=compress&cs=tinysrgb&w=200" alt="" loading="lazy">
+          <span><b>Vikram Joshi</b>Director, Deccan Forge</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIG CTA ============ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="cta-big reveal">
+      <div class="cta-big-bg" aria-hidden="true"></div>
+      <div class="cta-big-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>Start a project</p>
+        <h2>Bring us the thing<br>you need <em>to sell</em>.</h2>
+        <p class="cta-big-sub">Tell us what you're launching and when. We'll come back with a treatment, a schedule and a quote.</p>
+        <div class="cta-big-actions">
+          <a class="btn btn-primary btn-lg magnet" href="mailto:smashboxindia@gmail.com"><span>Email the studio</span></a>
+          <a class="btn btn-ghost btn-lg magnet" href="tel:+919921000052"><span>Call +91 99210 00052</span></a>
+        </div>
+      </div>
+      <div class="cta-big-lens" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="lens">
+          <circle class="lens-ring" cx="100" cy="100" r="92" fill="none" stroke-width="1"/>
+          <circle class="lens-ring" cx="100" cy="100" r="74" fill="none" stroke-width="1" opacity=".6"/>
+          <g class="lens-blades">
+            <path d="M100 100 L100 24 A76 76 0 0 1 165.8 62 Z"/>
+            <path d="M100 100 L165.8 62 A76 76 0 0 1 165.8 138 Z"/>
+            <path d="M100 100 L165.8 138 A76 76 0 0 1 100 176 Z"/>
+            <path d="M100 100 L100 176 A76 76 0 0 1 34.2 138 Z"/>
+            <path d="M100 100 L34.2 138 A76 76 0 0 1 34.2 62 Z"/>
+            <path d="M100 100 L34.2 62 A76 76 0 0 1 100 24 Z"/>
+          </g>
+          <circle cx="100" cy="100" r="26" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="3" fill="var(--accent)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ + NEWSLETTER ============ -->
+<section class="faq section" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-list">
+      <div class="acc">
+        <button class="acc-q" aria-expanded="false">What does a shoot cost?<i></i></button>
+        <div class="acc-a"><p>It depends on the number of SKUs, the styling involved and whether we're in the studio or on location. Most product catalogue days and single-space interior shoots land in a predictable range — send a brief and you'll have a firm number, not an estimate.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc-q" aria-expanded="false">How long until we get the images?<i></i></button>
+        <div class="acc-a"><p>Selects reach you within 48 hours of the shoot. Fully retouched files follow in five to seven working days, sooner if your launch needs it. Films take two to three weeks including revisions.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc-q" aria-expanded="false">Do you travel outside Pune?<i></i></button>
+        <div class="acc-a"><p>Regularly. Mumbai and the rest of Maharashtra are routine, and we've shot factories, hotels and properties across India. Travel and logistics are quoted separately and transparently.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc-q" aria-expanded="false">Do you handle styling, props and models?<i></i></button>
+        <div class="acc-a"><p>Yes. Food styling, prop sourcing, set building, model casting and hair and makeup are all arranged by our producer. You approve the mood board before anything is booked.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc-q" aria-expanded="false">Can we attend the shoot?<i></i></button>
+        <div class="acc-a"><p>Please do. We shoot tethered to a large monitor so you can approve frames as they happen. If you can't be there, we run the same review over a live link.</p></div>
+      </div>
+    </div>
+
+    <div class="faq-side">
+      <p class="eyebrow reveal"><span class="eyebrow-dot"></span>Questions</p>
+      <h2 class="h2 reveal" data-delay="1">The things clients <em>ask first</em>.</h2>
+      <p class="lede reveal" data-delay="2">Still stuck on something? Get the studio's monthly note — new work, lighting breakdowns and the occasional honest post-mortem.</p>
+
+      <form class="sub-form reveal" data-delay="3" id="subForm" novalidate>
+        <div class="field glass">
+          <input type="email" id="subEmail" placeholder="your@email.com" aria-label="Email address for the studio newsletter" required>
+          <button class="btn btn-primary magnet" type="submit"><span>Subscribe</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="37" height="37" rx="11" fill="none" stroke="url(#bg2)" stroke-width="2"/>
+            <circle cx="20" cy="20" r="8.5" fill="none" stroke="url(#bg2)" stroke-width="2.4"/>
+            <circle cx="20" cy="20" r="3" fill="var(--accent)"/>
+            <defs><linearGradient id="bg2" x1="0" y1="0" x2="40" y2="40"><stop offset="0" stop-color="var(--accent-hi)"/><stop offset="1" stop-color="var(--accent)"/></linearGradient></defs>
+          </svg>
+          <span class="brand-text">Smashbox Productions</span>
+        </a>
+        <p>Commercial photography and film production. Pune, India — working across the country since 2008.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10.5V17M7.5 7.4v.1M11.5 17v-3.6a2.2 2.2 0 014.4 0V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+          <a href="#" aria-label="Behance"><svg viewBox="0 0 24 24"><path d="M3 7h5.2a2.4 2.4 0 010 4.8H3zM3 11.8h5.6a2.6 2.6 0 010 5.2H3zM14 14h7a3.5 3.5 0 10-7 0 3.5 3.5 0 003.5 3.5c1.3 0 2.2-.5 2.8-1.3M15.5 7.5h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Studio</h4>
+        <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">About</a><a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Photography</h4>
+        <a href="#services">Product</a><a href="#services">Food &amp; beverage</a><a href="#services">Jewellery</a><a href="#services">Interiors</a><a href="#services">Industrial</a>
+      </div>
+      <div class="foot-col">
+        <h4>Film</h4>
+        <a href="#services">Brand films</a><a href="#services">Corporate video</a><a href="#services">Product video</a><a href="#services">Social content</a><a href="#services">Event coverage</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:smashboxindia@gmail.com">smashboxindia@gmail.com</a>
+        <a href="tel:+919921000052">+91 99210 00052</a>
+        <span class="foot-addr">Rowshni Bungalow, 5 Finance Road<br>Opp. Ministry of Defence, Agarkar Nagar<br>Pune, Maharashtra 411001</span>
+      </div>
+    </div>
+
+    <div class="foot-base">
+      <span>© <span id="yr">2026</span> Smashbox Productions. All rights reserved.</span>
+      <span class="foot-base-r"><a href="#">Privacy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
