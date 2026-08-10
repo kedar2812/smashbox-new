@@ -421,15 +421,15 @@ html.theme-switching *::after{
 }
 
 .brand{display:flex;align-items:center;gap:11px;flex:none}
-.brand-mark{width:32px;height:32px;transition:transform .7s var(--ease)}
-.brand:hover .brand-mark{transform:rotate(90deg)}
-.brand-text{
-  font-family:var(--display);font-weight:700;
-  font-size:1.02rem;line-height:1;
-  letter-spacing:-.005em;
-  text-transform:uppercase;
-  white-space:nowrap;
+/* the logo ships as white artwork on transparency, so light mode
+   drops it to ink rather than loading a second file */
+.brand-logo{
+  width:auto;height:42px;flex:none;
+  transition:transform .6s var(--ease),opacity .4s;
 }
+[data-theme="light"] .brand-logo{filter:brightness(0)}
+.brand:hover .brand-logo{transform:scale(1.04)}
+.brand--foot .brand-logo{height:68px}
 
 .nav-links{display:flex;gap:6px}
 .nav-links a{
@@ -521,6 +521,21 @@ html.theme-switching *::after{
 .is-ready .hero-title .line:nth-child(3)>span{transition-delay:.18s}
 
 .hero-sub{color:var(--text-dim);max-width:46ch;margin:26px 0 0;font-size:1.06rem}
+
+/* the three divisions, stated in the first screen */
+.hero-divline{
+  display:flex;align-items:center;gap:.9em;flex-wrap:wrap;
+  margin:20px 0 0;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+}
+.hero-divline a{
+  color:var(--text);
+  padding-bottom:3px;
+  border-bottom:1px solid var(--line-2);
+  transition:color .35s,border-color .35s;
+}
+.hero-divline a:hover{color:var(--accent);border-color:var(--accent)}
+.hero-divline i{color:var(--accent);font-style:normal}
 
 .hero-form{margin-top:34px;max-width:470px}
 .field{
@@ -644,6 +659,49 @@ html.theme-switching *::after{
   45%{transform:scaleY(1);transform-origin:top}
   46%{transform:scaleY(1);transform-origin:bottom}
   100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* =========================================================
+   THREE DIVISIONS
+   ========================================================= */
+.div-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(12px,1.6vw,22px);
+}
+.div-card{
+  position:relative;
+  border-radius:var(--r-lg);
+  padding:clamp(26px,3vw,38px);
+  display:grid;align-content:start;gap:14px;
+  transition:border-color .5s,background .5s,transform .5s var(--ease);
+}
+.div-card:hover{border-color:var(--accent-line);transform:translateY(-4px)}
+.div-no{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;
+  color:var(--accent);
+}
+.div-card h3{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.045em;line-height:1;
+  margin:0;
+}
+.div-line{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-faint);margin:-6px 0 0;
+}
+.div-body{margin:0;color:var(--text-dim);font-size:.96rem;line-height:1.68}
+.div-tags{
+  list-style:none;margin:4px 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:7px;
+}
+.div-tags li{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;
+  color:var(--text-dim);
+  padding:7px 13px;border-radius:100px;
+  border:1px solid var(--line);
+  transition:color .35s,border-color .35s;
+}
+.div-card:hover .div-tags li{border-color:var(--line-2)}
+.div-card .link-arrow{margin-top:10px;justify-self:start}
 
 /* =========================================================
    MARQUEES
@@ -857,15 +915,25 @@ html.theme-switching *::after{
 /* =========================================================
    SERVICES
    ========================================================= */
-.svc-cols{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px)}
+.svc-cols{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.4vw,52px)}
 .svc-title{
   font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--accent);margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.4em .8em;
 }
+.svc-title span{font-size:.62rem;letter-spacing:.14em;color:var(--text-faint)}
+/* sub-heading inside a division's list (photography vs film) */
+.svc-group{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-faint);
+  padding:26px 4px 11px;
+  border-bottom:1px solid var(--line);
+}
+.svc-list li:first-child.svc-group{padding-top:6px}
 .svc-list{list-style:none;margin:0;padding:0}
 .svc{
-  display:flex;align-items:baseline;gap:18px;
-  padding:clamp(15px,1.9vw,21px) 4px;
+  display:flex;align-items:baseline;gap:14px;
+  padding:clamp(13px,1.5vw,17px) 4px;
   border-bottom:1px solid var(--line);
   position:relative;
   transition:padding-left .5s var(--ease);
@@ -881,7 +949,7 @@ html.theme-switching *::after{
 .svc:hover .svc-n{color:var(--accent)}
 .svc-name{
   font-family:var(--display);font-weight:500;
-  font-size:clamp(1.08rem,2vw,1.44rem);letter-spacing:-.03em;
+  font-size:clamp(1rem,1.35vw,1.18rem);letter-spacing:-.03em;line-height:1.2;
   color:var(--text-dim);transition:color .4s;
 }
 .svc:hover .svc-name{color:var(--text)}
@@ -933,6 +1001,10 @@ html.theme-switching *::after{
 }
 @keyframes drift2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-5%,3%) scale(1.14)}}
 .cta-mid-copy{position:relative;z-index:2;flex:1 1 380px}
+.cta-mid .cta-mid-k{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(242,246,251,.6);margin:0 0 14px;
+}
 .cta-mid h2{
   font-family:var(--display);font-weight:700;
   font-size:clamp(1.7rem,3.6vw,2.7rem);letter-spacing:-.04em;line-height:1.05;margin:0;
@@ -952,6 +1024,22 @@ html.theme-switching *::after{
 .why{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:13px}
 .why li{display:flex;align-items:center;gap:13px;color:var(--text-dim);font-size:.96rem}
 .why svg{width:19px;height:19px;flex:none;color:var(--accent)}
+/* the full reasons-to-choose list is long enough to want two columns */
+.why--two{grid-template-columns:1fr 1fr;gap:13px clamp(20px,2.6vw,34px)}
+.why--two li{align-items:flex-start;font-size:.92rem;line-height:1.5}
+.why--two svg{margin-top:2px}
+
+.vision{
+  margin:34px 0 0;
+  padding-left:22px;
+  border-left:1px solid var(--accent-line);
+  color:var(--text-dim);font-size:1rem;line-height:1.7;max-width:56ch;
+}
+.vision-k{
+  display:block;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:7px;
+}
 
 .team{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.1vw,14px)}
 .member{position:relative;margin:0;border-radius:var(--r-md);overflow:hidden;aspect-ratio:1/1.22;background:var(--bg-2)}
@@ -1170,8 +1258,12 @@ html.theme-switching *::after{
 @media (max-width:1100px){
   .foot-grid{grid-template-columns:1fr 1fr 1fr}
   .foot-brand{grid-column:1/-1;max-width:46ch}
+  .div-grid{grid-template-columns:1fr}
+  .div-card{padding:clamp(24px,3vw,32px)}
 }
 @media (max-width:980px){
+  .svc-col+.svc-col{margin-top:clamp(30px,4vw,44px)}
+  .why--two{grid-template-columns:1fr 1fr}
   .hero{min-height:auto;padding-top:118px}
   .hero-grid{grid-template-columns:1fr;gap:52px}
   .hero-copy{max-width:none}
@@ -1195,6 +1287,9 @@ html.theme-switching *::after{
   .nav-burger{display:flex}
   .nav-shell{padding:9px 9px 9px 16px}
   .stats{grid-template-columns:1fr 1fr}
+  .why--two{grid-template-columns:1fr}
+  .brand-logo{height:38px}
+  .brand--foot .brand-logo{height:58px}
   .cta-mid{flex-direction:column;align-items:flex-start}
   .cta-mid .btn{width:100%}
   .foot-grid{grid-template-columns:1fr 1fr}

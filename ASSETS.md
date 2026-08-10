@@ -1,7 +1,26 @@
-# Stock imagery — swap list
+# Assets — what is real and what is a placeholder
 
-Every photo on the site is a **placeholder** from Pexels, loaded by URL. None of it
-is Smashbox work. Replace each one with a real shot before the site goes live.
+**Real:** the logo (`img/smashbox-logo.png`, derived from the client's `logo.png`)
+and the copy, which comes from the client's brand document.
+
+**Placeholder:** every photograph. All of it is stock from Pexels, loaded by URL.
+None of it is Smashbox work. Replace each one with a real shot before the site
+goes live.
+
+## Logo
+
+`logo.png` (root) is the master file supplied by the client — white artwork on
+transparency, 4494×3416. `img/smashbox-logo.png` is the web copy: trimmed to the
+artwork, resized to 520px wide and stored as grayscale + alpha (24 KB).
+
+It is used in the nav (42px tall) and the footer (68px). Because the artwork is
+white, light mode drops it to ink with `filter:brightness(0)` in
+`.brand-logo` — there is no second file to keep in sync. If you replace the
+logo, regenerate `img/smashbox-logo.png` the same way (white artwork,
+transparent background) or the light-mode rule will need changing.
+
+The favicon is an inline SVG in `<head>` that traces the logo's chamfered-box
+silhouette.
 
 URL shape currently used:
 
@@ -34,15 +53,17 @@ subject and real tonal range; avoid anything already very dark or very flat.
 
 ## Process — the sticky frame (`.pm-img`)
 
-Four images, one per stage. Keep them dark and behind-the-scenes; a bright,
-clean stock shot breaks the section.
+Five images, one per stage. Keep them dark and behind-the-scenes; a bright,
+clean stock shot breaks the section. The stage labels also live in
+`js/main.js` (`labels` array in section 8) — change both together.
 
 | Stage | Pexels ID |
 |-------|-----------|
-| 01 Discovery | 37425739 |
-| 02 Direction | 6322363 |
-| 03 Production | 19923619 |
-| 04 Post &amp; delivery | 15713296 |
+| 01 Discover | 37425739 |
+| 02 Strategize | 6322363 |
+| 03 Create | 19923619 |
+| 04 Deliver | 15713296 |
+| 05 Connect | 33231201 |
 
 ## Work grid (`#workGrid`)
 
@@ -59,15 +80,25 @@ Nine cards. `data-cat` drives the filter buttons — keep it when swapping.
 | The Marbury | `film` | 3062541 |
 | Studio Verd | `product` | 6867431 |
 | Halcyon Hotels | `interiors` | 14590688 |
+| Kavya Jewels (identity) | `branding` | 6322363 |
+| Halcyon Hotels (campaign) | `campaign` | 33231201 |
+
+The last two carry the Create and Connect divisions in the grid. Their images
+are reused from elsewhere on the page (6322363 also runs the Strategize stage,
+33231201 the Connect stage) — swap them for real design and campaign work as
+soon as you have it, since a photo of swatches is a weak stand-in for an
+identity project.
 
 Card sizes come from the `wide` and `tall` classes. `tall` cards crop to roughly
 1:2.4 — give them portrait-orientation photos or the subject will be cut.
 
 ## Services — hover previews
 
-Each `<li class="svc">` carries a `data-img` attribute. These are the small
-images that follow the cursor. They reuse IDs from the tables above, plus
-33231201 for Event coverage.
+Forty-five `<li class="svc">` rows across three columns, each carrying a
+`data-img` attribute — the small image that follows the cursor. They all reuse
+IDs from the tables above, so several rows share a photo. The Create and
+Connect rows are the weakest matches (there is no stock here for a website
+build or a PR campaign); give those real previews first.
 
 ## Studio — team portraits (`.member`)
 
@@ -81,6 +112,10 @@ members, so shipping with stock portraits would be misleading.
 | Rohan Kale | 37605831 |
 | Imran Shaikh | 10657877 |
 | Neha Kulkarni | 11655430 |
+
+The four named roles under Taher are invented too, and they are written to span
+the three divisions (design, post, camera, influencer/PR). Replace with the
+real team.
 
 ## Testimonials — avatars (`.q-card figcaption img`)
 
@@ -96,10 +131,16 @@ Not imagery, but equally fake — fix before launch:
 
 - **Client marquee** (`.clients`) — Atelier Nine, Saffron &amp; Co, Norwell
   Interiors, Kavya Jewels, Deccan Forge, The Marbury, Studio Verd, Halcyon
-  Hotels are all invented. Replace with real client wordmarks or logos.
-- **Stats** — 18+ years and 2008 come from `about.txt`. **400+ projects** and
-  **12 industries** are estimates; confirm or change them in `index.html`
-  (`data-count` attributes) and in the hero facts list.
+  Hotels are all invented. Replace with real client wordmarks or logos. Two of
+  them (Kavya Jewels, Halcyon Hotels) now appear twice in the work grid, once
+  for a shoot and once for design or campaign work, to show the three divisions
+  serving one client — keep that idea when you swap in real projects.
+- **Stats** — 18+ years, 2008, the three divisions and the 45 services are all
+  taken from the client's brand document. **400+ projects** is still an
+  estimate; confirm or change it in `index.html` (`data-count`). The
+  **17 industries** figure is a count of the industries the client listed, so
+  it has to move if that list does — it appears in the stat block, in the
+  "Seventeen industries" eyebrow, and as the two industry marquee rows.
 - **Contact details** — now real, but **please confirm them before launch**.
   Sourced from public listings, not from you:
 

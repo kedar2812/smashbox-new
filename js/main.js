@@ -416,7 +416,7 @@
     const hud   = $('#hudMeta');
     if (!steps.length || !imgs.length) return;
 
-    const labels = ['01 — DISCOVERY', '02 — DIRECTION', '03 — PRODUCTION', '04 — POST'];
+    const labels = ['01 — DISCOVER', '02 — STRATEGIZE', '03 — CREATE', '04 — DELIVER', '05 — CONNECT'];
 
     const show = (i) => {
       steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
