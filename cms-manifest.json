@@ -1,0 +1,1847 @@
+{
+    "generated": "2026-08-28T14:00:45+00:00",
+    "source": "index.html",
+    "sections": [
+        "hero",
+        "divisions",
+        "clients",
+        "commit",
+        "process",
+        "work",
+        "services",
+        "industries",
+        "section",
+        "studio",
+        "quotes",
+        "contact",
+        "faq",
+        "footer",
+        "header"
+    ],
+    "counts": {
+        "text": 102,
+        "image": 82
+    },
+    "fields": [
+        {
+            "id": "t1",
+            "type": "text",
+            "tag": "p",
+            "section": "hero",
+            "label": "Est. 2008 · Pune, India · Integrated creative agency",
+            "default": "\r\n        <span class=\"eyebrow-dot\"></span>Est. 2008  ·  Pune, India  ·  Integrated creative agency\r\n      ",
+            "rich": true
+        },
+        {
+            "id": "t2",
+            "type": "text",
+            "tag": "h1",
+            "section": "hero",
+            "label": "We build brands people remember.",
+            "default": "\r\n        <span class=\"line\"><span>We build brands</span></span>\r\n        <span class=\"line\"><span>people</span></span>\r\n        <span class=\"line\"><span><em>remember</em>.</span></span>\r\n      ",
+            "rich": true
+        },
+        {
+            "id": "t3",
+            "type": "text",
+            "tag": "p",
+            "section": "hero",
+            "label": "Three creative divisions under one roof — productio…",
+            "default": "\r\n        Three creative divisions under one roof — production, design and\r\n        digital, influencer marketing and PR. Eighteen years of turning\r\n        objectives into work that moves the business, not just the feed.\r\n      ",
+            "rich": false
+        },
+        {
+            "id": "t4",
+            "type": "text",
+            "tag": "p",
+            "section": "hero",
+            "label": "Capture·Create·Connect",
+            "default": "\r\n        <a href=\"#divisions\">Capture</a><i>·</i><a href=\"#divisions\">Create</a><i>·</i><a href=\"#divisions\">Connect</a>\r\n      ",
+            "rich": true
+        },
+        {
+            "id": "t5",
+            "type": "text",
+            "tag": "p",
+            "section": "hero",
+            "label": "Tell us what you're building. We reply within one w…",
+            "default": "Tell us what you're building. We reply within one working day.",
+            "rich": false
+        },
+        {
+            "id": "t6",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Three divisions",
+            "default": "<span class=\"eyebrow-dot\"></span>Three divisions",
+            "rich": true
+        },
+        {
+            "id": "t7",
+            "type": "text",
+            "tag": "h2",
+            "section": "divisions",
+            "label": "One creative force.",
+            "default": "One creative <em>force</em>.",
+            "rich": true
+        },
+        {
+            "id": "t8",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Production, design and digital, influencer marketin…",
+            "default": "\r\n        Production, design and digital, influencer marketing and PR. Briefed\r\n        once, run by one team, answerable to one set of objectives.\r\n      ",
+            "rich": false
+        },
+        {
+            "id": "t9",
+            "type": "text",
+            "tag": "h3",
+            "section": "divisions",
+            "label": "Capture",
+            "default": "Capture",
+            "rich": false
+        },
+        {
+            "id": "t10",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Photography & film",
+            "default": "Photography &amp; film",
+            "rich": false
+        },
+        {
+            "id": "t11",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "We capture stories with authenticity, precision and…",
+            "default": "\r\n          We capture stories with authenticity, precision and cinematic\r\n          excellence. From products and architecture to people and brands,\r\n          every frame is built to carry emotion and purpose.\r\n        ",
+            "rich": false
+        },
+        {
+            "id": "t12",
+            "type": "text",
+            "tag": "h3",
+            "section": "divisions",
+            "label": "Create",
+            "default": "Create",
+            "rich": false
+        },
+        {
+            "id": "t13",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Design & digital",
+            "default": "Design &amp; digital",
+            "rich": false
+        },
+        {
+            "id": "t14",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Ideas deserve exceptional execution. Our design div…",
+            "default": "\r\n          Ideas deserve exceptional execution. Our design division turns\r\n          concepts into visual identities and digital experiences that build\r\n          credibility, recognition and growth.\r\n        ",
+            "rich": false
+        },
+        {
+            "id": "t15",
+            "type": "text",
+            "tag": "h3",
+            "section": "divisions",
+            "label": "Connect",
+            "default": "Connect",
+            "rich": false
+        },
+        {
+            "id": "t16",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Influencer marketing & PR",
+            "default": "Influencer marketing &amp; PR",
+            "rich": false
+        },
+        {
+            "id": "t17",
+            "type": "text",
+            "tag": "p",
+            "section": "divisions",
+            "label": "Great content is half the journey. Getting it in fr…",
+            "default": "\r\n          Great content is half the journey. Getting it in front of the right\r\n          audience is where growth begins — so we build the relationships\r\n          between brands, creators, media and consumers.\r\n        ",
+            "rich": false
+        },
+        {
+            "id": "t18",
+            "type": "text",
+            "tag": "p",
+            "section": "clients",
+            "label": "Brands we've lit",
+            "default": "<span class=\"eyebrow-dot\"></span>Brands we've lit",
+            "rich": true
+        },
+        {
+            "id": "t19",
+            "type": "text",
+            "tag": "p",
+            "section": "commit",
+            "label": "The name",
+            "default": "<span class=\"eyebrow-dot\"></span>The name",
+            "rich": true
+        },
+        {
+            "id": "t20",
+            "type": "text",
+            "tag": "h2",
+            "section": "commit",
+            "label": "Where ideas collide.",
+            "default": "Where ideas <em>collide</em>.",
+            "rich": true
+        },
+        {
+            "id": "t21",
+            "type": "text",
+            "tag": "p",
+            "section": "commit",
+            "label": "Smashbox was named for one belief — a collision of …",
+            "default": "\r\n        Smashbox was named for one belief — a collision of assorted ideas in\r\n        one place. Photographers, filmmakers, editors, designers, developers,\r\n        strategists and marketers in one studio, arguing their way to something\r\n        none of them would have reached alone.\r\n      ",
+            "rich": false
+        },
+        {
+            "id": "t22",
+            "type": "text",
+            "tag": "p",
+            "section": "commit",
+            "label": "Every brand has a story. Every space has a personal…",
+            "default": "\r\n        Every brand has a story. Every space has a personality. Every product\r\n        deserves attention. Every campaign deserves purpose. Which is why we\r\n        don't set out to create content. We set out to create impact.\r\n      ",
+            "rich": false
+        },
+        {
+            "id": "t23",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "The process",
+            "default": "<span class=\"eyebrow-dot\"></span>The process",
+            "rich": true
+        },
+        {
+            "id": "t24",
+            "type": "text",
+            "tag": "h2",
+            "section": "process",
+            "label": "Five stages, no templates.",
+            "default": "Five stages, <em>no templates</em>.",
+            "rich": true
+        },
+        {
+            "id": "t25",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "A national campaign, an architectural shoot, a corp…",
+            "default": "\r\n        A national campaign, an architectural shoot, a corporate identity, a\r\n        website or an influencer programme — every project runs the same route.\r\n        No shortcuts, and every solution built around the business objective.\r\n      ",
+            "rich": false
+        },
+        {
+            "id": "t26",
+            "type": "text",
+            "tag": "h3",
+            "section": "process",
+            "label": "Discover",
+            "default": "Discover",
+            "rich": false
+        },
+        {
+            "id": "t27",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "We start with your objectives, your audience and yo…",
+            "default": "We start with your objectives, your audience and your market. Nothing gets shot, designed or posted until we agree what the work has to achieve.",
+            "rich": false
+        },
+        {
+            "id": "t28",
+            "type": "text",
+            "tag": "h3",
+            "section": "process",
+            "label": "Strategize",
+            "default": "Strategize",
+            "rich": false
+        },
+        {
+            "id": "t29",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "Positioning, messaging, mood boards, shot lists, ch…",
+            "default": "Positioning, messaging, mood boards, shot lists, channel plan and budget — the whole route signed off before anything is made.",
+            "rich": false
+        },
+        {
+            "id": "t30",
+            "type": "text",
+            "tag": "h3",
+            "section": "process",
+            "label": "Create",
+            "default": "Create",
+            "rich": false
+        },
+        {
+            "id": "t31",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "Studio, location, screen or press. Photography, fil…",
+            "default": "Studio, location, screen or press. Photography, film, identity, design and code produced by one team held to one standard.",
+            "rich": false
+        },
+        {
+            "id": "t32",
+            "type": "text",
+            "tag": "h3",
+            "section": "process",
+            "label": "Deliver",
+            "default": "Deliver",
+            "rich": false
+        },
+        {
+            "id": "t33",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "Retouching, colour grade, edit, build and handover …",
+            "default": "Retouching, colour grade, edit, build and handover — in every crop, format and file your channels need. Fast.",
+            "rich": false
+        },
+        {
+            "id": "t34",
+            "type": "text",
+            "tag": "h3",
+            "section": "process",
+            "label": "Connect",
+            "default": "Connect",
+            "rich": false
+        },
+        {
+            "id": "t35",
+            "type": "text",
+            "tag": "p",
+            "section": "process",
+            "label": "Then we put the work in front of people — creators,…",
+            "default": "Then we put the work in front of people — creators, media, press and your own channels — and measure it against the goals set in stage one.",
+            "rich": false
+        },
+        {
+            "id": "t36",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Selected work",
+            "default": "<span class=\"eyebrow-dot\"></span>Selected work",
+            "rich": true
+        },
+        {
+            "id": "t37",
+            "type": "text",
+            "tag": "h2",
+            "section": "work",
+            "label": "The contact sheet.",
+            "default": "The <em>contact sheet</em>.",
+            "rich": true
+        },
+        {
+            "id": "t38",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "A cross-section of recent commissions across all th…",
+            "default": "A cross-section of recent commissions across all three divisions. Filter by discipline.",
+            "rich": false
+        },
+        {
+            "id": "t39",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Elf Power Grip",
+            "default": "Elf Power Grip",
+            "rich": false
+        },
+        {
+            "id": "t40",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Colour-blocked pack shots for a beauty launch",
+            "default": "Colour-blocked pack shots for a beauty launch",
+            "rich": false
+        },
+        {
+            "id": "t41",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Kavya Jewels",
+            "default": "Kavya Jewels",
+            "rich": false
+        },
+        {
+            "id": "t42",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Bridal collection, 120 SKUs in four days",
+            "default": "Bridal collection, 120 SKUs in four days",
+            "rich": false
+        },
+        {
+            "id": "t43",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Kavya Jewels",
+            "default": "Kavya Jewels",
+            "rich": false
+        },
+        {
+            "id": "t44",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Identity refresh, packaging and a new e-commerce si…",
+            "default": "Identity refresh, packaging and a new e-commerce site",
+            "rich": false
+        },
+        {
+            "id": "t45",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Saffron & Co",
+            "default": "Saffron &amp; Co",
+            "rich": false
+        },
+        {
+            "id": "t46",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Menu relaunch and delivery-app library",
+            "default": "Menu relaunch and delivery-app library",
+            "rich": false
+        },
+        {
+            "id": "t47",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Norwell Interiors",
+            "default": "Norwell Interiors",
+            "rich": false
+        },
+        {
+            "id": "t48",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Portfolio shoot across three residences",
+            "default": "Portfolio shoot across three residences",
+            "rich": false
+        },
+        {
+            "id": "t49",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Atelier Nine",
+            "default": "Atelier Nine",
+            "rich": false
+        },
+        {
+            "id": "t50",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Lookbook for an independent couture label",
+            "default": "Lookbook for an independent couture label",
+            "rich": false
+        },
+        {
+            "id": "t51",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Deccan Forge",
+            "default": "Deccan Forge",
+            "rich": false
+        },
+        {
+            "id": "t52",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Plant and process documentation, blue hour",
+            "default": "Plant and process documentation, blue hour",
+            "rich": false
+        },
+        {
+            "id": "t53",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "The Marbury",
+            "default": "The Marbury",
+            "rich": false
+        },
+        {
+            "id": "t54",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Ninety-second brand film and six social cutdowns",
+            "default": "Ninety-second brand film and six social cutdowns",
+            "rich": false
+        },
+        {
+            "id": "t55",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Halcyon Hotels",
+            "default": "Halcyon Hotels",
+            "rich": false
+        },
+        {
+            "id": "t56",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Creator residency and launch coverage across six ci…",
+            "default": "Creator residency and launch coverage across six cities",
+            "rich": false
+        },
+        {
+            "id": "t57",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Studio Verd",
+            "default": "Studio Verd",
+            "rich": false
+        },
+        {
+            "id": "t58",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Gelled still life for a fragrance drop",
+            "default": "Gelled still life for a fragrance drop",
+            "rich": false
+        },
+        {
+            "id": "t59",
+            "type": "text",
+            "tag": "h3",
+            "section": "work",
+            "label": "Halcyon Hotels",
+            "default": "Halcyon Hotels",
+            "rich": false
+        },
+        {
+            "id": "t60",
+            "type": "text",
+            "tag": "p",
+            "section": "work",
+            "label": "Rooms, restaurant and rooftop, one weekend",
+            "default": "Rooms, restaurant and rooftop, one weekend",
+            "rich": false
+        },
+        {
+            "id": "t61",
+            "type": "text",
+            "tag": "p",
+            "section": "services",
+            "label": "What we do",
+            "default": "<span class=\"eyebrow-dot\"></span>What we do",
+            "rich": true
+        },
+        {
+            "id": "t62",
+            "type": "text",
+            "tag": "h2",
+            "section": "services",
+            "label": "Forty-five services, one partner.",
+            "default": "Forty-five services, <em>one partner</em>.",
+            "rich": true
+        },
+        {
+            "id": "t63",
+            "type": "text",
+            "tag": "p",
+            "section": "services",
+            "label": "Everything below runs in-house, across the three di…",
+            "default": "Everything below runs in-house, across the three divisions. Most clients arrive for one and stay for all three.",
+            "rich": false
+        },
+        {
+            "id": "t64",
+            "type": "text",
+            "tag": "h3",
+            "section": "services",
+            "label": "Capture Photography & film",
+            "default": "Capture <span>Photography &amp; film</span>",
+            "rich": true
+        },
+        {
+            "id": "t65",
+            "type": "text",
+            "tag": "h3",
+            "section": "services",
+            "label": "Create Design & digital",
+            "default": "Create <span>Design &amp; digital</span>",
+            "rich": true
+        },
+        {
+            "id": "t66",
+            "type": "text",
+            "tag": "h3",
+            "section": "services",
+            "label": "Connect Influencer marketing & PR",
+            "default": "Connect <span>Influencer marketing &amp; PR</span>",
+            "rich": true
+        },
+        {
+            "id": "t67",
+            "type": "text",
+            "tag": "p",
+            "section": "services",
+            "label": "One brief, every discipline",
+            "default": "One brief, every discipline",
+            "rich": false
+        },
+        {
+            "id": "t68",
+            "type": "text",
+            "tag": "p",
+            "section": "services",
+            "label": "Send us the product, the space, the launch or the d…",
+            "default": "Send us the product, the space, the launch or the deadline. We'll come back with a plan, a team and a number.",
+            "rich": false
+        },
+        {
+            "id": "t69",
+            "type": "text",
+            "tag": "p",
+            "section": "industries",
+            "label": "Seventeen industries, specialised content for each",
+            "default": "<span class=\"eyebrow-dot\"></span>Seventeen industries, specialised content for each",
+            "rich": true
+        },
+        {
+            "id": "t70",
+            "type": "text",
+            "tag": "p",
+            "section": "section",
+            "label": "Our commitment",
+            "default": "Our commitment",
+            "rich": false
+        },
+        {
+            "id": "t71",
+            "type": "text",
+            "tag": "h2",
+            "section": "section",
+            "label": "Quality is not an option. It is our standard.",
+            "default": "Quality is not an option. It is our <em>standard</em>.",
+            "rich": true
+        },
+        {
+            "id": "t72",
+            "type": "text",
+            "tag": "p",
+            "section": "section",
+            "label": "No compromise. We obsess over details because detai…",
+            "default": "No compromise. We obsess over details because details define perception — and past technical perfection we chase the oomph factor that makes work stick.",
+            "rich": false
+        },
+        {
+            "id": "t73",
+            "type": "text",
+            "tag": "p",
+            "section": "studio",
+            "label": "Our story",
+            "default": "<span class=\"eyebrow-dot\"></span>Our story",
+            "rich": true
+        },
+        {
+            "id": "t74",
+            "type": "text",
+            "tag": "h2",
+            "section": "studio",
+            "label": "Founded in 2008 with one softbox.",
+            "default": "Founded in 2008 with <em>one softbox</em>.",
+            "rich": true
+        },
+        {
+            "id": "t75",
+            "type": "text",
+            "tag": "p",
+            "section": "studio",
+            "label": "Taher Husain started Smashbox in Pune as a commerci…",
+            "default": "\r\n          Taher Husain started Smashbox in Pune as a commercial photography and\r\n          filmmaking company, built on a vision of a creative ecosystem where\r\n          photography, film, design, technology and marketing work together\r\n          instead of in isolation. Eighteen years on, that ecosystem is the\r\n          business: photographers, filmmakers, editors, designers, developers,\r\n          strategists and marketers under one roof, so nothing is lost between\r\n          the brief and the final file.\r\n        ",
+            "rich": false
+        },
+        {
+            "id": "t76",
+            "type": "text",
+            "tag": "p",
+            "section": "studio",
+            "label": "Different perspectives. Different expertise. One sh…",
+            "default": "\r\n          Different perspectives. Different expertise. One shared vision — the\r\n          collision of ideas that gave the company its name.\r\n        ",
+            "rich": false
+        },
+        {
+            "id": "t77",
+            "type": "text",
+            "tag": "p",
+            "section": "studio",
+            "label": "Vision To become one of India's most respected inte…",
+            "default": "\r\n          <span class=\"vision-k\">Vision</span>\r\n          To become one of India's most respected integrated creative companies\r\n          — combining production, design, digital innovation and strategic\r\n          marketing to create experiences that inspire audiences and accelerate\r\n          business growth.\r\n        ",
+            "rich": true
+        },
+        {
+            "id": "t78",
+            "type": "text",
+            "tag": "p",
+            "section": "quotes",
+            "label": "Client notes",
+            "default": "<span class=\"eyebrow-dot\"></span>Client notes",
+            "rich": true
+        },
+        {
+            "id": "t79",
+            "type": "text",
+            "tag": "h2",
+            "section": "quotes",
+            "label": "What they said after.",
+            "default": "What they said <em>after</em>.",
+            "rich": true
+        },
+        {
+            "id": "t80",
+            "type": "text",
+            "tag": "blockquote",
+            "section": "quotes",
+            "label": "Our old catalogue looked like a spreadsheet. Taher'…",
+            "default": "Our old catalogue looked like a spreadsheet. Taher's team relit the entire range and our conversion on the store went up within a month. The difference is embarrassing.",
+            "rich": false
+        },
+        {
+            "id": "t81",
+            "type": "text",
+            "tag": "blockquote",
+            "section": "quotes",
+            "label": "They shot three residences in two days and understo…",
+            "default": "They shot three residences in two days and understood the architecture better than some of the consultants on the project. Every frame is on our homepage now.",
+            "rich": false
+        },
+        {
+            "id": "t82",
+            "type": "text",
+            "tag": "blockquote",
+            "section": "quotes",
+            "label": "Identity, packaging, the website and the food photo…",
+            "default": "Identity, packaging, the website and the food photography came out of one team on one timeline. One brief instead of three agencies blaming each other.",
+            "rich": false
+        },
+        {
+            "id": "t83",
+            "type": "text",
+            "tag": "blockquote",
+            "section": "quotes",
+            "label": "A working foundry is a hard place to make look good…",
+            "default": "A working foundry is a hard place to make look good. The blue-hour set they delivered is now the front of our investor deck.",
+            "rich": false
+        },
+        {
+            "id": "t84",
+            "type": "text",
+            "tag": "blockquote",
+            "section": "quotes",
+            "label": "The launch put us in front of the right creators an…",
+            "default": "The launch put us in front of the right creators and the right press inside a fortnight, and they had shot the campaign themselves. Bookings moved, not just impressions.",
+            "rich": false
+        },
+        {
+            "id": "t85",
+            "type": "text",
+            "tag": "p",
+            "section": "contact",
+            "label": "Start a project",
+            "default": "<span class=\"eyebrow-dot\"></span>Start a project",
+            "rich": true
+        },
+        {
+            "id": "t86",
+            "type": "text",
+            "tag": "h2",
+            "section": "contact",
+            "label": "Bring us the brandyou need to grow.",
+            "default": "Bring us the brand<br>you need <em>to grow</em>.",
+            "rich": true
+        },
+        {
+            "id": "t87",
+            "type": "text",
+            "tag": "p",
+            "section": "contact",
+            "label": "A shoot, an identity, a website, a campaign — or al…",
+            "default": "A shoot, an identity, a website, a campaign — or all four. Tell us what you're launching and when, and we'll come back with a treatment, a schedule and a quote.",
+            "rich": false
+        },
+        {
+            "id": "t88",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Both, and that's the point. Smashbox began in 2008 …",
+            "default": "Both, and that's the point. Smashbox began in 2008 as a commercial photography and film company and now runs three divisions — Capture (photography and film), Create (branding, design, websites, motion) and Connect (influencer marketing and PR). Most clients arrive for one and end up using all three.",
+            "rich": false
+        },
+        {
+            "id": "t89",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "That is the way we prefer to work. Strategy, identi…",
+            "default": "That is the way we prefer to work. Strategy, identity, packaging, the photography and film, the website, the social creative, then the influencer and PR push — one team, one timeline, one set of objectives, instead of four suppliers pointing at each other.",
+            "rich": false
+        },
+        {
+            "id": "t90",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "It depends on scope — the number of SKUs, the styli…",
+            "default": "It depends on scope — the number of SKUs, the styling involved, studio or location, how much design and development sits around it, and the size of the campaign. Send a brief and you'll have a firm number, not an estimate.",
+            "rich": false
+        },
+        {
+            "id": "t91",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Photography selects reach you within 48 hours of th…",
+            "default": "Photography selects reach you within 48 hours of the shoot and retouched files in five to seven working days. Films take two to three weeks including revisions. Identity work runs three to five weeks, websites four to eight depending on scale, and campaigns are scheduled around your launch date.",
+            "rich": false
+        },
+        {
+            "id": "t92",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Regularly. Mumbai and the rest of Maharashtra are r…",
+            "default": "Regularly. Mumbai and the rest of Maharashtra are routine, and we've shot factories, hotels and properties across India. Travel and logistics are quoted separately and transparently.",
+            "rich": false
+        },
+        {
+            "id": "t93",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Yes. Food styling, prop sourcing, set building, mod…",
+            "default": "Yes. Food styling, prop sourcing, set building, model casting, hair and makeup are arranged by our producer, and creator and celebrity partnerships are sourced and negotiated by the Connect team. You approve the mood board and the creator list before anything is booked.",
+            "rich": false
+        },
+        {
+            "id": "t94",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Please do. We shoot tethered to a large monitor so …",
+            "default": "Please do. We shoot tethered to a large monitor so you can approve frames as they happen. If you can't be there, we run the same review over a live link.",
+            "rich": false
+        },
+        {
+            "id": "t95",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Questions",
+            "default": "<span class=\"eyebrow-dot\"></span>Questions",
+            "rich": true
+        },
+        {
+            "id": "t96",
+            "type": "text",
+            "tag": "h2",
+            "section": "faq",
+            "label": "The things clients ask first.",
+            "default": "The things clients <em>ask first</em>.",
+            "rich": true
+        },
+        {
+            "id": "t97",
+            "type": "text",
+            "tag": "p",
+            "section": "faq",
+            "label": "Still stuck on something? Get the studio's monthly …",
+            "default": "Still stuck on something? Get the studio's monthly note — new work, lighting and design breakdowns, campaign numbers and the occasional honest post-mortem.",
+            "rich": false
+        },
+        {
+            "id": "t98",
+            "type": "text",
+            "tag": "p",
+            "section": "footer",
+            "label": "Integrated creative agency — production, design and…",
+            "default": "Integrated creative agency — production, design and digital, influencer marketing and PR. Pune, India, working across the country since 2008.",
+            "rich": false
+        },
+        {
+            "id": "t99",
+            "type": "text",
+            "tag": "h4",
+            "section": "footer",
+            "label": "Capture",
+            "default": "Capture",
+            "rich": false
+        },
+        {
+            "id": "t100",
+            "type": "text",
+            "tag": "h4",
+            "section": "footer",
+            "label": "Create",
+            "default": "Create",
+            "rich": false
+        },
+        {
+            "id": "t101",
+            "type": "text",
+            "tag": "h4",
+            "section": "footer",
+            "label": "Connect",
+            "default": "Connect",
+            "rich": false
+        },
+        {
+            "id": "t102",
+            "type": "text",
+            "tag": "h4",
+            "section": "footer",
+            "label": "Contact",
+            "default": "Contact",
+            "rich": false
+        },
+        {
+            "id": "i1",
+            "type": "image",
+            "attr": "src",
+            "section": "header",
+            "label": "Untitled image",
+            "default": "img/smashbox-logo.png",
+            "alt": "",
+            "width": "520",
+            "height": "424"
+        },
+        {
+            "id": "i2",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Portrait lit against a red seamless backdrop with a…",
+            "default": "https://images.pexels.com/photos/31719545/pexels-photo-31719545.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Portrait lit against a red seamless backdrop with a single softbox",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i3",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Diamond ring photographed on a black rippled surface",
+            "default": "https://images.pexels.com/photos/2732096/pexels-photo-2732096.jpeg?auto=compress&cs=tinysrgb&w=700",
+            "alt": "Diamond ring photographed on a black rippled surface",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i4",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Numbered storage silos at an industrial site",
+            "default": "https://images.pexels.com/photos/36090199/pexels-photo-36090199.jpeg?auto=compress&cs=tinysrgb&w=700",
+            "alt": "Numbered storage silos at an industrial site",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i5",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Fine dining plate photographed from above on a blue…",
+            "default": "https://images.pexels.com/photos/22994309/pexels-photo-22994309.jpeg?auto=compress&cs=tinysrgb&w=700",
+            "alt": "Fine dining plate photographed from above on a blue ceramic dish",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i6",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Modern marble interior with a floating staircase",
+            "default": "https://images.pexels.com/photos/38310837/pexels-photo-38310837.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "Modern marble interior with a floating staircase",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i7",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Lipstick standing on a plinth against a deep red ba…",
+            "default": "https://images.pexels.com/photos/13898256/pexels-photo-13898256.jpeg?auto=compress&cs=tinysrgb&w=700",
+            "alt": "Lipstick standing on a plinth against a deep red background",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i8",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Cinema camera built up on a rig during a shoot",
+            "default": "https://images.pexels.com/photos/3062533/pexels-photo-3062533.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "Cinema camera built up on a rig during a shoot",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i9",
+            "type": "image",
+            "attr": "src",
+            "section": "hero",
+            "label": "Timber louvred facade of a contemporary building",
+            "default": "https://images.pexels.com/photos/17594273/pexels-photo-17594273.jpeg?auto=compress&cs=tinysrgb&w=700",
+            "alt": "Timber louvred facade of a contemporary building",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i10",
+            "type": "image",
+            "attr": "src",
+            "section": "process",
+            "label": "Two people talking through a brief in front of a re…",
+            "default": "https://images.pexels.com/photos/37425739/pexels-photo-37425739.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Two people talking through a brief in front of a reference wall",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i11",
+            "type": "image",
+            "attr": "src",
+            "section": "process",
+            "label": "Colour swatches and layouts spread across a table d…",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Colour swatches and layouts spread across a table during art direction",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i12",
+            "type": "image",
+            "attr": "src",
+            "section": "process",
+            "label": "Photographer silhouetted against a blazing softbox …",
+            "default": "https://images.pexels.com/photos/19923619/pexels-photo-19923619.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Photographer silhouetted against a blazing softbox mid-shoot",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i13",
+            "type": "image",
+            "attr": "src",
+            "section": "process",
+            "label": "Editor colour grading footage at a darkened suite",
+            "default": "https://images.pexels.com/photos/15713296/pexels-photo-15713296.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Editor colour grading footage at a darkened suite",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i14",
+            "type": "image",
+            "attr": "src",
+            "section": "process",
+            "label": "A creator being photographed on a studio set during…",
+            "default": "https://images.pexels.com/photos/33231201/pexels-photo-33231201.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "A creator being photographed on a studio set during a campaign shoot",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i15",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Cosmetic tube photographed against a saturated yell…",
+            "default": "https://images.pexels.com/photos/30836149/pexels-photo-30836149.jpeg?auto=compress&cs=tinysrgb&w=1200",
+            "alt": "Cosmetic tube photographed against a saturated yellow background",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i16",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Diamond necklace and earrings arranged on black",
+            "default": "https://images.pexels.com/photos/19820885/pexels-photo-19820885.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Diamond necklace and earrings arranged on black",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i17",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Colour swatches and layout sketches spread across a…",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Colour swatches and layout sketches spread across a table during a branding session",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i18",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Plated main course styled for a restaurant menu",
+            "default": "https://images.pexels.com/photos/1327393/pexels-photo-1327393.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Plated main course styled for a restaurant menu",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i19",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Bright contemporary living space with a mezzanine",
+            "default": "https://images.pexels.com/photos/13722872/pexels-photo-13722872.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Bright contemporary living space with a mezzanine",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i20",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Model in a cobalt blue gown against a weathered wall",
+            "default": "https://images.pexels.com/photos/31870834/pexels-photo-31870834.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Model in a cobalt blue gown against a weathered wall",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i21",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Pipework and towers inside a working plant",
+            "default": "https://images.pexels.com/photos/15866139/pexels-photo-15866139.jpeg?auto=compress&cs=tinysrgb&w=1000",
+            "alt": "Pipework and towers inside a working plant",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i22",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Camera operator shooting handheld during a brand fi…",
+            "default": "https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1200",
+            "alt": "Camera operator shooting handheld during a brand film",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i23",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "A creator being photographed on a studio set during…",
+            "default": "https://images.pexels.com/photos/33231201/pexels-photo-33231201.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "A creator being photographed on a studio set during a campaign shoot",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i24",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Faceted perfume bottle lit with pink and blue gels",
+            "default": "https://images.pexels.com/photos/6867431/pexels-photo-6867431.jpeg?auto=compress&cs=tinysrgb&w=900",
+            "alt": "Faceted perfume bottle lit with pink and blue gels",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i25",
+            "type": "image",
+            "attr": "src",
+            "section": "work",
+            "label": "Warmly lit restaurant interior in the evening",
+            "default": "https://images.pexels.com/photos/14590688/pexels-photo-14590688.jpeg?auto=compress&cs=tinysrgb&w=1000",
+            "alt": "Warmly lit restaurant interior in the evening",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i26",
+            "type": "image",
+            "attr": "src",
+            "section": "services",
+            "label": "Untitled image",
+            "default": "",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i27",
+            "type": "image",
+            "attr": "src",
+            "section": "studio",
+            "label": "Portrait of Taher Husain, founder",
+            "default": "https://images.pexels.com/photos/36645466/pexels-photo-36645466.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "Portrait of Taher Husain, founder",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i28",
+            "type": "image",
+            "attr": "src",
+            "section": "studio",
+            "label": "Portrait of a team member",
+            "default": "https://images.pexels.com/photos/29852852/pexels-photo-29852852.jpeg?auto=compress&cs=tinysrgb&w=500",
+            "alt": "Portrait of a team member",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i29",
+            "type": "image",
+            "attr": "src",
+            "section": "studio",
+            "label": "Portrait of a team member",
+            "default": "https://images.pexels.com/photos/37605831/pexels-photo-37605831.jpeg?auto=compress&cs=tinysrgb&w=500",
+            "alt": "Portrait of a team member",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i30",
+            "type": "image",
+            "attr": "src",
+            "section": "studio",
+            "label": "Portrait of a team member",
+            "default": "https://images.pexels.com/photos/10657877/pexels-photo-10657877.jpeg?auto=compress&cs=tinysrgb&w=500",
+            "alt": "Portrait of a team member",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i31",
+            "type": "image",
+            "attr": "src",
+            "section": "studio",
+            "label": "Portrait of a team member",
+            "default": "https://images.pexels.com/photos/11655430/pexels-photo-11655430.jpeg?auto=compress&cs=tinysrgb&w=500",
+            "alt": "Portrait of a team member",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i32",
+            "type": "image",
+            "attr": "src",
+            "section": "quotes",
+            "label": "Untitled image",
+            "default": "https://images.pexels.com/photos/29852852/pexels-photo-29852852.jpeg?auto=compress&cs=tinysrgb&w=200",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i33",
+            "type": "image",
+            "attr": "src",
+            "section": "quotes",
+            "label": "Untitled image",
+            "default": "https://images.pexels.com/photos/37605831/pexels-photo-37605831.jpeg?auto=compress&cs=tinysrgb&w=200",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i34",
+            "type": "image",
+            "attr": "src",
+            "section": "quotes",
+            "label": "Untitled image",
+            "default": "https://images.pexels.com/photos/11655430/pexels-photo-11655430.jpeg?auto=compress&cs=tinysrgb&w=200",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i35",
+            "type": "image",
+            "attr": "src",
+            "section": "quotes",
+            "label": "Untitled image",
+            "default": "https://images.pexels.com/photos/4797690/pexels-photo-4797690.jpeg?auto=compress&cs=tinysrgb&w=200",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i36",
+            "type": "image",
+            "attr": "src",
+            "section": "quotes",
+            "label": "Untitled image",
+            "default": "https://images.pexels.com/photos/10657877/pexels-photo-10657877.jpeg?auto=compress&cs=tinysrgb&w=200",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i37",
+            "type": "image",
+            "attr": "src",
+            "section": "footer",
+            "label": "Untitled image",
+            "default": "img/smashbox-logo.png",
+            "alt": "",
+            "width": "520",
+            "height": "424"
+        },
+        {
+            "id": "i38",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "01Commercial photography — hover frame",
+            "default": "https://images.pexels.com/photos/30836149/pexels-photo-30836149.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i39",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "02Product photography — hover frame",
+            "default": "https://images.pexels.com/photos/13898256/pexels-photo-13898256.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i40",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "03E-commerce photography — hover frame",
+            "default": "https://images.pexels.com/photos/9853347/pexels-photo-9853347.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i41",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "04Fashion & lifestyle — hover frame",
+            "default": "https://images.pexels.com/photos/31870834/pexels-photo-31870834.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i42",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "05Food & beverage — hover frame",
+            "default": "https://images.pexels.com/photos/22994309/pexels-photo-22994309.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i43",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "06Jewellery photography — hover frame",
+            "default": "https://images.pexels.com/photos/2732096/pexels-photo-2732096.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i44",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "07Corporate photography — hover frame",
+            "default": "https://images.pexels.com/photos/36645466/pexels-photo-36645466.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i45",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "08Hospitality photography — hover frame",
+            "default": "https://images.pexels.com/photos/14590688/pexels-photo-14590688.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i46",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "09Interior photography — hover frame",
+            "default": "https://images.pexels.com/photos/38310837/pexels-photo-38310837.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i47",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "10Architectural photography — hover frame",
+            "default": "https://images.pexels.com/photos/17594273/pexels-photo-17594273.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i48",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "11Industrial & manufacturing — hover frame",
+            "default": "https://images.pexels.com/photos/15866139/pexels-photo-15866139.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i49",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "12Brand films — hover frame",
+            "default": "https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i50",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "13TV commercials — hover frame",
+            "default": "https://images.pexels.com/photos/3917681/pexels-photo-3917681.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i51",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "14Corporate videos — hover frame",
+            "default": "https://images.pexels.com/photos/19923619/pexels-photo-19923619.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i52",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "15Product videos — hover frame",
+            "default": "https://images.pexels.com/photos/18880006/pexels-photo-18880006.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i53",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "16Podcasts — hover frame",
+            "default": "https://images.pexels.com/photos/17094508/pexels-photo-17094508.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i54",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "17Promotional films — hover frame",
+            "default": "https://images.pexels.com/photos/3062533/pexels-photo-3062533.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i55",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "18Documentary films — hover frame",
+            "default": "https://images.pexels.com/photos/36090199/pexels-photo-36090199.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i56",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "19Event coverage — hover frame",
+            "default": "https://images.pexels.com/photos/33231201/pexels-photo-33231201.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i57",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "20Award functions — hover frame",
+            "default": "https://images.pexels.com/photos/14036253/pexels-photo-14036253.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i58",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "21Long & short-form content — hover frame",
+            "default": "https://images.pexels.com/photos/17094508/pexels-photo-17094508.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i59",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "22Brand identity — hover frame",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i60",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "23Logo design — hover frame",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i61",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "24Graphic design — hover frame",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i62",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "25Packaging design — hover frame",
+            "default": "https://images.pexels.com/photos/6867431/pexels-photo-6867431.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i63",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "26Marketing collateral — hover frame",
+            "default": "https://images.pexels.com/photos/30836149/pexels-photo-30836149.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i64",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "27Website design — hover frame",
+            "default": "https://images.pexels.com/photos/37425739/pexels-photo-37425739.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i65",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "28Website development — hover frame",
+            "default": "https://images.pexels.com/photos/15713296/pexels-photo-15713296.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i66",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "29UI / UX design — hover frame",
+            "default": "https://images.pexels.com/photos/37425739/pexels-photo-37425739.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i67",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "30Motion graphics — hover frame",
+            "default": "https://images.pexels.com/photos/15713296/pexels-photo-15713296.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i68",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "31Digital content — hover frame",
+            "default": "https://images.pexels.com/photos/17094508/pexels-photo-17094508.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i69",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "32Social media creatives — hover frame",
+            "default": "https://images.pexels.com/photos/9853347/pexels-photo-9853347.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i70",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "33Presentation design — hover frame",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i71",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "34Brand strategy — hover frame",
+            "default": "https://images.pexels.com/photos/37425739/pexels-photo-37425739.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i72",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "35Influencer marketing — hover frame",
+            "default": "https://images.pexels.com/photos/33231201/pexels-photo-33231201.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i73",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "36Creator partnerships — hover frame",
+            "default": "https://images.pexels.com/photos/33231201/pexels-photo-33231201.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i74",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "37Celebrity collaborations — hover frame",
+            "default": "https://images.pexels.com/photos/31870834/pexels-photo-31870834.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i75",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "38Public relations — hover frame",
+            "default": "https://images.pexels.com/photos/37425739/pexels-photo-37425739.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i76",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "39Media outreach — hover frame",
+            "default": "https://images.pexels.com/photos/3917681/pexels-photo-3917681.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i77",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "40Press coverage — hover frame",
+            "default": "https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i78",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "41Product launch campaigns — hover frame",
+            "default": "https://images.pexels.com/photos/13898256/pexels-photo-13898256.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i79",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "42Brand promotions — hover frame",
+            "default": "https://images.pexels.com/photos/14590688/pexels-photo-14590688.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i80",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "43Event PR — hover frame",
+            "default": "https://images.pexels.com/photos/14036253/pexels-photo-14036253.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i81",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "44Campaign strategy — hover frame",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i82",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "45Digital brand communications — hover frame",
+            "default": "https://images.pexels.com/photos/9853347/pexels-photo-9853347.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        }
+    ]
+}

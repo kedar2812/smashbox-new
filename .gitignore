@@ -16,3 +16,15 @@ node_modules/
 _preview.html
 _sheet_*.png
 _hero.png
+
+# credentials
+smashbox_details_IMP.txt
+*credentials*
+*.env
+
+# CMS runtime — written on the server, not in the repo
+/uploads/*
+!/uploads/.htaccess
+
+# live credentials — the deployed copy only
+/admin/inc/config.php

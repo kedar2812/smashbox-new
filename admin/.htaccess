@@ -1,0 +1,31 @@
+# Smashbox Studio Desk
+
+Options -Indexes
+DirectoryIndex index.php
+
+# Includes, schema and anything else non-public.
+RedirectMatch 404 ^/inc(/|$)
+
+<FilesMatch "\.(sql|json|md|log|bak)$">
+  Require all denied
+</FilesMatch>
+
+# dotfiles: .user.ini, .htaccess and anything else that starts with a dot
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "same-origin"
+  Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# Now that Let's Encrypt is in place, never serve this over plain HTTP.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>

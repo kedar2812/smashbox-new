@@ -650,20 +650,50 @@
 
     const valid = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
-    const wire = (formId, inputId, ok) => {
+    const wire = (formId, inputId, source, ok) => {
       const form = $(formId), input = $(inputId);
       if (!form || !input) return;
-      form.addEventListener('submit', (e) => {
+
+      const button = form.querySelector('button[type=submit]');
+
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
         const v = input.value.trim();
         if (!valid(v)) { say('That email address needs another look.'); input.focus(); return; }
-        say(ok);
-        input.value = '';
+
+        const hp = form.querySelector('[name=company]');
+        if (button) button.disabled = true;
+
+        try {
+          const res = await fetch('api/lead.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: v,
+              source,
+              company: hp ? hp.value : ''
+            })
+          });
+          const data = await res.json();
+
+          if (!res.ok || !data.ok) {
+            say(data.error || 'That did not go through. Email us at smashboxindia@gmail.com.');
+            return;
+          }
+
+          say(ok);
+          input.value = '';
+        } catch (err) {
+          say('That did not go through. Email us at smashboxindia@gmail.com.');
+        } finally {
+          if (button) button.disabled = false;
+        }
       });
     };
 
-    wire('#heroForm', '#heroEmail', 'Got it. The studio will reply within one working day.');
-    wire('#subForm',  '#subEmail',  "You're on the list. First note lands at the start of next month.");
+    wire('#heroForm', '#heroEmail', 'hero', 'Got it. The studio will reply within one working day.');
+    wire('#subForm',  '#subEmail',  'newsletter', "You're on the list. First note lands at the start of next month.");
   })();
 
   /* ---------------------------------------------------------

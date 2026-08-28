@@ -1334,3 +1334,6 @@ html.theme-switching *::after{
   ::view-transition-old(root),
   ::view-transition-new(root){animation:none !important}
 }
+
+/* honeypot — off-screen for people, visible to bots */
+.hp-field{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;}
