@@ -73,9 +73,12 @@ FILES=(
   img/favicon-512.png
   admin/index.php
   admin/clients.php
+  admin/text.php
+  admin/api/content.php
   admin/api/clients.php
   admin/inc/db.php
   admin/inc/helpers.php
+  admin/inc/richtext.php
   admin/inc/layout.php
   admin/inc/render.php
   admin/assets/admin.css

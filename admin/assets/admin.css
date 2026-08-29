@@ -710,9 +710,53 @@ button,input,select,textarea{font:inherit;color:inherit;}
 .trow:focus-within .trow-actions{opacity:1;}
 
 .editor{width:100%;}
-.editor textarea{
+
+/* the three formatting buttons */
+.fmt{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:8px;
+}
+.fmt-b{
+  height:28px;
+  padding:0 11px;
+  border:1px solid var(--line-2);
+  border-radius:var(--r-sm);
+  background:var(--card);
+  color:var(--text);
+  font-size:13px;
+  cursor:pointer;
+  transition:background .16s var(--ease),border-color .16s var(--ease);
+}
+.fmt-b:hover{background:var(--wash);border-color:var(--accent-line);}
+.fmt-b:active{transform:translateY(1px);}
+/* each button is set in the thing it does */
+.fmt-b .fmt-em{
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  color:var(--accent-deep);
+}
+.fmt-b b{font-weight:700;}
+.fmt-hint{
+  font-family:var(--mono);
+  font-size:10.5px;
+  color:var(--faint);
+}
+
+.slots{display:flex;flex-direction:column;gap:10px;}
+.slot-label{
+  display:block;
+  margin-bottom:4px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--faint);
+}
+.slot-box{
   width:100%;
-  min-height:88px;
+  min-height:44px;
   padding:11px 13px;
   border:1px solid var(--accent-line);
   border-radius:var(--r-sm);
@@ -720,9 +764,18 @@ button,input,select,textarea{font:inherit;color:inherit;}
   font-family:var(--body);
   font-size:14.5px;
   line-height:1.5;
-  resize:vertical;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
 }
-.editor textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash);}
+.slot-box:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash);}
+/* show the marks the way the site will render them, near enough */
+.slot-box em{
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  color:var(--accent-deep);
+}
+.slot-box strong{font-weight:700;}
+
 .editor-bar{
   display:flex;
   align-items:center;

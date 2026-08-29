@@ -540,7 +540,16 @@
 
   /* =======================================================
      TEXT
+
+     Nobody using this should ever meet a tag. Each block arrives from the
+     server already taken apart (see inc/richtext.php): the markup stays
+     behind, and what comes down is the words, as runs carrying at most
+     "highlight" or "bold". The editor shows those words in a box you type
+     in, and sends the words back. The server puts the markup around them
+     again. A block with more than one part — a title and its subtitle, the
+     three lines of the hero — gets one box per part.
      ======================================================= */
+
   $$('.trow').forEach(function (row) {
     var btn = row.querySelector('[data-edit]');
     if (!btn) return;
@@ -549,21 +558,124 @@
     row.querySelector('[data-value]').addEventListener('dblclick', function () { startEdit(row); });
   });
 
+  /* ---- runs <-> the contenteditable box ---- */
+
+  // Paint one slot's runs into a box.
+  function paintRuns(box, runs) {
+    box.innerHTML = '';
+    (runs || []).forEach(function (run) {
+      if (run.br) { box.appendChild(document.createElement('br')); return; }
+      var node = document.createTextNode(run.t || '');
+      if (run.em) { node = wrap('em', node); }
+      if (run.strong) { node = wrap('strong', node); }
+      box.appendChild(node);
+    });
+    if (!box.firstChild) box.appendChild(document.createTextNode(''));
+  }
+
+  function wrap(tag, node) {
+    var el = document.createElement(tag);
+    el.appendChild(node);
+    return el;
+  }
+
+  // Read a box back out as runs. Marks come from the ancestors rather than
+  // from any one tag, so it does not matter whether the browser gave us
+  // <b> or <strong>, <i> or <em>, or wrapped things twice over.
+  function readRuns(box) {
+    var runs = [];
+
+    (function walk(node, marks) {
+      for (var n = node.firstChild; n; n = n.nextSibling) {
+        if (n.nodeType === 3) {
+          // the boxes are pre-wrap, so Shift+Enter lands as a newline in the
+          // text rather than as a <br>. Either way it means a line break.
+          pushText(n.nodeValue, marks);
+          continue;
+        }
+        if (n.nodeType !== 1) continue;
+
+        var tag = n.tagName.toLowerCase();
+        if (tag === 'br') { runs.push({ br: true }); continue; }
+
+        var next = { em: marks.em, strong: marks.strong };
+        if (tag === 'b' || tag === 'strong') next.strong = true;
+        if (tag === 'i' || tag === 'em' || tag === 'u') next.em = true;
+
+        // a browser told to use tags can still hand back a styled span
+        var style = n.getAttribute('style') || '';
+        if (/font-weight\s*:\s*(bold|[6-9]00)/i.test(style)) next.strong = true;
+        if (/font-style\s*:\s*italic/i.test(style)) next.em = true;
+
+        walk(n, next);
+      }
+    })(box, {});
+
+    return tidy(runs);
+
+    function pushText(text, marks) {
+      if (!text) return;
+      var pieces = String(text).split(/\r?\n/);
+      pieces.forEach(function (piece, i) {
+        if (i) runs.push({ br: true });
+        if (piece) runs.push(mark({ t: piece }, marks));
+      });
+    }
+  }
+
+  function mark(run, marks) {
+    if (marks.em) run.em = true;
+    if (marks.strong) run.strong = true;
+    return run;
+  }
+
+  // Merge neighbours that carry the same marks, drop the empties.
+  function tidy(runs) {
+    var out = [];
+    runs.forEach(function (r) {
+      if (r.br) { out.push(r); return; }
+      if (!r.t) return;
+      var last = out[out.length - 1];
+      if (last && !last.br && !!last.em === !!r.em && !!last.strong === !!r.strong) {
+        last.t += r.t;
+      } else {
+        out.push(r);
+      }
+    });
+    return out;
+  }
+
+  function runsText(runs) {
+    return (runs || []).map(function (r) { return r.br ? ' ' : (r.t || ''); }).join('').trim();
+  }
+
   function startEdit(row) {
     if (row.classList.contains('is-editing')) return;
 
     var body = row.querySelector('.trow-body');
     var valueEl = row.querySelector('[data-value]');
-    var original = valueEl.innerHTML.trim();
 
+    var slots, labels;
+    try { slots = JSON.parse(row.dataset.slots || '[]'); } catch (e) { slots = []; }
+    try { labels = JSON.parse(row.dataset.labels || '[]'); } catch (e) { labels = []; }
+    if (!slots.length) slots = [[{ t: valueEl.textContent.trim() }]];
+
+    var before = JSON.stringify(slots);
     row.classList.add('is-editing');
 
     var wrap = document.createElement('div');
     wrap.className = 'editor';
     wrap.innerHTML =
-      '<textarea spellcheck="true"></textarea>' +
+      '<div class="fmt" role="toolbar" aria-label="Formatting">' +
+        '<button class="fmt-b" type="button" data-mark="em" title="Highlight — serif italic in the accent colour, for the standout word in a headline">' +
+          '<i class="fmt-em">Highlight</i></button>' +
+        '<button class="fmt-b" type="button" data-mark="strong" title="Bold"><b>Bold</b></button>' +
+        '<button class="fmt-b" type="button" data-mark="none" title="Remove formatting">Plain</button>' +
+        '<span class="fmt-hint">Select a word, then pick one</span>' +
+      '</div>' +
+      '<div class="slots"></div>' +
       '<div class="editor-bar">' +
-        '<span class="hint">Enter saves · Esc cancels</span>' +
+        '<span class="hint">Enter saves · Shift+Enter starts a new line · Esc cancels</span>' +
         (row.classList.contains('is-changed')
           ? '<button class="btn btn-sm btn-danger" data-restore type="button">Restore original</button>'
           : '') +
@@ -571,17 +683,90 @@
         '<button class="btn btn-sm btn-primary" data-save type="button">Save &amp; publish</button>' +
       '</div>';
 
-    var ta = wrap.querySelector('textarea');
-    ta.value = original;
+    var slotWrap = wrap.querySelector('.slots');
+    var boxes = [];
+
+    slots.forEach(function (runs, i) {
+      var part = document.createElement('div');
+      part.className = 'slot';
+
+      // named by what the design calls it — "Line 1", "Vision", "Link 2"
+      var name = labels[i] || ('Part ' + (i + 1));
+
+      if (slots.length > 1) {
+        var lab = document.createElement('label');
+        lab.className = 'slot-label';
+        lab.textContent = name;
+        part.appendChild(lab);
+      }
+
+      var box = document.createElement('div');
+      box.className = 'slot-box';
+      box.contentEditable = 'true';
+      box.spellcheck = true;
+      box.setAttribute('role', 'textbox');
+      box.setAttribute('aria-multiline', 'true');
+      box.setAttribute('aria-label', slots.length > 1 ? name : 'Text');
+      paintRuns(box, runs);
+
+      part.appendChild(box);
+      slotWrap.appendChild(part);
+      boxes.push(box);
+    });
 
     body.hidden = true;
     row.querySelector('.trow-actions').hidden = true;
     body.parentNode.insertBefore(wrap, body.nextSibling);
 
-    ta.focus();
-    ta.setSelectionRange(ta.value.length, ta.value.length);
-    autoGrow(ta);
-    ta.addEventListener('input', function () { autoGrow(ta); });
+    // nothing pasted in ever brings formatting with it
+    boxes.forEach(function (box) {
+      box.addEventListener('paste', function (e) {
+        e.preventDefault();
+        var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+        document.execCommand('insertText', false, text.replace(/\s*\n\s*/g, ' '));
+      });
+
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { e.preventDefault(); finish(); return; }
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); save(); return; }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+          e.preventDefault(); applyMark('strong');
+        }
+      });
+    });
+
+    try { document.execCommand('styleWithCSS', false, false); } catch (e) { /* older browsers */ }
+
+    boxes[0].focus();
+    placeCaretAtEnd(boxes[0]);
+
+    /* ---- the three formatting buttons ---- */
+    $$('.fmt-b', wrap).forEach(function (btn) {
+      // mousedown, not click: the selection is still alive at that point
+      btn.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        applyMark(btn.dataset.mark);
+      });
+    });
+
+    function applyMark(kind) {
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed || !inBoxes(sel)) {
+        toast('Select the words you want to change first.', true);
+        return;
+      }
+      if (kind === 'em') document.execCommand('italic');
+      else if (kind === 'strong') document.execCommand('bold');
+      else document.execCommand('removeFormat');
+    }
+
+    function inBoxes(sel) {
+      var node = sel.anchorNode;
+      for (; node; node = node.parentNode) {
+        if (boxes.indexOf(node) !== -1) return true;
+      }
+      return false;
+    }
 
     function finish() {
       wrap.remove();
@@ -591,7 +776,6 @@
     }
 
     wrap.querySelector('[data-cancel]').addEventListener('click', finish);
-
     wrap.querySelector('[data-save]').addEventListener('click', save);
 
     var restore = wrap.querySelector('[data-restore]');
@@ -600,11 +784,7 @@
         restore.disabled = true;
         post('api/content.php', { id: row.dataset.row, reset: true })
           .then(function (d) {
-            valueEl.innerHTML = d.value;
-            row.classList.remove('is-changed');
-            var tag = row.querySelector('.trow-tag');
-            var edited = tag.querySelector('span');
-            if (edited) { edited.remove(); tag.querySelector('br') && tag.querySelector('br').remove(); }
+            applySaved(d);
             finish();
             toast('Original restored.');
           })
@@ -612,27 +792,44 @@
       });
     }
 
-    ta.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { e.preventDefault(); finish(); }
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); save(); }
-    });
+    function applySaved(d) {
+      valueEl.innerHTML = d.value;
+      if (d.slots) row.dataset.slots = JSON.stringify(d.slots);
+      if (d.labels) row.dataset.labels = JSON.stringify(d.labels);
+
+      var tag = row.querySelector('.trow-tag');
+      var edited = tag.querySelector('span');
+
+      if (d.reset) {
+        row.classList.remove('is-changed');
+        if (edited) {
+          var br = tag.querySelector('br');
+          if (br) br.remove();
+          edited.remove();
+        }
+      } else if (!row.classList.contains('is-changed')) {
+        row.classList.add('is-changed');
+        tag.insertAdjacentHTML('beforeend', '<br><span style="color:var(--warn)">edited</span>');
+      }
+    }
 
     function save() {
-      var next = ta.value.trim();
-      if (next === original) { finish(); return; }
+      var next = boxes.map(readRuns);
+
+      var empty = next.every(function (runs) { return runsText(runs) === ''; });
+      if (empty) {
+        toast('This cannot be left empty. Use “Restore original” instead.', true);
+        return;
+      }
+      if (JSON.stringify(next) === before) { finish(); return; }
 
       var saveBtn = wrap.querySelector('[data-save]');
       saveBtn.disabled = true;
       saveBtn.textContent = 'Publishing…';
 
-      post('api/content.php', { id: row.dataset.row, value: next })
+      post('api/content.php', { id: row.dataset.row, slots: next })
         .then(function (d) {
-          valueEl.innerHTML = d.value;
-          if (!row.classList.contains('is-changed')) {
-            row.classList.add('is-changed');
-            var tag = row.querySelector('.trow-tag');
-            tag.insertAdjacentHTML('beforeend', '<br><span style="color:var(--warn)">edited</span>');
-          }
+          applySaved(d);
           finish();
           toast('Published. The site is updated.');
         })
@@ -644,9 +841,13 @@
     }
   }
 
-  function autoGrow(ta) {
-    ta.style.height = 'auto';
-    ta.style.height = Math.max(88, ta.scrollHeight + 2) + 'px';
+  function placeCaretAtEnd(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
   }
 
   /* =======================================================

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/inc/layout.php';
 require_once __DIR__ . '/inc/render.php';
+require_once __DIR__ . '/inc/richtext.php';
 
 $user = requireLogin();
 
@@ -30,7 +31,7 @@ layoutTop('text', $user, 'Text');
     <span class="eyebrow">Copy deck</span>
     <h1>Text</h1>
     <p>Every headline and paragraph on the site, in the order it appears.
-       Click any line to rewrite it. Changes go live as soon as you save.</p>
+       Click any line to rewrite it — just type, the way you would in an email.</p>
   </div>
   <div class="ph-actions">
     <span class="mono" style="color:var(--faint)">
@@ -52,10 +53,14 @@ layoutTop('text', $user, 'Text');
           $val = effectiveValue($f, $overrides);
           $isEdited = isset($overrides[$f['id']]);
           $isHeading = in_array($f['tag'], ['h1', 'h2', 'h3', 'h4'], true);
+
+          // the markup stays here; the browser is handed words and nothing else
+          $parts = decomposeField($val);
       ?>
         <div class="trow<?= $isHeading ? ' is-h' : '' ?><?= $isEdited ? ' is-changed' : '' ?>"
              data-row="<?= e($f['id']) ?>"
-             data-original="<?= e($f['default']) ?>">
+             data-slots="<?= e(json_encode($parts['slots'], JSON_UNESCAPED_UNICODE)) ?>"
+             data-labels="<?= e(json_encode($parts['labels'] ?? [], JSON_UNESCAPED_UNICODE)) ?>">
           <div class="trow-tag">
             <?= e($f['tag']) ?>
             <?php if ($isEdited): ?><br><span style="color:var(--warn)">edited</span><?php endif; ?>

@@ -5,12 +5,19 @@ declare(strict_types=1);
 /**
  * Save or clear a single content field, then republish the site.
  *
- * POST { id, type, value, alt? }         set an override
- * POST { id, reset: true }               drop the override, restoring the original
+ * POST { id, slots: [[{t,em?,strong?}|{br:true}, …], …] }   set a text override
+ * POST { id, value, alt? }                                  set an image override
+ * POST { id, reset: true }                                  drop it, restoring the original
+ *
+ * Text arrives as words, never as markup. The skeleton — the tags, classes and
+ * links that make up the design — is taken from the value already stored and
+ * refilled here, so no request can change the shape of the page, only what it
+ * says. See inc/richtext.php.
  */
 
 require_once __DIR__ . '/../inc/auth.php';
 require_once __DIR__ . '/../inc/render.php';
+require_once __DIR__ . '/../inc/richtext.php';
 
 requireLogin();
 
@@ -28,31 +35,49 @@ if (!$field) {
     jsonFail('That field is not part of the site.', 404);
 }
 
+/** What the field says right now — the override if there is one, else the original. */
+function currentValue(array $field): string
+{
+    $overrides = contentOverrides();
+    return $overrides[$field['id']]['value'] ?? (string) $field['default'];
+}
+
 try {
     if (!empty($in['reset'])) {
         db()->prepare('DELETE FROM content WHERE field_id = ?')->execute([$id]);
 
         $result = publishSite();
+        $parts = decomposeField((string) $field['default']);
 
         jsonOut([
             'ok'        => true,
             'reset'     => true,
             'value'     => $field['default'],
+            'slots'     => $parts['slots'],
+            'labels'    => $parts['labels'] ?? [],
             'alt'       => $field['alt'] ?? '',
             'published' => $result,
         ]);
     }
 
-    $value = (string) ($in['value'] ?? '');
     $alt = array_key_exists('alt', $in) ? (string) $in['alt'] : null;
 
     if ($field['type'] === 'text') {
-        $value = sanitizeInline($value);
-        if (plainText($value) === '' && trim($value) === '') {
+        if (!isset($in['slots']) || !is_array($in['slots'])) {
+            jsonFail('Send the text as slots.');
+        }
+
+        $skeleton = decomposeField(currentValue($field))['skeleton'];
+        $value = composeField($skeleton, $in['slots']);
+
+        if (plainText($value) === '') {
             jsonFail('That block cannot be left empty. Use “Restore original” instead.');
         }
+        if (mb_strlen($value) > 20000) {
+            jsonFail('That is longer than this block can hold.');
+        }
     } else {
-        $value = trim($value);
+        $value = trim((string) ($in['value'] ?? ''));
         if ($value === '') {
             jsonFail('Choose a picture or paste an image address.');
         }
@@ -77,9 +102,14 @@ try {
 
     $result = publishSite();
 
+    // hand back what the field now looks like, so the page does not need a reload
+    $parts = $field['type'] === 'text' ? decomposeField($value) : null;
+
     jsonOut([
         'ok'        => true,
         'value'     => $value,
+        'slots'     => $parts['slots'] ?? null,
+        'labels'    => $parts['labels'] ?? null,
         'alt'       => $alt,
         'published' => $result,
     ]);
