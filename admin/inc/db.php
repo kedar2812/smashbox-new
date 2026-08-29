@@ -56,3 +56,8 @@ function settingSet(string $key, string $value): void
     );
     $st->execute([$key, $value]);
 }
+
+function settingDelete(string $key): void
+{
+    db()->prepare('DELETE FROM settings WHERE name = ?')->execute([$key]);
+}

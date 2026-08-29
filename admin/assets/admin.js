@@ -366,6 +366,177 @@
   }
 
   /* =======================================================
+     CLIENTS — the marquee list
+     ======================================================= */
+  var clientList = $('#clientList');
+
+  if (clientList) {
+    var clientEmpty = $('#clientEmpty');
+    var clientCount = $('#clientCount');
+    var addForm     = $('#clientAdd');
+    var newInput    = $('#clientNew');
+    var saveClients = $('#clientSave');
+    var resetBtn2   = $('#clientReset');
+    var dragRow     = null;
+
+    /* ---- one row of markup, matching what clients.php renders ---- */
+    function clientRow(name) {
+      var li = document.createElement('li');
+      li.className = 'client-row';
+      li.draggable = true;
+      li.innerHTML =
+        '<span class="client-grip" aria-hidden="true"><span></span><span></span><span></span></span>' +
+        '<span class="client-no mono"></span>' +
+        '<input type="text" class="client-name" maxlength="60" aria-label="Client name">' +
+        '<span class="client-move">' +
+          '<button class="btn btn-sm btn-quiet" type="button" data-up aria-label="Move up">&uarr;</button>' +
+          '<button class="btn btn-sm btn-quiet" type="button" data-down aria-label="Move down">&darr;</button>' +
+        '</span>' +
+        '<button class="btn btn-sm btn-danger" type="button" data-remove>Remove</button>';
+      li.querySelector('.client-name').value = name;
+      wireRow(li);
+      return li;
+    }
+
+    function rows() {
+      return $$('.client-row', clientList);
+    }
+
+    function names() {
+      return rows()
+        .map(function (r) { return r.querySelector('.client-name').value.trim(); })
+        .filter(function (v) { return v !== ''; });
+    }
+
+    function renumber() {
+      var all = rows();
+      all.forEach(function (r, i) { r.querySelector('.client-no').textContent = i + 1; });
+      if (clientEmpty) clientEmpty.hidden = all.length > 0;
+      var n = names().length;
+      if (clientCount) clientCount.textContent = n + (n === 1 ? ' name' : ' names');
+      var badge = $('[data-client-n]');
+      if (badge) badge.textContent = n;
+    }
+
+    function wireRow(li) {
+      li.querySelector('[data-remove]').addEventListener('click', function () {
+        li.remove();
+        renumber();
+      });
+
+      li.querySelector('[data-up]').addEventListener('click', function () {
+        var prev = li.previousElementSibling;
+        if (prev) { clientList.insertBefore(li, prev); renumber(); }
+      });
+
+      li.querySelector('[data-down]').addEventListener('click', function () {
+        var next = li.nextElementSibling;
+        if (next) { clientList.insertBefore(next, li); renumber(); }
+      });
+
+      li.querySelector('.client-name').addEventListener('input', renumber);
+
+      li.addEventListener('dragstart', function (e) {
+        dragRow = li;
+        li.classList.add('is-dragging');
+        if (e.dataTransfer) e.dataTransfer.effectAllowed = 'move';
+      });
+
+      li.addEventListener('dragend', function () {
+        dragRow = null;
+        li.classList.remove('is-dragging');
+        rows().forEach(function (r) { r.classList.remove('is-over'); });
+        renumber();
+      });
+
+      li.addEventListener('dragover', function (e) {
+        if (!dragRow || dragRow === li) return;
+        e.preventDefault();
+        li.classList.add('is-over');
+      });
+
+      li.addEventListener('dragleave', function () { li.classList.remove('is-over'); });
+
+      li.addEventListener('drop', function (e) {
+        if (!dragRow || dragRow === li) return;
+        e.preventDefault();
+        li.classList.remove('is-over');
+        var after = li.compareDocumentPosition(dragRow) & Node.DOCUMENT_POSITION_PRECEDING;
+        clientList.insertBefore(dragRow, after ? li.nextSibling : li);
+        renumber();
+      });
+    }
+
+    rows().forEach(wireRow);
+
+    /* ---- adding ---- */
+    addForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = newInput.value.trim().replace(/\s+/g, ' ');
+      if (!v) return;
+
+      var clash = names().some(function (n) { return n.toLowerCase() === v.toLowerCase(); });
+      if (clash) {
+        toast('“' + v + '” is already on the strip.', true);
+        return;
+      }
+
+      clientList.appendChild(clientRow(v));
+      newInput.value = '';
+      newInput.focus();
+      renumber();
+    });
+
+    /* ---- saving ---- */
+    saveClients.addEventListener('click', function () {
+      var list = names();
+
+      if (!list.length && !window.confirm('Save an empty list? The client strip comes off the site until you add a name back.')) {
+        return;
+      }
+
+      saveClients.disabled = true;
+      saveClients.textContent = 'Publishing…';
+
+      post('api/clients.php', { names: list })
+        .then(function (d) {
+          paintClients(d.names);
+          if (resetBtn2) resetBtn2.hidden = false;
+          toast('Published. The strip is updated.');
+        })
+        .catch(function (err) { toast(err.message, true); })
+        .finally(function () {
+          saveClients.disabled = false;
+          saveClients.innerHTML = 'Save &amp; publish';
+        });
+    });
+
+    if (resetBtn2) {
+      resetBtn2.addEventListener('click', function () {
+        resetBtn2.disabled = true;
+
+        post('api/clients.php', { reset: true })
+          .then(function (d) {
+            paintClients(d.names);
+            resetBtn2.hidden = true;
+            toast('Original list restored.');
+          })
+          .catch(function (err) { toast(err.message, true); })
+          .finally(function () { resetBtn2.disabled = false; });
+      });
+    }
+
+    /* ---- redraw from what the server actually stored ---- */
+    function paintClients(list) {
+      clientList.innerHTML = '';
+      (list || []).forEach(function (n) { clientList.appendChild(clientRow(n)); });
+      renumber();
+    }
+
+    renumber();
+  }
+
+  /* =======================================================
      TEXT
      ======================================================= */
   $$('.trow').forEach(function (row) {

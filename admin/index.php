@@ -40,7 +40,8 @@ $token = csrfToken();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Sign in · Smashbox Studio Desk</title>
-<link rel="icon" href="../img/smashbox-logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -50,7 +51,7 @@ $token = csrfToken();
 <div class="signin">
   <div class="signin-card">
     <div class="signin-brand">
-      <span class="brand-chip"><img src="../img/smashbox-logo.png" alt=""></span>
+      <span class="brand-chip"><img src="assets/smashbox-logo.png" alt="Smashbox Productions"></span>
       <span class="signin-brand-text">
         <b>Smashbox Productions</b>
         <span class="sub">Studio desk</span>

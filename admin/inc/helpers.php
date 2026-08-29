@@ -196,3 +196,109 @@ function publicSrc(string $value): string
     }
     return '../' . ltrim($v, '/');
 }
+
+/* -------------------------------------------------------------------------
+   Client marquee
+
+   The strip of client names under the divisions is a list, not a block of
+   copy, so it does not fit the field registry. It is stored whole, as a JSON
+   array in settings, and written back into the marquee on every publish.
+   ------------------------------------------------------------------------- */
+
+const CLIENTS_SETTING = 'client_marquee';
+const CLIENTS_MAX = 60;
+const CLIENT_NAME_MAX = 60;
+
+/** Tidy one name: single spaces, no markup, capped length. */
+function normaliseClientName(string $name): string
+{
+    $n = str_replace("\u{00A0}", ' ', strip_tags($name));
+    $n = trim(preg_replace('/\s+/u', ' ', $n) ?? '');
+    if (mb_strlen($n) > CLIENT_NAME_MAX) {
+        $n = trim(mb_substr($n, 0, CLIENT_NAME_MAX));
+    }
+    return $n;
+}
+
+/** The names baked into template.html, used until the dashboard sets its own. */
+function defaultClientNames(): array
+{
+    static $names = null;
+    if ($names !== null) {
+        return $names;
+    }
+
+    $names = [];
+    $html = @file_get_contents(TEMPLATE_FILE);
+    if ($html === false) {
+        return $names;
+    }
+
+    if (!preg_match('#<div[^>]*data-cms-list="clients"[^>]*>(.*?)</div>#si', $html, $m)) {
+        return $names;
+    }
+
+    preg_match_all('#<span[^>]*>(.*?)</span>#si', $m[1], $found);
+    foreach ($found[1] as $raw) {
+        $n = normaliseClientName(html_entity_decode($raw, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+        // the track carries each name twice so the loop has no seam
+        if ($n !== '' && !in_array($n, $names, true)) {
+            $names[] = $n;
+        }
+    }
+
+    return $names;
+}
+
+/** True once the dashboard has saved its own list. */
+function clientNamesAreCustom(): bool
+{
+    return settingGet(CLIENTS_SETTING) !== null;
+}
+
+/** The list currently on the site. */
+function clientNames(): array
+{
+    $raw = settingGet(CLIENTS_SETTING);
+    if ($raw === null) {
+        return defaultClientNames();
+    }
+
+    $list = json_decode($raw, true);
+    if (!is_array($list)) {
+        return defaultClientNames();
+    }
+
+    $out = [];
+    foreach ($list as $n) {
+        $n = normaliseClientName((string) $n);
+        if ($n !== '') {
+            $out[] = $n;
+        }
+    }
+    return $out;
+}
+
+/** Store a list. Order is kept as given; blanks and duplicates are dropped. */
+function saveClientNames(array $names): array
+{
+    $clean = [];
+    foreach ($names as $n) {
+        $n = normaliseClientName((string) $n);
+        if ($n === '') {
+            continue;
+        }
+        foreach ($clean as $have) {
+            if (mb_strtolower($have) === mb_strtolower($n)) {
+                continue 2;
+            }
+        }
+        $clean[] = $n;
+        if (count($clean) >= CLIENTS_MAX) {
+            break;
+        }
+    }
+
+    settingSet(CLIENTS_SETTING, json_encode(array_values($clean), JSON_UNESCAPED_UNICODE));
+    return $clean;
+}

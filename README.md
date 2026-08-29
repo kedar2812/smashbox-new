@@ -26,7 +26,7 @@ transition and a few other bits behave better over HTTP.
 index.html        the whole page
 css/styles.css    all styling, both themes
 js/main.js        all behaviour, vanilla, no dependencies
-img/              the logo, web-sized
+img/              the logo, web-sized, and the generated favicons
 logo.png          the master logo supplied by the client
 about.txt         the client's first brief (superseded by the brand document)
 ASSETS.md         every placeholder on the site and how to replace it
@@ -94,9 +94,10 @@ every item. The short version:
   weakest spot on the page and the first thing to fix
 - The five named team members and the five testimonials are invented, with
   stock portraits — replace these first
-- The client marquee is eight invented brand names
+- The client marquee is eight invented brand names — the studio swaps these
+  itself now, from the dashboard's Clients page
 - "400+ projects" is an estimate. Everything else on the numbers — 18+ years,
-  2008, three divisions, 45 services, 17 industries — comes from the client's
+  2008, three divisions, 46 services, 17 industries — comes from the client's
   brand document
 - Contact details were taken from public listings and should be confirmed
 - Both forms validate and confirm, but have no backend

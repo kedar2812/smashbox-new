@@ -68,6 +68,10 @@
 
 *,*::before,*::after{box-sizing:border-box;}
 
+/* several components set their own display, which would otherwise
+   win over the user-agent rule for [hidden] */
+[hidden]{display:none !important;}
+
 html,body{height:100%;}
 
 body{
@@ -205,7 +209,7 @@ button,input,select,textarea{font:inherit;color:inherit;}
   background:var(--ink);
   border-radius:7px;
 }
-.brand-chip img{display:block;width:100%;height:auto;}
+.brand-chip img{display:block;width:100%;height:100%;object-fit:contain;}
 
 .rail-brand .brand-chip{width:30px;height:30px;padding:5px;}
 .rail-brand .bn{
@@ -1031,6 +1035,121 @@ button,input,select,textarea{font:inherit;color:inherit;}
   color:var(--ink);
 }
 .empty p{margin:0 auto;max-width:44ch;font-size:14px;color:var(--muted);}
+
+/* ---------------------------------------------------------
+   Clients — the marquee list
+   --------------------------------------------------------- */
+
+.client-add{
+  display:flex;
+  gap:8px;
+  margin-bottom:14px;
+}
+.client-add input{
+  flex:1;
+  min-width:0;
+  height:38px;
+  padding:0 12px;
+  font-family:var(--body);
+  font-size:14px;
+  color:var(--text);
+  background:var(--card);
+  border:1px solid var(--line-2);
+  border-radius:var(--r-sm);
+}
+.client-add input:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-wash);
+}
+
+.client-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  box-shadow:var(--shadow-sm);
+  overflow:hidden;
+}
+.client-list:empty{display:none;}
+
+.client-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 14px 9px 8px;
+  border-bottom:1px solid var(--line);
+  background:var(--card);
+}
+.client-row:last-child{border-bottom:0;}
+.client-row:hover{background:var(--wash);}
+.client-row.is-dragging{opacity:.4;}
+.client-row.is-over{box-shadow:inset 0 2px 0 var(--accent);}
+
+.client-grip{
+  flex:none;
+  display:grid;
+  gap:3px;
+  padding:8px 6px;
+  cursor:grab;
+  opacity:.35;
+}
+.client-row:hover .client-grip{opacity:.7;}
+.client-grip span{
+  display:block;
+  width:14px;
+  height:2px;
+  border-radius:1px;
+  background:currentColor;
+}
+
+.client-no{
+  flex:none;
+  width:22px;
+  text-align:right;
+  color:var(--faint);
+  font-size:11px;
+}
+
+.client-name{
+  flex:1;
+  min-width:0;
+  height:34px;
+  padding:0 10px;
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:var(--r-sm);
+}
+.client-name:hover{border-color:var(--line);}
+.client-name:focus{
+  outline:none;
+  background:var(--paper);
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-wash);
+}
+
+.client-move{display:flex;gap:2px;flex:none;}
+.client-move .btn{width:28px;padding:0;height:28px;font-size:13px;}
+.client-row:first-child [data-up],
+.client-row:last-child [data-down]{opacity:.25;pointer-events:none;}
+
+.client-note{
+  margin:14px 2px 0;
+  font-size:12.5px;
+  color:var(--faint);
+}
+
+@media (max-width:640px){
+  .client-move{display:none;}
+  .client-row{flex-wrap:wrap;}
+}
 
 /* ---------------------------------------------------------
    Toast

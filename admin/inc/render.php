@@ -21,7 +21,10 @@ function renderSite(): string
     }
 
     $overrides = contentOverrides();
-    if (!$overrides) {
+    $hasClientList = clientNamesAreCustom();
+    $clients = $hasClientList ? clientNames() : [];
+
+    if (!$overrides && !$hasClientList) {
         return $template;
     }
 
@@ -33,6 +36,11 @@ function renderSite(): string
     libxml_clear_errors();
 
     $xp = new DOMXPath($doc);
+
+    /* ---- client marquee ---- */
+    if ($hasClientList) {
+        writeClientMarquee($xp, $clients);
+    }
 
     /* ---- text ---- */
     foreach ($xp->query('//*[@data-cms-text]') as $el) {
@@ -75,6 +83,54 @@ function renderSite(): string
     }
 
     return $doc->saveHTML();
+}
+
+/**
+ * Rewrite the client strip from the dashboard's list.
+ *
+ * The track is scrolled with a plain `translateX(-50%)`, so its contents have
+ * to be written twice for the loop to come round without a seam. Spaces inside
+ * a name are non-breaking, so "Saffron & Co" never wraps mid-name.
+ *
+ * An empty list takes the whole strip off the page rather than leaving a
+ * bordered band with nothing in it. Every publish starts from template.html
+ * again, so putting a name back brings the section straight back.
+ */
+function writeClientMarquee(DOMXPath $xp, array $names): void
+{
+    $track = $xp->query('//*[@data-cms-list="clients"]')->item(0);
+    if (!$track instanceof DOMElement) {
+        return;
+    }
+
+    if (!$names) {
+        for ($p = $track->parentNode; $p instanceof DOMElement; $p = $p->parentNode) {
+            if (strtolower($p->tagName) === 'section') {
+                $p->parentNode->removeChild($p);
+                return;
+            }
+        }
+        $track->parentNode->removeChild($track);
+        return;
+    }
+
+    while ($track->firstChild) {
+        $track->removeChild($track->firstChild);
+    }
+
+    $doc = $track->ownerDocument;
+
+    for ($pass = 0; $pass < 2; $pass++) {
+        foreach ($names as $name) {
+            $span = $doc->createElement('span');
+            $span->appendChild($doc->createTextNode(str_replace(' ', "\u{00A0}", $name)));
+            $track->appendChild($span);
+
+            $sep = $doc->createElement('i');
+            $sep->appendChild($doc->createTextNode("\u{00B7}"));
+            $track->appendChild($sep);
+        }
+    }
 }
 
 /**

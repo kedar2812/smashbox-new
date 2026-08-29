@@ -10,6 +10,7 @@ function icon(string $name, string $cls = ''): string
     $paths = [
         'images' => '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 15-4.5-4.5L7 20"/>',
         'text'   => '<path d="M4 6h16M4 12h11M4 18h7"/>',
+        'clients' => '<path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M10 21v-5h4v5"/>',
         'leads'  => '<path d="M4 5h16v14H4z"/><path d="m4 7 8 5 8-5"/>',
         'bell'   => '<path d="M18 8a6 6 0 1 0-12 0c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>',
         'close'  => '<path d="M18 6 6 18M6 6l12 12"/>',
@@ -80,6 +81,7 @@ function layoutTop(string $page, array $user, string $crumb = ''): void
     $nav = [
         ['key' => 'images', 'href' => 'images.php', 'icon' => 'images', 'label' => 'Images',  'count' => 0],
         ['key' => 'text',   'href' => 'text.php',   'icon' => 'text',   'label' => 'Text',    'count' => 0],
+        ['key' => 'clients','href' => 'clients.php','icon' => 'clients','label' => 'Clients', 'count' => 0],
         ['key' => 'leads',  'href' => 'leads.php',  'icon' => 'leads',  'label' => 'Leads',   'count' => $newN],
     ];
     ?>
@@ -90,7 +92,8 @@ function layoutTop(string $page, array $user, string $crumb = ''): void
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title><?= e(ucfirst($page)) ?> · Smashbox Studio Desk</title>
-<link rel="icon" href="../img/smashbox-logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -107,7 +110,7 @@ function layoutTop(string $page, array $user, string $crumb = ''): void
 <div class="shell">
   <aside class="rail">
     <a class="rail-brand" href="images.php">
-      <span class="brand-chip"><img src="../img/smashbox-logo.png" alt=""></span>
+      <span class="brand-chip"><img src="assets/smashbox-logo.png" alt="Smashbox Productions"></span>
       <span class="bn">Smashbox<span class="bs">Studio desk</span></span>
     </a>
 

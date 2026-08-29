@@ -20,7 +20,7 @@
     ],
     "counts": {
         "text": 102,
-        "image": 82
+        "image": 83
     },
     "fields": [
         {
@@ -577,8 +577,8 @@
             "type": "text",
             "tag": "h2",
             "section": "services",
-            "label": "Forty-five services, one partner.",
-            "default": "Forty-five services, <em>one partner</em>.",
+            "label": "Forty-six services, one partner.",
+            "default": "Forty-six services, <em>one partner</em>.",
             "rich": true
         },
         {
@@ -1839,6 +1839,17 @@
             "section": "services",
             "label": "45Digital brand communications — hover frame",
             "default": "https://images.pexels.com/photos/9853347/pexels-photo-9853347.jpeg?auto=compress&cs=tinysrgb&w=600",
+            "alt": "",
+            "width": "",
+            "height": ""
+        },
+        {
+            "id": "i83",
+            "type": "image",
+            "attr": "data-img",
+            "section": "services",
+            "label": "Political campaigns & PR — hover frame",
+            "default": "https://images.pexels.com/photos/6322363/pexels-photo-6322363.jpeg?auto=compress&cs=tinysrgb&w=600",
             "alt": "",
             "width": "",
             "height": ""
