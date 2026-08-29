@@ -234,10 +234,12 @@
       });
     });
 
+    // site-relative paths live on the site's origin, not the dashboard's —
+    // see publicSrc() in helpers.php for why ../ cannot work here
     function toPreview(v) {
       if (!v) return '';
       if (/^(https?:)?\/\//i.test(v) || v.indexOf('data:') === 0) return v;
-      return '../' + v.replace(/^\//, '');
+      return (CFG.siteUrl || '/').replace(/\/$/, '') + '/' + v.replace(/^\//, '');
     }
 
     /* ---- picking a file ---- */

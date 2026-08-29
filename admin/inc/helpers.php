@@ -183,7 +183,11 @@ function formatBytes(int $b): string
 
 /**
  * Turn a stored image value into something the dashboard can preview.
- * Site-relative paths need a ../ because the admin lives one level down.
+ *
+ * A site-relative path cannot be reached with ../ from here: the dashboard is
+ * its own subdomain whose document root *is* /admin, so ../img/logo.png
+ * resolves back inside the dashboard and 404s. Previews go to the site's own
+ * origin instead.
  */
 function publicSrc(string $value): string
 {
@@ -194,7 +198,7 @@ function publicSrc(string $value): string
     if (preg_match('#^(https?:)?//#i', $v) || str_starts_with($v, 'data:')) {
         return $v;
     }
-    return '../' . ltrim($v, '/');
+    return rtrim(SITE_URL, '/') . '/' . ltrim($v, '/');
 }
 
 /* -------------------------------------------------------------------------
