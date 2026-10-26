@@ -28,3 +28,4 @@ smashbox_details_IMP.txt
 
 # live credentials — the deployed copy only
 /admin/inc/config.php
+/admin/inc/config.local.php

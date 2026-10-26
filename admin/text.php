@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/inc/layout.php';
 require_once __DIR__ . '/inc/render.php';
-require_once __DIR__ . '/inc/richtext.php';
 
 $user = requireLogin();
 
-$fields = fieldsByType('text');
+$fields = editableFields('text');
 $overrides = contentOverrides();
-
-$groups = [];
-foreach ($fields as $f) {
-    $groups[$f['section']][] = $f;
-}
+$groups = groupBySection($fields);
 
 $editedCount = 0;
 foreach ($fields as $f) {
@@ -23,60 +18,54 @@ foreach ($fields as $f) {
     }
 }
 
-layoutTop('text', $user, 'Text');
+layoutTop('text', $user, 'Words', [
+    'subtitle' => 'Every headline, paragraph, button and name on the site, top to bottom. Tap one to change it — you’ll see exactly what changes before anything goes live.',
+    'actions'  => '<a class="btn btn-tinted btn-sm" href="editor.php">' . icon('cursor') . 'Edit on the page instead</a>',
+]);
 ?>
 
-<div class="page-head">
-  <div class="ph-text">
-    <span class="eyebrow">Copy deck</span>
-    <h1>Text</h1>
-    <p>Every headline and paragraph on the site, in the order it appears.
-       Click any line to rewrite it — just type, the way you would in an email.</p>
-  </div>
-  <div class="ph-actions">
-    <span class="mono" style="color:var(--faint)">
-      <?= count($fields) ?> blocks<?= $editedCount ? ' · ' . $editedCount . ' edited' : '' ?>
-    </span>
-  </div>
+<div class="tools">
+  <label class="search">
+    <?= icon('search') ?>
+    <input type="search" id="textSearch" placeholder="Find words on the site" autocomplete="off" aria-label="Find words on the site">
+  </label>
+  <span class="faint" style="font-size:13px" id="textCount"><?= count($fields) ?> blocks<?= $editedCount ? ' · ' . $editedCount . ' changed' : '' ?></span>
 </div>
 
+<nav class="jump" aria-label="Sections" style="margin:-8px 0 22px">
+  <?php foreach ($groups as $section => $items): ?>
+    <a href="#<?= e($section) ?>"><?= e(sectionTitle($section)) ?></a>
+  <?php endforeach; ?>
+</nav>
+
 <?php foreach ($groups as $section => $items): ?>
-  <section class="group">
-    <div class="group-head">
-      <h2><?= e(sectionLabel($section)) ?></h2>
-      <span class="rule"></span>
-      <span class="n"><?= count($items) ?></span>
+  <section class="tgroup" id="<?= e($section) ?>" data-group>
+    <div class="tgroup-head">
+      <h2><?= e(sectionTitle($section)) ?></h2>
+      <span><?= count($items) ?></span>
     </div>
 
-    <div class="text-list">
+    <div class="tlist">
       <?php foreach ($items as $f):
           $val = effectiveValue($f, $overrides);
           $isEdited = isset($overrides[$f['id']]);
-          $isHeading = in_array($f['tag'], ['h1', 'h2', 'h3', 'h4'], true);
-
-          // the markup stays here; the browser is handed words and nothing else
-          $parts = decomposeField($val);
+          $big = in_array($f['tag'], ['h1', 'h2'], true);
       ?>
-        <div class="trow<?= $isHeading ? ' is-h' : '' ?><?= $isEdited ? ' is-changed' : '' ?>"
-             data-row="<?= e($f['id']) ?>"
-             data-slots="<?= e(json_encode($parts['slots'], JSON_UNESCAPED_UNICODE)) ?>"
-             data-labels="<?= e(json_encode($parts['labels'] ?? [], JSON_UNESCAPED_UNICODE)) ?>">
-          <div class="trow-tag">
-            <?= e($f['tag']) ?>
-            <?php if ($isEdited): ?><br><span style="color:var(--warn)">edited</span><?php endif; ?>
-          </div>
-
-          <div class="trow-body">
-            <div class="trow-value" data-value><?= sanitizeInline($val) ?></div>
-          </div>
-
-          <div class="trow-actions">
-            <button class="btn btn-sm" type="button" data-edit>Edit</button>
-          </div>
-        </div>
+        <button class="trow<?= $big ? ' is-big' : '' ?>" type="button" data-field="<?= e($f['id']) ?>">
+          <span class="trow-kind"><?= e(fieldTitle($f)) ?></span>
+          <span class="trow-text" data-value><?= displayInline($val) ?></span>
+          <span class="trow-status"><?php if ($isEdited): ?><span class="pill pill-edited">Changed</span><?php endif; ?></span>
+          <?= icon('chevron') ?>
+        </button>
       <?php endforeach; ?>
     </div>
   </section>
 <?php endforeach; ?>
+
+<div class="empty no-results" id="noResults">
+  <?= icon('search') ?>
+  <h3>Nothing on the site says that</h3>
+  <p>Try a shorter word, or look through the sections above.</p>
+</div>
 
 <?php layoutBottom();

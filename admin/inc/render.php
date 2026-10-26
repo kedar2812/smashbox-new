@@ -24,10 +24,6 @@ function renderSite(): string
     $hasClientList = clientNamesAreCustom();
     $clients = $hasClientList ? clientNames() : [];
 
-    if (!$overrides && !$hasClientList) {
-        return $template;
-    }
-
     libxml_use_internal_errors(true);
     $doc = new DOMDocument();
     $doc->preserveWhiteSpace = true;
@@ -41,6 +37,9 @@ function renderSite(): string
     if ($hasClientList) {
         writeClientMarquee($xp, $clients);
     }
+
+    /* ---- email, phone, WhatsApp, social profiles ---- */
+    writeLinks($xp, siteLinks());
 
     /* ---- text ---- */
     foreach ($xp->query('//*[@data-cms-text]') as $el) {
@@ -134,6 +133,90 @@ function writeClientMarquee(DOMXPath $xp, array $names): void
 }
 
 /**
+ * Point every data-cms-link element at the stored address.
+ *
+ *   data-cms-link="phone"          href becomes tel:…
+ *   data-cms-link-text="phone"     text becomes the number as written,
+ *                                  after any data-cms-link-prefix
+ *
+ * A link whose value is empty is taken off the page — a social icon with no
+ * profile behind it, or the WhatsApp button when there is no number.
+ * The structured data block for search engines is rewritten to match.
+ */
+function writeLinks(DOMXPath $xp, array $links): void
+{
+    $href = static function (string $key, string $value): string {
+        if ($value === '') {
+            return '';
+        }
+        return match ($key) {
+            'email'    => 'mailto:' . $value,
+            'phone'    => phoneHref($value, 'tel'),
+            'whatsapp' => phoneHref($value, 'whatsapp'),
+            default    => $value,
+        };
+    };
+
+    foreach (iterator_to_array($xp->query('//*[@data-cms-link]')) as $el) {
+        /** @var DOMElement $el */
+        $key = $el->getAttribute('data-cms-link');
+        if (!array_key_exists($key, $links)) {
+            continue;
+        }
+        $url = $href($key, trim((string) $links[$key]));
+        if ($url === '') {
+            $el->parentNode?->removeChild($el);
+            continue;
+        }
+        $el->setAttribute('href', $url);
+    }
+
+    foreach ($xp->query('//*[@data-cms-link-text]') as $el) {
+        /** @var DOMElement $el */
+        $key = $el->getAttribute('data-cms-link-text');
+        $value = trim((string) ($links[$key] ?? ''));
+        if ($value === '') {
+            continue;
+        }
+        while ($el->firstChild) {
+            $el->removeChild($el->firstChild);
+        }
+        $text = $el->getAttribute('data-cms-link-prefix') . $value;
+        // a phone number should never break across two lines
+        if ($key !== 'email') {
+            $text = str_replace(' ', "\u{00A0}", $text);
+        }
+        $el->appendChild($el->ownerDocument->createTextNode($text));
+    }
+
+    $ld = $xp->query('//script[@data-cms-ld]')->item(0);
+    if ($ld instanceof DOMElement) {
+        $data = json_decode($ld->textContent, true);
+        if (is_array($data)) {
+            if ($links['email'] !== '') {
+                $data['email'] = $links['email'];
+            }
+            if ($links['phone'] !== '') {
+                $data['telephone'] = '+' . (preg_replace('/\D+/', '', $links['phone']) ?? '');
+            }
+            $data['sameAs'] = array_values(array_filter(
+                [$links['instagram'], $links['linkedin'], $links['behance'], $links['youtube']],
+                static fn($v): bool => is_string($v) && $v !== ''
+            ));
+            if (!$data['sameAs']) {
+                unset($data['sameAs']);
+            }
+            while ($ld->firstChild) {
+                $ld->removeChild($ld->firstChild);
+            }
+            $ld->appendChild($ld->ownerDocument->createTextNode(
+                json_encode($data, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG)
+            ));
+        }
+    }
+}
+
+/**
  * Replace an element's children with a fragment of inline HTML.
  * Falls back to a plain text node if the fragment will not parse.
  */
@@ -214,4 +297,26 @@ function effectiveAlt(array $field, array $overrides): string
 {
     $o = $overrides[$field['id']]['alt'] ?? null;
     return $o !== null ? $o : (string) ($field['alt'] ?? '');
+}
+
+/**
+ * Republish when template.html is newer than the last publish.
+ *
+ * A deploy uploads a new template but deliberately not index.html (that file
+ * carries the studio's edits). This brings the two back in line, and does
+ * nothing at all when they already are, so it is safe to call from anywhere.
+ */
+function republishIfTemplateChanged(): bool
+{
+    clearstatcache(true, TEMPLATE_FILE);
+    $tpl = @filemtime(TEMPLATE_FILE);
+    $last = settingGet('last_published_at');
+    $lastTs = $last !== null ? strtotime($last) : false;
+
+    if ($tpl === false || ($lastTs !== false && $tpl <= $lastTs && is_file(PUBLISHED_FILE))) {
+        return false;
+    }
+
+    publishSite();
+    return true;
 }

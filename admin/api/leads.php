@@ -26,11 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $items = [];
     foreach (unseenLeads() as $l) {
         $items[] = [
-            'id'      => (int) $l['id'],
-            'title'   => 'New lead — ' . ($l['name'] !== '' ? $l['name'] : $l['email']),
-            'preview' => truncate($l['message'] ?? '', 64) ?: $l['email'],
-            'when'    => timeAgo($l['created_at']),
-            'source'  => $l['source'],
+            'id'       => (int) $l['id'],
+            'name'     => $l['name'] !== '' ? $l['name'] : $l['email'],
+            'initials' => initials($l['name'], $l['email']),
+            'preview'  => truncate($l['message'] ?? '', 64) ?: 'Left their email address',
+            'when'     => timeAgo($l['created_at']),
+            'source'   => leadSourceLabel($l['source']),
         ];
     }
 

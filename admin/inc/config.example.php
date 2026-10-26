@@ -9,6 +9,13 @@
 
 declare(strict_types=1);
 
+// Local development only. The server never has this file, so the live
+// settings below are what it runs on. See tools/dev/README.md.
+if (is_file(__DIR__ . '/config.local.php')) {
+    require __DIR__ . '/config.local.php';
+    return;
+}
+
 // ---- database -------------------------------------------------------------
 const DB_HOST = 'localhost';
 const DB_NAME = 'CHANGEME_dbname';

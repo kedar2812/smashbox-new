@@ -324,6 +324,7 @@ html.theme-switching *::after{
   transition:opacity .7s var(--ease),visibility .7s;
 }
 .loader.is-done{opacity:0;visibility:hidden}
+.no-loader .loader{display:none}
 .loader-inner{display:grid;justify-items:center;gap:22px;width:min(320px,72vw)}
 .loader-mark{width:78px;color:var(--accent)}
 .loader-aperture{width:100%;height:auto}
@@ -1080,10 +1081,11 @@ html.theme-switching *::after{
 
 .q-rail{
   overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;
+  scroll-snap-type:x proximity;
   scrollbar-width:none;
   padding-inline:max(var(--gut),calc(50vw - var(--wrap)/2 + var(--gut)));
   padding-block:6px 10px;
+  scroll-padding-inline:max(var(--gut),calc(50vw - var(--wrap)/2 + var(--gut)));
   cursor:grab;
 }
 .q-rail::-webkit-scrollbar{display:none}
@@ -1113,7 +1115,7 @@ html.theme-switching *::after{
   position:relative;overflow:hidden;
   border-radius:clamp(24px,3.4vw,40px);
   padding:clamp(40px,6vw,84px);
-  display:grid;grid-template-columns:1.3fr auto;gap:40px;align-items:center;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(32px,5vw,72px);align-items:center;
   border:1px solid var(--line-2);
   background:var(--bg-2);
 }
@@ -1247,6 +1249,8 @@ html.theme-switching *::after{
   transition:opacity .8s var(--ease),transform .8s var(--ease);
 }
 .reveal.is-in{opacity:1;transform:none}
+.h2.reveal{filter:blur(8px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.h2.reveal.is-in{filter:none}
 .reveal[data-delay="1"]{transition-delay:.09s}
 .reveal[data-delay="2"]{transition-delay:.18s}
 .reveal[data-delay="3"]{transition-delay:.27s}
@@ -1278,7 +1282,6 @@ html.theme-switching *::after{
   .card.wide{grid-column:span 2;aspect-ratio:2.06/1.16}
   .card.tall{grid-row:span 1;aspect-ratio:1/1.16}
   .cta-big{grid-template-columns:1fr}
-  .cta-big-lens{justify-self:start;margin-top:8px}
   .team{max-width:560px}
 }
 @media (max-width:760px){
@@ -1298,6 +1301,10 @@ html.theme-switching *::after{
 }
 @media (max-width:560px){
   .work-grid{grid-template-columns:1fr}
+  /* ten filters in one swipeable row rather than five stacked ones */
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);scroll-padding-inline:var(--gut)}
+  .filters::-webkit-scrollbar{display:none}
+  .filter{flex:none}
   .card.wide,.card.tall{grid-column:span 1;aspect-ratio:1/1.06}
   .team{grid-template-columns:1fr 1fr}
   .member-lead{grid-column:span 2;grid-row:span 1;aspect-ratio:1/.9}
@@ -1323,7 +1330,8 @@ html.theme-switching *::after{
     transition-duration:.001ms !important;
     scroll-behavior:auto !important;
   }
-  .reveal{opacity:1;transform:none}
+  .reveal{opacity:1;transform:none;filter:none !important}
+  .js .card .card-media{opacity:1 !important;transform:none !important}
   .hero-title .line>span{transform:none}
   .tile{opacity:1;transform:none}
   .chip{opacity:1;transform:none}
@@ -1337,3 +1345,91 @@ html.theme-switching *::after{
 
 /* honeypot — off-screen for people, visible to bots */
 .hp-field{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;}
+
+/* =========================================================
+   CONTACT — WhatsApp, brief form
+   ========================================================= */
+.btn-ico{width:18px;height:18px;flex:none;margin-right:9px;vertical-align:-4px}
+.btn-wa span{display:inline-flex;align-items:center}
+
+.brief{
+  position:relative;z-index:2;
+  border-radius:var(--r-lg);
+  padding:clamp(22px,2.6vw,30px);
+  box-shadow:0 30px 80px -50px rgba(8,20,36,.8);
+}
+.brief-body{display:grid;gap:14px}
+.brief-title{
+  margin:0 0 4px;
+  font-family:var(--display);font-weight:600;font-size:1.22rem;letter-spacing:-.03em;color:var(--text);
+}
+.brief-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bf{display:grid;gap:7px;min-width:0}
+.bf-l{font-size:.8rem;color:var(--text-dim);font-weight:500;letter-spacing:0;padding:0}
+.bf-l i{font-style:normal;color:var(--text-faint);font-weight:400}
+.bf input,.bf textarea{
+  width:100%;
+  font:inherit;font-size:.95rem;color:var(--text);
+  background:color-mix(in srgb,var(--bg) 55%,transparent);
+  border:1px solid var(--line-2);
+  border-radius:14px;
+  padding:12px 14px;
+  outline:none;
+  transition:border-color .3s,box-shadow .3s,background .3s;
+}
+.bf textarea{resize:vertical;min-height:84px;line-height:1.5}
+.bf input::placeholder,.bf textarea::placeholder{color:var(--text-faint)}
+.bf input:focus,.bf textarea:focus{border-color:var(--accent-line);box-shadow:0 0 0 4px var(--accent-wash)}
+.bf.is-bad input{border-color:#E5484D;box-shadow:0 0 0 4px rgba(229,72,77,.14)}
+
+.bf-chips{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.bf-chips legend{margin-bottom:8px;float:left;width:100%}
+.bf-chips label{position:relative;cursor:pointer}
+.bf-chips input{position:absolute;opacity:0;pointer-events:none}
+.bf-chips span{
+  display:inline-flex;align-items:center;
+  padding:9px 15px;border-radius:100px;
+  border:1px solid var(--line-2);
+  font-size:.86rem;color:var(--text-dim);
+  transition:color .25s,border-color .25s,background .25s,transform .2s var(--ease);
+}
+.bf-chips label:active span{transform:scale(.96)}
+.bf-chips input:checked+span{color:#fff;background:var(--accent);border-color:transparent}
+.bf-chips input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+.brief-send{margin-top:4px;width:100%}
+.brief-send[disabled]{opacity:.7;pointer-events:none}
+
+.brief-done{display:grid;justify-items:center;text-align:center;gap:8px;padding:40px 10px}
+.brief-done[hidden]{display:none}
+.brief-done b{font-family:var(--display);font-size:1.5rem;letter-spacing:-.03em;font-weight:700}
+.brief-done span{color:var(--text-dim)}
+.brief-check{width:64px;height:64px;color:var(--accent);margin-bottom:8px}
+.brief-check svg{width:100%;height:100%}
+.brief-check circle{stroke-dasharray:151;stroke-dashoffset:151;animation:draw .7s var(--ease) forwards}
+.brief-check path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .45s var(--ease) .45s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+@media (max-width:560px){
+  .brief-row{grid-template-columns:1fr}
+  .cta-big-actions .btn{width:100%}
+}
+
+/* =========================================================
+   KEY LIGHT ON CARDS — the softbox follows the pointer across
+   any card it passes over, the same light as the hero
+   ========================================================= */
+.div-card,.q-card,.svc-card,.brief{--mx:50%;--my:-40%}
+.div-card,.q-card,.svc-card{isolation:isolate}
+.div-card::before,.q-card::before,.svc-card::before{
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx) var(--my),var(--accent-wash),transparent 62%);
+  opacity:0;transition:opacity .5s var(--ease);
+}
+.q-card,.svc-card{position:relative}
+.div-card:hover::before,.q-card:hover::before,.svc-card:hover::before{opacity:1}
+
+/* =========================================================
+   WORK — prints develop as they come into view
+   ========================================================= */
+.js .card .card-media{opacity:0;transform:scale(1.08);transition:opacity 1s var(--ease),transform 1.6s var(--expo-out)}
+.js .card.is-in .card-media{opacity:1;transform:none}

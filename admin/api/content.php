@@ -8,6 +8,7 @@ declare(strict_types=1);
  * POST { id, slots: [[{t,em?,strong?}|{br:true}, …], …] }   set a text override
  * POST { id, value, alt? }                                  set an image override
  * POST { id, reset: true }                                  drop it, restoring the original
+ * POST { id, slots, preview: true }                        compose without saving, for a live preview
  *
  * Text arrives as words, never as markup. The skeleton — the tags, classes and
  * links that make up the design — is taken from the value already stored and
@@ -19,7 +20,58 @@ require_once __DIR__ . '/../inc/auth.php';
 require_once __DIR__ . '/../inc/render.php';
 require_once __DIR__ . '/../inc/richtext.php';
 
+require_once __DIR__ . '/../inc/fields.php';
+
 requireLogin();
+
+/** What the field says right now — the override if there is one, else the original. */
+function currentValue(array $field): string
+{
+    $overrides = contentOverrides();
+    return $overrides[$field['id']]['value'] ?? (string) $field['default'];
+}
+
+/* ---- GET ?id= : everything an editor panel needs to open a field ---- */
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $field = fieldById((string) ($_GET['id'] ?? ''));
+    if (!$field) {
+        jsonFail('That part of the page is not editable.', 404);
+    }
+
+    $overrides = contentOverrides();
+    $edited = isset($overrides[$field['id']]);
+    $out = [
+        'ok'      => true,
+        'id'      => $field['id'],
+        'type'    => $field['type'],
+        'title'   => fieldTitle($field),
+        'kind'    => fieldKind($field),
+        'hint'    => fieldHint($field),
+        'section' => sectionTitle($field['section']),
+        'edited'  => $edited,
+    ];
+
+    if ($field['type'] === 'text') {
+        $parts = decomposeField(currentValue($field));
+        $out += [
+            'tag'      => $field['tag'],
+            'slots'    => $parts['slots'],
+            'labels'   => $parts['labels'] ?? [],
+            'original' => truncate(plainText((string) $field['default']), 400),
+        ];
+    } else {
+        $value = effectiveValue($field, $overrides);
+        $out += [
+            'attr'     => $field['attr'] ?? 'src',
+            'value'    => $value,
+            'preview'  => publicSrc($value),
+            'alt'      => effectiveAlt($field, $overrides),
+            'original' => publicSrc((string) $field['default']),
+        ];
+    }
+
+    jsonOut($out);
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonFail('POST only.', 405);
@@ -35,13 +87,6 @@ if (!$field) {
     jsonFail('That field is not part of the site.', 404);
 }
 
-/** What the field says right now — the override if there is one, else the original. */
-function currentValue(array $field): string
-{
-    $overrides = contentOverrides();
-    return $overrides[$field['id']]['value'] ?? (string) $field['default'];
-}
-
 try {
     if (!empty($in['reset'])) {
         db()->prepare('DELETE FROM content WHERE field_id = ?')->execute([$id]);
@@ -53,6 +98,8 @@ try {
             'ok'        => true,
             'reset'     => true,
             'value'     => $field['default'],
+            'display'   => $field['type'] === 'text' ? displayInline((string) $field['default']) : null,
+            'preview'   => $field['type'] === 'image' ? publicSrc((string) $field['default']) : null,
             'slots'     => $parts['slots'],
             'labels'    => $parts['labels'] ?? [],
             'alt'       => $field['alt'] ?? '',
@@ -69,6 +116,11 @@ try {
 
         $skeleton = decomposeField(currentValue($field))['skeleton'];
         $value = composeField($skeleton, $in['slots']);
+
+        // the visual editor shows the change on the page before it is saved
+        if (!empty($in['preview'])) {
+            jsonOut(['ok' => true, 'preview' => true, 'value' => sanitizeInline($value)]);
+        }
 
         if (plainText($value) === '') {
             jsonFail('That block cannot be left empty. Use “Restore original” instead.');
@@ -108,6 +160,8 @@ try {
     jsonOut([
         'ok'        => true,
         'value'     => $value,
+        'display'   => $field['type'] === 'text' ? displayInline($value) : null,
+        'preview'   => $field['type'] === 'image' ? publicSrc($value) : null,
         'slots'     => $parts['slots'] ?? null,
         'labels'    => $parts['labels'] ?? null,
         'alt'       => $alt,

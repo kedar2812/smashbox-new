@@ -14,9 +14,9 @@
 #
 # index.html is deliberately NOT uploaded. It is generated: the dashboard
 # writes it from template.html plus whatever the studio has edited, so
-# overwriting it here would drop those edits. When this finishes, sign in to
-# the dashboard, open Clients and press "Save & publish" — that regenerates
-# index.html from the new template with every override intact.
+# overwriting it here would drop those edits. Instead, the last step calls
+# /api/rebuild.php, which regenerates index.html from the new template with
+# every saved edit intact (and does nothing if the template has not changed).
 
 set -euo pipefail
 
@@ -65,27 +65,59 @@ fi
 echo "site root: ${SBX_FTP_ROOT:-/}"
 echo
 
+# Order matters a little: shared includes first, then the endpoints and
+# pages that use them, then the public assets, and the template last, so a
+# visitor arriving mid-upload never meets a page built from a newer template
+# than the code that renders it.
 FILES=(
-  template.html
-  cms-manifest.json
-  img/favicon-32.png
-  img/favicon-180.png
-  img/favicon-512.png
-  admin/index.php
-  admin/clients.php
-  admin/text.php
-  admin/api/content.php
-  admin/api/clients.php
+  admin/.htaccess
+  admin/inc/.htaccess
   admin/inc/db.php
   admin/inc/helpers.php
+  admin/inc/auth.php
   admin/inc/richtext.php
-  admin/inc/layout.php
   admin/inc/render.php
+  admin/inc/fields.php
+  admin/inc/analytics.php
+  admin/inc/countries.php
+  admin/inc/layout.php
+  admin/api/content.php
+  admin/api/clients.php
+  admin/api/leads.php
+  admin/api/upload.php
+  admin/api/media.php
+  admin/api/links.php
+  admin/api/analytics.php
   admin/assets/admin.css
   admin/assets/admin.js
   admin/assets/smashbox-logo.png
   admin/assets/favicon-32.png
   admin/assets/favicon-180.png
+  admin/index.php
+  admin/home.php
+  admin/analytics.php
+  admin/editor.php
+  admin/preview.php
+  admin/text.php
+  admin/images.php
+  admin/clients.php
+  admin/links.php
+  admin/leads.php
+  admin/account.php
+  admin/logout.php
+  api/lead.php
+  api/track.php
+  api/rebuild.php
+  css/styles.css
+  js/main.js
+  js/track.js
+  img/og.jpg
+  img/favicon-32.png
+  img/favicon-180.png
+  img/favicon-512.png
+  privacy.html
+  cms-manifest.json
+  template.html
 )
 
 fail=0
@@ -102,12 +134,14 @@ for f in "${FILES[@]}"; do
 done
 
 echo
-if [ "$fail" -eq 0 ]; then
-  echo "Uploaded ${#FILES[@]} files."
-else
-  echo "Some files failed — see above."
+if [ "$fail" -ne 0 ]; then
+  echo "Some files failed — see above. index.html was left as it was."
+  exit 1
 fi
+
+echo "Uploaded ${#FILES[@]} files."
 echo
-echo "Last step: sign in at https://admin.smashboxproductions.com/,"
-echo "open Clients and press Save & publish. That rewrites index.html"
-echo "from the new template with the studio's existing edits intact."
+printf 'Rebuilding index.html from the new template … '
+SITE="${SBX_SITE_URL:-https://smashboxproductions.com}"
+curl --silent --show-error --max-time 60 "$SITE/api/rebuild.php"
+echo

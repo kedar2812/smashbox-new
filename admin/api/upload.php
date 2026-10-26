@@ -93,7 +93,9 @@ try {
 jsonOut([
     'ok'     => true,
     'path'   => UPLOAD_URL . $filename,
-    'url'    => '../' . UPLOAD_URL . $filename,
+    // the dashboard is its own subdomain, so previews go to the site's origin
+    'url'    => publicSrc(UPLOAD_URL . $filename),
+    'name'   => $file['name'],
     'width'  => (int) ($info[0] ?? 0),
     'height' => (int) ($info[1] ?? 0),
     'size'   => formatBytes((int) $file['size']),

@@ -143,7 +143,8 @@ Not imagery, but equally fake — fix before launch:
   divisions serving one client — keep that idea when you swap in real projects.
 - **Stats** — 18+ years, 2008, the three divisions and the 46 services are all
   taken from the client's brand document. **400+ projects** is still an
-  estimate; confirm or change it in `index.html` (`data-count`). The
+  estimate; the studio can change any figure from the dashboard (Words →
+  Numbers and the name) and the count-up animates to whatever it says. The
   **17 industries** figure is a count of the industries the client listed, so
   it has to move if that list does — it appears in the stat block, in the
   "Seventeen industries" eyebrow, and as the two industry marquee rows.
@@ -159,8 +160,16 @@ Not imagery, but equally fake — fix before launch:
   Caveat: the phone and address are published under **Amour Affairs**, the
   wedding brand run by the same founder (Taher Husainbhai Kolsawala) from the
   same premises. Only the email carries the Smashbox name. If Smashbox uses a
-  separate studio line or a different address for commercial work, swap it in
-  `index.html` — the values appear in the footer contact column and in the big
-  CTA's `mailto:` / `tel:` links.
-- **Forms** — the hero and newsletter forms validate the address and show a
-  confirmation, but there is no backend. Point them at a real endpoint.
+  separate studio line or a different address for commercial work, the studio
+  changes it in the dashboard: email, phone and WhatsApp under **Contact &
+  links**, the address under **Words → Footer**. The WhatsApp button uses the
+  same number as the phone until told otherwise — **confirm that number is on
+  WhatsApp**, or clear the field to hide the button.
+- **Social profiles** — the footer's Instagram, LinkedIn, Behance and YouTube
+  icons stay hidden until each has a link in **Contact & links**.
+- **Team and testimonials** — the names, roles, portraits and quotes are
+  examples. Every one of them is editable from the dashboard (Edit visually,
+  or Words → Studio and team / Client notes).
+- **Forms** — the hero email box, the contact block's brief form and the
+  newsletter box all post to `api/lead.php`; entries land in the dashboard
+  under Leads and ring the bell.

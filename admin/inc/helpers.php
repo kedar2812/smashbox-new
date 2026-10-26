@@ -306,3 +306,113 @@ function saveClientNames(array $names): array
     settingSet(CLIENTS_SETTING, json_encode(array_values($clean), JSON_UNESCAPED_UNICODE));
     return $clean;
 }
+
+/* -------------------------------------------------------------------------
+   Contact details and social links
+
+   The email, phone, WhatsApp and social profiles appear on the site as link
+   addresses rather than as copy, so the text editor cannot reach them. They
+   are kept together as one JSON object in settings and written into every
+   element marked data-cms-link on each publish. A social link left empty
+   takes its icon off the page instead of leaving a link to nowhere.
+   ------------------------------------------------------------------------- */
+
+const LINKS_SETTING = 'site_links';
+
+/** Every editable link, in the order the Links page shows them. */
+function linkFields(): array
+{
+    return [
+        'email'     => ['label' => 'Email address',   'kind' => 'email', 'placeholder' => 'hello@yourstudio.com',          'help' => 'Used by every “Email the studio” button and in the footer.'],
+        'phone'     => ['label' => 'Phone number',    'kind' => 'phone', 'placeholder' => '+91 99210 00052',              'help' => 'Write it the way you want it shown. Tapping it on a phone starts a call.'],
+        'whatsapp'  => ['label' => 'WhatsApp number', 'kind' => 'phone', 'placeholder' => '+91 99210 00052',              'help' => 'Adds a “WhatsApp us” button. Leave empty to hide it.'],
+        'instagram' => ['label' => 'Instagram',       'kind' => 'url',   'placeholder' => 'https://instagram.com/yourstudio', 'help' => ''],
+        'linkedin'  => ['label' => 'LinkedIn',        'kind' => 'url',   'placeholder' => 'https://linkedin.com/company/…',   'help' => ''],
+        'behance'   => ['label' => 'Behance',         'kind' => 'url',   'placeholder' => 'https://behance.net/…',            'help' => ''],
+        'youtube'   => ['label' => 'YouTube',         'kind' => 'url',   'placeholder' => 'https://youtube.com/@…',           'help' => ''],
+    ];
+}
+
+/** What the site carried before the dashboard stored anything. */
+function defaultLinks(): array
+{
+    return [
+        'email'     => STUDIO_EMAIL,
+        'phone'     => '+91 99210 00052',
+        'whatsapp'  => '+91 99210 00052',
+        'instagram' => '',
+        'linkedin'  => '',
+        'behance'   => '',
+        'youtube'   => '',
+    ];
+}
+
+function siteLinks(): array
+{
+    $raw = settingGet(LINKS_SETTING);
+    $saved = $raw !== null ? json_decode($raw, true) : null;
+    $out = defaultLinks();
+    if (is_array($saved)) {
+        foreach ($out as $k => $_) {
+            if (array_key_exists($k, $saved)) {
+                $out[$k] = (string) $saved[$k];
+            }
+        }
+    }
+    return $out;
+}
+
+/**
+ * Check and tidy one value. Returns [value, error].
+ *
+ * @return array{0:string, 1:?string}
+ */
+function normaliseLink(string $key, string $value): array
+{
+    $fields = linkFields();
+    $kind = $fields[$key]['kind'] ?? 'url';
+    $v = trim(preg_replace('/\s+/u', ' ', strip_tags($value)) ?? '');
+
+    if ($v === '') {
+        return ['', null];
+    }
+
+    if ($kind === 'email') {
+        $v = strtolower($v);
+        return filter_var($v, FILTER_VALIDATE_EMAIL) ? [$v, null] : [$v, 'That email address does not look right.'];
+    }
+
+    if ($kind === 'phone') {
+        $digits = preg_replace('/\D+/', '', $v) ?? '';
+        if (strlen($digits) < 8 || strlen($digits) > 15) {
+            return [$v, 'Check the number — include the country code, like +91.'];
+        }
+        return [mb_substr($v, 0, 30), null];
+    }
+
+    if (!preg_match('#^https?://#i', $v)) {
+        $v = 'https://' . ltrim($v, '/');
+    }
+    if (!filter_var($v, FILTER_VALIDATE_URL) || mb_strlen($v) > 300) {
+        return [$v, 'That link does not look right. Copy it from the address bar of the profile.'];
+    }
+    return [$v, null];
+}
+
+/** A phone number as a tel: or wa.me address. */
+function phoneHref(string $phone, string $kind = 'tel'): string
+{
+    $digits = preg_replace('/\D+/', '', $phone) ?? '';
+    if ($digits === '') {
+        return '';
+    }
+    if ($kind === 'whatsapp') {
+        // a bare ten-digit Indian mobile needs its country code for wa.me
+        if (strlen($digits) === 10) {
+            $digits = '91' . $digits;
+        }
+        return 'https://wa.me/' . $digits;
+    }
+    $plus = str_starts_with(trim($phone), '+') ? '+' : '';
+    return 'tel:' . $plus . $digits;
+}

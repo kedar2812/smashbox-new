@@ -10,61 +10,54 @@ $user = requireLogin();
 $names = clientNames();
 $isCustom = clientNamesAreCustom();
 
-layoutTop('clients', $user, 'Clients');
+layoutTop('clients', $user, 'Client strip', [
+    'subtitle' => 'The names that scroll across the site under the three divisions. Add, rename, remove, or drag them into the order you want — then save.',
+    'actions'  => '<button class="btn btn-plain btn-sm" id="clientReset" type="button"' . ($isCustom ? '' : ' hidden') . '>' . icon('undo') . 'Restore the original list</button>',
+]);
 ?>
 
-<div class="page-head">
-  <div class="ph-text">
-    <span class="eyebrow">Brands we've lit</span>
-    <h1>Clients</h1>
-    <p>The names that scroll across the strip below the three divisions.
-       Add one, drop one, or drag them into the order you want them read.</p>
+<div class="clients-wrap">
+  <div>
+    <form class="client-add" id="clientAdd" autocomplete="off">
+      <input class="input" type="text" id="clientNew" maxlength="<?= CLIENT_NAME_MAX ?>" placeholder="Add a client — for example, Taj Hotels" aria-label="New client name">
+      <button class="btn btn-primary" type="submit"><?= icon('plus') ?>Add</button>
+    </form>
+
+    <ol class="clist" id="clientList">
+      <?php foreach ($names as $i => $n): ?>
+        <li class="crow" draggable="true">
+          <span class="crow-grip" aria-hidden="true"><?= icon('grip') ?></span>
+          <span class="crow-no"><?= $i + 1 ?></span>
+          <input type="text" maxlength="<?= CLIENT_NAME_MAX ?>" value="<?= e($n) ?>" aria-label="Client name">
+          <button class="icon-btn" type="button" data-up aria-label="Move up">↑</button>
+          <button class="icon-btn" type="button" data-down aria-label="Move down">↓</button>
+          <button class="icon-btn del" type="button" data-remove aria-label="Remove"><?= icon('trash') ?></button>
+        </li>
+      <?php endforeach; ?>
+    </ol>
+
+    <div class="card empty" id="clientEmpty"<?= $names ? ' hidden' : '' ?>>
+      <?= icon('clients') ?>
+      <h3>The strip is empty</h3>
+      <p>Add a name above. While the list is empty, the strip is hidden on the site.</p>
+    </div>
+
+    <p class="faint" style="font-size:13px;margin:12px 4px 0">
+      Reads best with six names or more. Up to <?= CLIENTS_MAX ?> fit.
+    </p>
   </div>
-  <div class="ph-actions">
-    <span class="mono" style="color:var(--faint)" id="clientCount"><?= count($names) ?> names</span>
-    <button class="btn btn-sm btn-quiet" id="clientReset" type="button"<?= $isCustom ? '' : ' hidden' ?>><?= icon('undo') ?> Restore original</button>
-    <button class="btn btn-sm btn-primary" id="clientSave" type="button">Save &amp; publish</button>
-  </div>
+
+  <aside class="card" style="position:sticky;top:calc(var(--tb-h) + 16px)">
+    <div class="card-head"><div><h2 class="card-title">How it will look</h2><p class="card-sub" id="clientCount"><?= count($names) ?> names</p></div></div>
+    <div class="strip-preview"><div class="strip-track" id="stripTrack"></div></div>
+  </aside>
 </div>
 
-<section class="group">
-  <div class="group-head">
-    <h2>On the strip</h2>
-    <span class="rule"></span>
-    <span class="n" data-client-n><?= count($names) ?></span>
-  </div>
-
-  <form class="client-add" id="clientAdd" autocomplete="off">
-    <input type="text" id="clientNew" maxlength="60" placeholder="Add a client — e.g. Taj Hotels">
-    <button class="btn" type="submit">Add</button>
-  </form>
-
-  <ol class="client-list" id="clientList">
-    <?php foreach ($names as $i => $n): ?>
-      <li class="client-row" draggable="true">
-        <span class="client-grip" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span class="client-no mono"><?= $i + 1 ?></span>
-        <input type="text" class="client-name" maxlength="60" value="<?= e($n) ?>"
-               aria-label="Client name">
-        <span class="client-move">
-          <button class="btn btn-sm btn-quiet" type="button" data-up aria-label="Move up">&uarr;</button>
-          <button class="btn btn-sm btn-quiet" type="button" data-down aria-label="Move down">&darr;</button>
-        </span>
-        <button class="btn btn-sm btn-danger" type="button" data-remove>Remove</button>
-      </li>
-    <?php endforeach; ?>
-  </ol>
-
-  <div class="empty" id="clientEmpty"<?= $names ? ' hidden' : '' ?>>
-    <?= icon('clients') ?>
-    <h3>No clients on the strip</h3>
-    <p>Add the first name above. The strip hides itself on the site while this list is empty.</p>
-  </div>
-
-  <p class="client-note">
-    The strip scrolls on a loop, so it reads best with six names or more.
-    Up to <?= CLIENTS_MAX ?> can go on it.
-  </p>
-</section>
+<div class="savebar" id="clientBar" role="region" aria-label="Unsaved changes">
+  <span class="savebar-dot"></span>
+  <span>Unsaved changes to the client strip</span>
+  <button class="btn btn-plain btn-sm" type="button" id="clientDiscard">Discard</button>
+  <button class="btn btn-primary btn-sm" type="button" id="clientSave">Save &amp; publish</button>
+</div>
 
 <?php layoutBottom();

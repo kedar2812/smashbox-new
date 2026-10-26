@@ -117,15 +117,16 @@
     const bar    = $('#loaderBar');
     if (!loader) return start();
 
-    if (reduced) {
+    // the meter plays on the first page of a visit only
+    if (reduced || document.documentElement.classList.contains('no-loader')) {
       loader.classList.add('is-done');
       return start();
     }
 
     let p = 0;
     const tick = setInterval(() => {
-      // ease toward 100, slower near the end
-      p += Math.max(0.9, (100 - p) * 0.09);
+      // ease toward 100, slower near the end — about a second in all
+      p += Math.max(1.6, (100 - p) * 0.13);
       if (p >= 100) { p = 100; clearInterval(tick); finish(); }
       num.textContent = String(Math.floor(p)).padStart(2, '0');
       bar.style.width = p + '%';
@@ -135,7 +136,7 @@
       setTimeout(() => {
         loader.classList.add('is-done');
         start();
-      }, 320);
+      }, 180);
     }
   }
 
@@ -144,8 +145,10 @@
     document.body.classList.add('is-ready');
   }
 
-  if (document.readyState === 'complete') preload();
-  else window.addEventListener('load', preload);
+  // The hero only needs its own pictures, not every lazy image further down,
+  // so the meter starts once the document is parsed rather than at load.
+  if (document.readyState !== 'loading') preload();
+  else document.addEventListener('DOMContentLoaded', preload);
   // safety net: never leave the page behind a loader
   setTimeout(() => {
     const l = $('#loader');
@@ -365,12 +368,22 @@
     const links = $$('.nav-links a');
     const secs = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
     if (secs.length && 'IntersectionObserver' in window) {
+      let activeId = '';
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (!e.isIntersecting) return;
-          links.forEach(a => a.style.color = '');
+          // leaving the lit section for one with no nav link (the FAQ, the
+          // contact block) clears the highlight rather than leaving it stuck
+          if (!e.isIntersecting) {
+            if (e.target.id === activeId) {
+              activeId = '';
+              links.forEach(a => { a.style.color = ''; a.removeAttribute('aria-current'); });
+            }
+            return;
+          }
+          activeId = e.target.id;
+          links.forEach(a => { a.style.color = ''; a.removeAttribute('aria-current'); });
           const match = links.find(a => a.getAttribute('href') === '#' + e.target.id);
-          if (match) match.style.color = 'var(--text)';
+          if (match) { match.style.color = 'var(--text)'; match.setAttribute('aria-current', 'true'); }
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
       secs.forEach(s => io.observe(s));
@@ -381,12 +394,21 @@
      7. COUNT-UP STATS
      --------------------------------------------------------- */
   (function counters() {
-    const nums = $$('[data-count]');
+    // The figure is read from the text itself ("400+" counts to 400 and keeps
+    // the "+"), so a number changed in the dashboard animates to the new value.
+    // Anything that does not start with a number is left alone.
+    const nums = $$('[data-count]').filter(n => {
+      const m = n.textContent.trim().match(/^(\d+)(.*)$/);
+      if (!m) return false;
+      n.dataset.count = m[1];
+      n.dataset.suffix = m[2];
+      return true;
+    });
     if (!nums.length) return;
-    if (reduced || !('IntersectionObserver' in window)) {
-      nums.forEach(n => n.textContent = n.dataset.count + (n.dataset.suffix || ''));
-      return;
-    }
+    // the markup carries the real figures; only zero them once it is
+    // certain they will be counted back up
+    if (reduced || !('IntersectionObserver' in window)) return;
+    nums.forEach(n => { n.textContent = '0'; });
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
@@ -394,7 +416,7 @@
         const el = e.target;
         const to = parseFloat(el.dataset.count);
         const suf = el.dataset.suffix || '';
-        const dur = el.dataset.plain ? 1500 : 1200;
+        const dur = 1200;
         const t0 = performance.now();
         (function step(now) {
           const p = clamp((now - t0) / dur, 0, 1);
@@ -416,7 +438,11 @@
     const hud   = $('#hudMeta');
     if (!steps.length || !imgs.length) return;
 
-    const labels = ['01 — DISCOVER', '02 — STRATEGIZE', '03 — CREATE', '04 — DELIVER', '05 — CONNECT'];
+    // taken from the step titles, so a renamed step renames its frame too
+    const labels = steps.map((s, i) => {
+      const h = s.querySelector('h3');
+      return String(i + 1).padStart(2, '0') + ' — ' + (h ? h.textContent.trim().toUpperCase() : '');
+    });
 
     const show = (i) => {
       steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
@@ -527,17 +553,42 @@
     const next = $('#qNext');
     if (!rail) return;
 
-    const card = $('.q-card', rail);
-    const step = () => (card ? card.getBoundingClientRect().width + 16 : 380);
-
+    // Judged from where the first and last cards sit rather than from
+    // scrollLeft: with snap padding in play the browser's scroll origin is
+    // not where the first card rests.
+    const cards = $$('.q-card', rail);
     const sync = () => {
-      const max = rail.scrollWidth - rail.clientWidth - 2;
-      if (prev) prev.disabled = rail.scrollLeft <= 2;
-      if (next) next.disabled = rail.scrollLeft >= max;
+      if (!cards.length) return;
+      const r = rail.getBoundingClientRect();
+      const cs = getComputedStyle(rail);
+      const padL = parseFloat(cs.scrollPaddingLeft) || parseFloat(cs.paddingLeft) || 0;
+      const padR = parseFloat(cs.scrollPaddingRight) || parseFloat(cs.paddingRight) || 0;
+      if (prev) prev.disabled = cards[0].getBoundingClientRect().left >= r.left + padL - 4;
+      if (next) next.disabled = cards[cards.length - 1].getBoundingClientRect().right <= r.right - padR + 4;
     };
 
-    prev && prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' }));
-    next && next.addEventListener('click', () => rail.scrollBy({ left:  step(), behavior: reduced ? 'auto' : 'smooth' }));
+    // Go to the next or previous card exactly — a fixed step fights the snap
+    // points and can leave the rail where it was.
+    const go = (dir) => {
+      const r = rail.getBoundingClientRect();
+      const pad = parseFloat(getComputedStyle(rail).scrollPaddingLeft) || 0;
+      const edge = r.left + pad;
+      const lefts = cards.map(c => c.getBoundingClientRect().left - edge);
+      const target = dir > 0
+        ? lefts.find(d => d > 4)
+        : lefts.filter(d => d < -4).pop();
+      if (target === undefined) return;
+      // Chrome re-snaps a snap container mid-way through a smooth programmatic
+      // scroll and cancels it, so snapping sits out while the arrow's scroll
+      // runs; the target is a card edge anyway
+      rail.style.scrollSnapType = 'none';
+      rail.scrollBy({ left: target, behavior: reduced ? 'auto' : 'smooth' });
+      clearTimeout(snapBack);
+      snapBack = setTimeout(() => { rail.style.scrollSnapType = ''; }, reduced ? 0 : 900);
+    };
+    let snapBack;
+    prev && prev.addEventListener('click', () => go(-1));
+    next && next.addEventListener('click', () => go(1));
     rail.addEventListener('scroll', sync, { passive: true });
     addEventListener('resize', sync);
     sync();
@@ -697,7 +748,114 @@
   })();
 
   /* ---------------------------------------------------------
-     15. ODDS AND ENDS
+     15. BRIEF FORM — the contact block's short enquiry
+     --------------------------------------------------------- */
+  (function brief() {
+    const form = $('#briefForm');
+    if (!form) return;
+
+    const body = $('.brief-body', form);
+    const done = $('.brief-done', form);
+    const send = $('.brief-send', form);
+    const toast = $('#toast');
+    const say = (msg) => {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('is-on');
+      setTimeout(() => toast.classList.remove('is-on'), 4200);
+    };
+
+    const field = (name) => form.elements.namedItem(name);
+    const mark = (input, bad) => input.closest('.bf').classList.toggle('is-bad', bad);
+
+    // a field flagged as wrong clears itself the moment it is being fixed
+    form.addEventListener('input', (e) => {
+      const bf = e.target.closest && e.target.closest('.bf');
+      if (bf) bf.classList.remove('is-bad');
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = field('name'), email = field('email');
+      const okName = name.value.trim().length > 1;
+      const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+      mark(name, !okName);
+      mark(email, !okEmail);
+      if (!okName) { name.focus(); say('Add your name so the studio knows who to reply to.'); return; }
+      if (!okEmail) { email.focus(); say('That email address needs another look.'); return; }
+
+      const needs = $$('input[name=need]:checked', form).map(i => i.value);
+      const text = field('message').value.trim();
+      const message = (needs.length ? 'Looking for: ' + needs.join(', ') + (text ? '\n\n' : '') : '') + text;
+
+      send.disabled = true;
+      send.querySelector('span').textContent = 'Sending…';
+
+      try {
+        const res = await fetch('api/lead.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name.value.trim(),
+            email: email.value.trim(),
+            phone: field('phone').value.trim(),
+            message,
+            source: 'contact',
+            company: field('company').value
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || '');
+
+        body.hidden = true;
+        done.hidden = false;
+        form.reset();
+      } catch (err) {
+        say(err.message || 'That did not go through. Email us at smashboxindia@gmail.com.');
+      } finally {
+        send.disabled = false;
+        send.querySelector('span').textContent = 'Send brief';
+      }
+    });
+  })();
+
+  /* ---------------------------------------------------------
+     16. KEY LIGHT ON CARDS + DEVELOPING PRINTS
+     --------------------------------------------------------- */
+  (function cardLight() {
+    if (!fine || reduced) return;
+    $$('.div-card, .q-card, .svc-card').forEach(card => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    });
+  })();
+
+  (function develop() {
+    const cards = $$('#workGrid .card');
+    if (!cards.length) return;
+    if (reduced || !('IntersectionObserver' in window)) {
+      cards.forEach(c => c.classList.add('is-in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      // cards that arrive together develop one after another, left to right
+      entries.filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left)
+        .forEach((e, i) => {
+          e.target.querySelector('.card-media').style.transitionDelay = (i * 0.09) + 's';
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    cards.forEach(c => io.observe(c));
+  })();
+
+  /* ---------------------------------------------------------
+     17. ODDS AND ENDS
      --------------------------------------------------------- */
   const yr = $('#yr');
   if (yr) yr.textContent = new Date().getFullYear();

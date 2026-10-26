@@ -19,10 +19,28 @@
         "header"
     ],
     "counts": {
-        "text": 102,
+        "text": 227,
         "image": 83
     },
     "fields": [
+        {
+            "id": "t104",
+            "type": "text",
+            "tag": "span",
+            "section": "header",
+            "label": "Start a project",
+            "default": "Start a project",
+            "rich": false
+        },
+        {
+            "id": "t105",
+            "type": "text",
+            "tag": "span",
+            "section": "header",
+            "label": "Start a project",
+            "default": "Start a project",
+            "rich": false
+        },
         {
             "id": "t1",
             "type": "text",
@@ -60,12 +78,75 @@
             "rich": true
         },
         {
+            "id": "t106",
+            "type": "text",
+            "tag": "span",
+            "section": "hero",
+            "label": "Let's talk",
+            "default": "Let's talk",
+            "rich": false
+        },
+        {
             "id": "t5",
             "type": "text",
             "tag": "p",
             "section": "hero",
             "label": "Tell us what you're building. We reply within one w…",
             "default": "Tell us what you're building. We reply within one working day.",
+            "rich": false
+        },
+        {
+            "id": "t107",
+            "type": "text",
+            "tag": "b",
+            "section": "hero",
+            "label": "18+",
+            "default": "18+",
+            "rich": false
+        },
+        {
+            "id": "t108",
+            "type": "text",
+            "tag": "span",
+            "section": "hero",
+            "label": "years of creative work",
+            "default": "years of creative work",
+            "rich": false
+        },
+        {
+            "id": "t109",
+            "type": "text",
+            "tag": "b",
+            "section": "hero",
+            "label": "3",
+            "default": "3",
+            "rich": false
+        },
+        {
+            "id": "t110",
+            "type": "text",
+            "tag": "span",
+            "section": "hero",
+            "label": "creative divisions",
+            "default": "creative divisions",
+            "rich": false
+        },
+        {
+            "id": "t111",
+            "type": "text",
+            "tag": "b",
+            "section": "hero",
+            "label": "46",
+            "default": "46",
+            "rich": false
+        },
+        {
+            "id": "t112",
+            "type": "text",
+            "tag": "span",
+            "section": "hero",
+            "label": "services, one partner",
+            "default": "services, one partner",
             "rich": false
         },
         {
@@ -123,6 +204,60 @@
             "rich": false
         },
         {
+            "id": "t113",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Commercial photography",
+            "default": "Commercial photography",
+            "rich": false
+        },
+        {
+            "id": "t114",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Product & e-commerce",
+            "default": "Product &amp; e-commerce",
+            "rich": false
+        },
+        {
+            "id": "t115",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Architecture & interiors",
+            "default": "Architecture &amp; interiors",
+            "rich": false
+        },
+        {
+            "id": "t116",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Brand films",
+            "default": "Brand films",
+            "rich": false
+        },
+        {
+            "id": "t117",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "TV commercials",
+            "default": "TV commercials",
+            "rich": false
+        },
+        {
+            "id": "t118",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Podcasts & events",
+            "default": "Podcasts &amp; events",
+            "rich": false
+        },
+        {
             "id": "t12",
             "type": "text",
             "tag": "h3",
@@ -147,6 +282,60 @@
             "section": "divisions",
             "label": "Ideas deserve exceptional execution. Our design div…",
             "default": "\r\n          Ideas deserve exceptional execution. Our design division turns\r\n          concepts into visual identities and digital experiences that build\r\n          credibility, recognition and growth.\r\n        ",
+            "rich": false
+        },
+        {
+            "id": "t119",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Brand identity",
+            "default": "Brand identity",
+            "rich": false
+        },
+        {
+            "id": "t120",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Packaging design",
+            "default": "Packaging design",
+            "rich": false
+        },
+        {
+            "id": "t121",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Websites & development",
+            "default": "Websites &amp; development",
+            "rich": false
+        },
+        {
+            "id": "t122",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "UI / UX design",
+            "default": "UI / UX design",
+            "rich": false
+        },
+        {
+            "id": "t123",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Motion graphics",
+            "default": "Motion graphics",
+            "rich": false
+        },
+        {
+            "id": "t124",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Brand strategy",
+            "default": "Brand strategy",
             "rich": false
         },
         {
@@ -177,6 +366,69 @@
             "rich": false
         },
         {
+            "id": "t125",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Influencer marketing",
+            "default": "Influencer marketing",
+            "rich": false
+        },
+        {
+            "id": "t126",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Creator partnerships",
+            "default": "Creator partnerships",
+            "rich": false
+        },
+        {
+            "id": "t127",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Public relations",
+            "default": "Public relations",
+            "rich": false
+        },
+        {
+            "id": "t128",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Media outreach",
+            "default": "Media outreach",
+            "rich": false
+        },
+        {
+            "id": "t129",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Launch campaigns",
+            "default": "Launch campaigns",
+            "rich": false
+        },
+        {
+            "id": "t130",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Campaign strategy",
+            "default": "Campaign strategy",
+            "rich": false
+        },
+        {
+            "id": "t131",
+            "type": "text",
+            "tag": "li",
+            "section": "divisions",
+            "label": "Political campaigns & PR",
+            "default": "Political campaigns &amp; PR",
+            "rich": false
+        },
+        {
             "id": "t18",
             "type": "text",
             "tag": "p",
@@ -184,6 +436,78 @@
             "label": "Brands we've lit",
             "default": "<span class=\"eyebrow-dot\"></span>Brands we've lit",
             "rich": true
+        },
+        {
+            "id": "t132",
+            "type": "text",
+            "tag": "b",
+            "section": "commit",
+            "label": "18+",
+            "default": "18+",
+            "rich": false
+        },
+        {
+            "id": "t133",
+            "type": "text",
+            "tag": "span",
+            "section": "commit",
+            "label": "Years of creative excellence",
+            "default": "Years of creative excellence",
+            "rich": false
+        },
+        {
+            "id": "t134",
+            "type": "text",
+            "tag": "b",
+            "section": "commit",
+            "label": "400+",
+            "default": "400+",
+            "rich": false
+        },
+        {
+            "id": "t135",
+            "type": "text",
+            "tag": "span",
+            "section": "commit",
+            "label": "Projects delivered",
+            "default": "Projects delivered",
+            "rich": false
+        },
+        {
+            "id": "t136",
+            "type": "text",
+            "tag": "b",
+            "section": "commit",
+            "label": "17",
+            "default": "17",
+            "rich": false
+        },
+        {
+            "id": "t137",
+            "type": "text",
+            "tag": "span",
+            "section": "commit",
+            "label": "Industries served",
+            "default": "Industries served",
+            "rich": false
+        },
+        {
+            "id": "t138",
+            "type": "text",
+            "tag": "b",
+            "section": "commit",
+            "label": "2008",
+            "default": "2008",
+            "rich": false
+        },
+        {
+            "id": "t139",
+            "type": "text",
+            "tag": "span",
+            "section": "commit",
+            "label": "Agency founded",
+            "default": "Agency founded",
+            "rich": false
         },
         {
             "id": "t19",
@@ -366,6 +690,15 @@
             "rich": false
         },
         {
+            "id": "t140",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Product",
+            "default": "Product",
+            "rich": false
+        },
+        {
             "id": "t39",
             "type": "text",
             "tag": "h3",
@@ -381,6 +714,15 @@
             "section": "work",
             "label": "Colour-blocked pack shots for a beauty launch",
             "default": "Colour-blocked pack shots for a beauty launch",
+            "rich": false
+        },
+        {
+            "id": "t141",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Jewellery",
+            "default": "Jewellery",
             "rich": false
         },
         {
@@ -402,6 +744,15 @@
             "rich": false
         },
         {
+            "id": "t142",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Brand identity & web",
+            "default": "Brand identity &amp; web",
+            "rich": false
+        },
+        {
             "id": "t43",
             "type": "text",
             "tag": "h3",
@@ -417,6 +768,15 @@
             "section": "work",
             "label": "Identity refresh, packaging and a new e-commerce si…",
             "default": "Identity refresh, packaging and a new e-commerce site",
+            "rich": false
+        },
+        {
+            "id": "t143",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Food & beverage",
+            "default": "Food &amp; beverage",
             "rich": false
         },
         {
@@ -438,6 +798,15 @@
             "rich": false
         },
         {
+            "id": "t144",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Interiors",
+            "default": "Interiors",
+            "rich": false
+        },
+        {
             "id": "t47",
             "type": "text",
             "tag": "h3",
@@ -453,6 +822,15 @@
             "section": "work",
             "label": "Portfolio shoot across three residences",
             "default": "Portfolio shoot across three residences",
+            "rich": false
+        },
+        {
+            "id": "t145",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Fashion",
+            "default": "Fashion",
             "rich": false
         },
         {
@@ -474,6 +852,15 @@
             "rich": false
         },
         {
+            "id": "t146",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Industrial",
+            "default": "Industrial",
+            "rich": false
+        },
+        {
             "id": "t51",
             "type": "text",
             "tag": "h3",
@@ -489,6 +876,15 @@
             "section": "work",
             "label": "Plant and process documentation, blue hour",
             "default": "Plant and process documentation, blue hour",
+            "rich": false
+        },
+        {
+            "id": "t147",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Brand film",
+            "default": "Brand film",
             "rich": false
         },
         {
@@ -510,6 +906,15 @@
             "rich": false
         },
         {
+            "id": "t148",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Influencer & PR",
+            "default": "Influencer &amp; PR",
+            "rich": false
+        },
+        {
             "id": "t55",
             "type": "text",
             "tag": "h3",
@@ -525,6 +930,15 @@
             "section": "work",
             "label": "Creator residency and launch coverage across six ci…",
             "default": "Creator residency and launch coverage across six cities",
+            "rich": false
+        },
+        {
+            "id": "t149",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "E-commerce",
+            "default": "E-commerce",
             "rich": false
         },
         {
@@ -546,6 +960,15 @@
             "rich": false
         },
         {
+            "id": "t150",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "Hospitality",
+            "default": "Hospitality",
+            "rich": false
+        },
+        {
             "id": "t59",
             "type": "text",
             "tag": "h3",
@@ -561,6 +984,15 @@
             "section": "work",
             "label": "Rooms, restaurant and rooftop, one weekend",
             "default": "Rooms, restaurant and rooftop, one weekend",
+            "rich": false
+        },
+        {
+            "id": "t151",
+            "type": "text",
+            "tag": "span",
+            "section": "work",
+            "label": "See the full portfolio",
+            "default": "See the full portfolio",
             "rich": false
         },
         {
@@ -600,6 +1032,213 @@
             "rich": true
         },
         {
+            "id": "t152",
+            "type": "text",
+            "tag": "li",
+            "section": "services",
+            "label": "Photography",
+            "default": "Photography",
+            "rich": false
+        },
+        {
+            "id": "t153",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Commercial photography",
+            "default": "Commercial photography",
+            "rich": false
+        },
+        {
+            "id": "t154",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Product photography",
+            "default": "Product photography",
+            "rich": false
+        },
+        {
+            "id": "t155",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "E-commerce photography",
+            "default": "E-commerce photography",
+            "rich": false
+        },
+        {
+            "id": "t156",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Fashion & lifestyle",
+            "default": "Fashion &amp; lifestyle",
+            "rich": false
+        },
+        {
+            "id": "t157",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Food & beverage",
+            "default": "Food &amp; beverage",
+            "rich": false
+        },
+        {
+            "id": "t158",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Jewellery photography",
+            "default": "Jewellery photography",
+            "rich": false
+        },
+        {
+            "id": "t159",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Corporate photography",
+            "default": "Corporate photography",
+            "rich": false
+        },
+        {
+            "id": "t160",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Hospitality photography",
+            "default": "Hospitality photography",
+            "rich": false
+        },
+        {
+            "id": "t161",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Interior photography",
+            "default": "Interior photography",
+            "rich": false
+        },
+        {
+            "id": "t162",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Architectural photography",
+            "default": "Architectural photography",
+            "rich": false
+        },
+        {
+            "id": "t163",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Industrial & manufacturing",
+            "default": "Industrial &amp; manufacturing",
+            "rich": false
+        },
+        {
+            "id": "t164",
+            "type": "text",
+            "tag": "li",
+            "section": "services",
+            "label": "Film & motion",
+            "default": "Film &amp; motion",
+            "rich": false
+        },
+        {
+            "id": "t165",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Brand films",
+            "default": "Brand films",
+            "rich": false
+        },
+        {
+            "id": "t166",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "TV commercials",
+            "default": "TV commercials",
+            "rich": false
+        },
+        {
+            "id": "t167",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Corporate videos",
+            "default": "Corporate videos",
+            "rich": false
+        },
+        {
+            "id": "t168",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Product videos",
+            "default": "Product videos",
+            "rich": false
+        },
+        {
+            "id": "t169",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Podcasts",
+            "default": "Podcasts",
+            "rich": false
+        },
+        {
+            "id": "t170",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Promotional films",
+            "default": "Promotional films",
+            "rich": false
+        },
+        {
+            "id": "t171",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Documentary films",
+            "default": "Documentary films",
+            "rich": false
+        },
+        {
+            "id": "t172",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Event coverage",
+            "default": "Event coverage",
+            "rich": false
+        },
+        {
+            "id": "t173",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Award functions",
+            "default": "Award functions",
+            "rich": false
+        },
+        {
+            "id": "t174",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Long & short-form content",
+            "default": "Long &amp; short-form content",
+            "rich": false
+        },
+        {
             "id": "t65",
             "type": "text",
             "tag": "h3",
@@ -609,6 +1248,123 @@
             "rich": true
         },
         {
+            "id": "t175",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Brand identity",
+            "default": "Brand identity",
+            "rich": false
+        },
+        {
+            "id": "t176",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Logo design",
+            "default": "Logo design",
+            "rich": false
+        },
+        {
+            "id": "t177",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Graphic design",
+            "default": "Graphic design",
+            "rich": false
+        },
+        {
+            "id": "t178",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Packaging design",
+            "default": "Packaging design",
+            "rich": false
+        },
+        {
+            "id": "t179",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Marketing collateral",
+            "default": "Marketing collateral",
+            "rich": false
+        },
+        {
+            "id": "t180",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Website design",
+            "default": "Website design",
+            "rich": false
+        },
+        {
+            "id": "t181",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Website development",
+            "default": "Website development",
+            "rich": false
+        },
+        {
+            "id": "t182",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "UI / UX design",
+            "default": "UI / UX design",
+            "rich": false
+        },
+        {
+            "id": "t183",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Motion graphics",
+            "default": "Motion graphics",
+            "rich": false
+        },
+        {
+            "id": "t184",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Digital content",
+            "default": "Digital content",
+            "rich": false
+        },
+        {
+            "id": "t185",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Social media creatives",
+            "default": "Social media creatives",
+            "rich": false
+        },
+        {
+            "id": "t186",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Presentation design",
+            "default": "Presentation design",
+            "rich": false
+        },
+        {
+            "id": "t187",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Brand strategy",
+            "default": "Brand strategy",
+            "rich": false
+        },
+        {
             "id": "t66",
             "type": "text",
             "tag": "h3",
@@ -616,6 +1372,114 @@
             "label": "Connect Influencer marketing & PR",
             "default": "Connect <span>Influencer marketing &amp; PR</span>",
             "rich": true
+        },
+        {
+            "id": "t188",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Influencer marketing",
+            "default": "Influencer marketing",
+            "rich": false
+        },
+        {
+            "id": "t189",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Creator partnerships",
+            "default": "Creator partnerships",
+            "rich": false
+        },
+        {
+            "id": "t190",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Celebrity collaborations",
+            "default": "Celebrity collaborations",
+            "rich": false
+        },
+        {
+            "id": "t191",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Public relations",
+            "default": "Public relations",
+            "rich": false
+        },
+        {
+            "id": "t192",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Media outreach",
+            "default": "Media outreach",
+            "rich": false
+        },
+        {
+            "id": "t193",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Press coverage",
+            "default": "Press coverage",
+            "rich": false
+        },
+        {
+            "id": "t194",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Product launch campaigns",
+            "default": "Product launch campaigns",
+            "rich": false
+        },
+        {
+            "id": "t195",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Brand promotions",
+            "default": "Brand promotions",
+            "rich": false
+        },
+        {
+            "id": "t196",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Event PR",
+            "default": "Event PR",
+            "rich": false
+        },
+        {
+            "id": "t197",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Campaign strategy",
+            "default": "Campaign strategy",
+            "rich": false
+        },
+        {
+            "id": "t198",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Digital brand communications",
+            "default": "Digital brand communications",
+            "rich": false
+        },
+        {
+            "id": "t199",
+            "type": "text",
+            "tag": "span",
+            "section": "services",
+            "label": "Political campaigns & PR",
+            "default": "Political campaigns &amp; PR",
+            "rich": false
         },
         {
             "id": "t67",
@@ -634,6 +1498,15 @@
             "label": "Send us the product, the space, the launch or the d…",
             "default": "Send us the product, the space, the launch or the deadline. We'll come back with a plan, a team and a number.",
             "rich": false
+        },
+        {
+            "id": "t200",
+            "type": "text",
+            "tag": "a",
+            "section": "services",
+            "label": "Start a project",
+            "default": "Start a project\n            <svg viewbox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M12 5l7 7-7 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>\n          ",
+            "rich": true
         },
         {
             "id": "t69",
@@ -669,6 +1542,15 @@
             "section": "section",
             "label": "No compromise. We obsess over details because detai…",
             "default": "No compromise. We obsess over details because details define perception — and past technical perfection we chase the oomph factor that makes work stick.",
+            "rich": false
+        },
+        {
+            "id": "t201",
+            "type": "text",
+            "tag": "span",
+            "section": "section",
+            "label": "Start a project",
+            "default": "Start a project",
             "rich": false
         },
         {
@@ -717,6 +1599,96 @@
             "rich": true
         },
         {
+            "id": "t202",
+            "type": "text",
+            "tag": "b",
+            "section": "studio",
+            "label": "Taher Husain",
+            "default": "Taher Husain",
+            "rich": false
+        },
+        {
+            "id": "t203",
+            "type": "text",
+            "tag": "span",
+            "section": "studio",
+            "label": "Founder & Creative Head",
+            "default": "Founder &amp; Creative Head",
+            "rich": false
+        },
+        {
+            "id": "t204",
+            "type": "text",
+            "tag": "b",
+            "section": "studio",
+            "label": "Aditi Rane",
+            "default": "Aditi Rane",
+            "rich": false
+        },
+        {
+            "id": "t205",
+            "type": "text",
+            "tag": "span",
+            "section": "studio",
+            "label": "Creative Director, Design & Digital",
+            "default": "Creative Director, Design &amp; Digital",
+            "rich": false
+        },
+        {
+            "id": "t206",
+            "type": "text",
+            "tag": "b",
+            "section": "studio",
+            "label": "Rohan Kale",
+            "default": "Rohan Kale",
+            "rich": false
+        },
+        {
+            "id": "t207",
+            "type": "text",
+            "tag": "span",
+            "section": "studio",
+            "label": "Head of Post & Retouching",
+            "default": "Head of Post &amp; Retouching",
+            "rich": false
+        },
+        {
+            "id": "t208",
+            "type": "text",
+            "tag": "b",
+            "section": "studio",
+            "label": "Imran Shaikh",
+            "default": "Imran Shaikh",
+            "rich": false
+        },
+        {
+            "id": "t209",
+            "type": "text",
+            "tag": "span",
+            "section": "studio",
+            "label": "Cinematographer",
+            "default": "Cinematographer",
+            "rich": false
+        },
+        {
+            "id": "t210",
+            "type": "text",
+            "tag": "b",
+            "section": "studio",
+            "label": "Neha Kulkarni",
+            "default": "Neha Kulkarni",
+            "rich": false
+        },
+        {
+            "id": "t211",
+            "type": "text",
+            "tag": "span",
+            "section": "studio",
+            "label": "Influencer & PR Lead",
+            "default": "Influencer &amp; PR Lead",
+            "rich": false
+        },
+        {
             "id": "t78",
             "type": "text",
             "tag": "p",
@@ -744,6 +1716,15 @@
             "rich": false
         },
         {
+            "id": "t212",
+            "type": "text",
+            "tag": "span",
+            "section": "quotes",
+            "label": "Priya DeshmukhHead of Brand, Kavya Jewels",
+            "default": "<b>Priya Deshmukh</b>Head of Brand, Kavya Jewels",
+            "rich": true
+        },
+        {
             "id": "t81",
             "type": "text",
             "tag": "blockquote",
@@ -751,6 +1732,15 @@
             "label": "They shot three residences in two days and understo…",
             "default": "They shot three residences in two days and understood the architecture better than some of the consultants on the project. Every frame is on our homepage now.",
             "rich": false
+        },
+        {
+            "id": "t213",
+            "type": "text",
+            "tag": "span",
+            "section": "quotes",
+            "label": "Anand MenonPrincipal Architect, Norwell",
+            "default": "<b>Anand Menon</b>Principal Architect, Norwell",
+            "rich": true
         },
         {
             "id": "t82",
@@ -762,6 +1752,15 @@
             "rich": false
         },
         {
+            "id": "t214",
+            "type": "text",
+            "tag": "span",
+            "section": "quotes",
+            "label": "Sana MerchantMarketing Lead, Saffron & Co",
+            "default": "<b>Sana Merchant</b>Marketing Lead, Saffron &amp; Co",
+            "rich": true
+        },
+        {
             "id": "t83",
             "type": "text",
             "tag": "blockquote",
@@ -771,6 +1770,15 @@
             "rich": false
         },
         {
+            "id": "t215",
+            "type": "text",
+            "tag": "span",
+            "section": "quotes",
+            "label": "Vikram JoshiDirector, Deccan Forge",
+            "default": "<b>Vikram Joshi</b>Director, Deccan Forge",
+            "rich": true
+        },
+        {
             "id": "t84",
             "type": "text",
             "tag": "blockquote",
@@ -778,6 +1786,15 @@
             "label": "The launch put us in front of the right creators an…",
             "default": "The launch put us in front of the right creators and the right press inside a fortnight, and they had shot the campaign themselves. Bookings moved, not just impressions.",
             "rich": false
+        },
+        {
+            "id": "t216",
+            "type": "text",
+            "tag": "span",
+            "section": "quotes",
+            "label": "Farah ContractorGM Marketing, Halcyon Hotels",
+            "default": "<b>Farah Contractor</b>GM Marketing, Halcyon Hotels",
+            "rich": true
         },
         {
             "id": "t85",
@@ -807,6 +1824,42 @@
             "rich": false
         },
         {
+            "id": "t217",
+            "type": "text",
+            "tag": "span",
+            "section": "contact",
+            "label": "Email the studio",
+            "default": "Email the studio",
+            "rich": false
+        },
+        {
+            "id": "t103",
+            "type": "text",
+            "tag": "p",
+            "section": "contact",
+            "label": "Or send a quick brief",
+            "default": "Or send a quick brief",
+            "rich": false
+        },
+        {
+            "id": "t218",
+            "type": "text",
+            "tag": "span",
+            "section": "contact",
+            "label": "Send brief",
+            "default": "Send brief",
+            "rich": false
+        },
+        {
+            "id": "t219",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "Are you a photography studio or an agency?",
+            "default": "Are you a photography studio or an agency?<i></i>",
+            "rich": true
+        },
+        {
             "id": "t88",
             "type": "text",
             "tag": "p",
@@ -814,6 +1867,15 @@
             "label": "Both, and that's the point. Smashbox began in 2008 …",
             "default": "Both, and that's the point. Smashbox began in 2008 as a commercial photography and film company and now runs three divisions — Capture (photography and film), Create (branding, design, websites, motion) and Connect (influencer marketing and PR). Most clients arrive for one and end up using all three.",
             "rich": false
+        },
+        {
+            "id": "t220",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "Can you take a launch end to end?",
+            "default": "Can you take a launch end to end?<i></i>",
+            "rich": true
         },
         {
             "id": "t89",
@@ -825,6 +1887,15 @@
             "rich": false
         },
         {
+            "id": "t221",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "What does a project cost?",
+            "default": "What does a project cost?<i></i>",
+            "rich": true
+        },
+        {
             "id": "t90",
             "type": "text",
             "tag": "p",
@@ -832,6 +1903,15 @@
             "label": "It depends on scope — the number of SKUs, the styli…",
             "default": "It depends on scope — the number of SKUs, the styling involved, studio or location, how much design and development sits around it, and the size of the campaign. Send a brief and you'll have a firm number, not an estimate.",
             "rich": false
+        },
+        {
+            "id": "t222",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "How long does the work take?",
+            "default": "How long does the work take?<i></i>",
+            "rich": true
         },
         {
             "id": "t91",
@@ -843,6 +1923,15 @@
             "rich": false
         },
         {
+            "id": "t223",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "Do you travel outside Pune?",
+            "default": "Do you travel outside Pune?<i></i>",
+            "rich": true
+        },
+        {
             "id": "t92",
             "type": "text",
             "tag": "p",
@@ -852,6 +1941,15 @@
             "rich": false
         },
         {
+            "id": "t224",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "Do you handle styling, props, casting and creators?",
+            "default": "Do you handle styling, props, casting and creators?<i></i>",
+            "rich": true
+        },
+        {
             "id": "t93",
             "type": "text",
             "tag": "p",
@@ -859,6 +1957,15 @@
             "label": "Yes. Food styling, prop sourcing, set building, mod…",
             "default": "Yes. Food styling, prop sourcing, set building, model casting, hair and makeup are arranged by our producer, and creator and celebrity partnerships are sourced and negotiated by the Connect team. You approve the mood board and the creator list before anything is booked.",
             "rich": false
+        },
+        {
+            "id": "t225",
+            "type": "text",
+            "tag": "button",
+            "section": "faq",
+            "label": "Can we attend the shoot?",
+            "default": "Can we attend the shoot?<i></i>",
+            "rich": true
         },
         {
             "id": "t94",
@@ -894,6 +2001,15 @@
             "section": "faq",
             "label": "Still stuck on something? Get the studio's monthly …",
             "default": "Still stuck on something? Get the studio's monthly note — new work, lighting and design breakdowns, campaign numbers and the occasional honest post-mortem.",
+            "rich": false
+        },
+        {
+            "id": "t226",
+            "type": "text",
+            "tag": "span",
+            "section": "faq",
+            "label": "Subscribe",
+            "default": "Subscribe",
             "rich": false
         },
         {
@@ -940,6 +2056,15 @@
             "label": "Contact",
             "default": "Contact",
             "rich": false
+        },
+        {
+            "id": "t227",
+            "type": "text",
+            "tag": "span",
+            "section": "footer",
+            "label": "Rowshni Bungalow, 5 Finance RoadOpp. Ministry of De…",
+            "default": "Rowshni Bungalow, 5 Finance Road<br>Opp. Ministry of Defence, Agarkar Nagar<br>Pune, Maharashtra 411001",
+            "rich": true
         },
         {
             "id": "i1",

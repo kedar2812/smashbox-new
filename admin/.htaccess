@@ -17,7 +17,7 @@ RedirectMatch 404 ^/inc(/|$)
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "DENY"
+  Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "same-origin"
   Header always set X-Robots-Tag "noindex, nofollow"
 </IfModule>
