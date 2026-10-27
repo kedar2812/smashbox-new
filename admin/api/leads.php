@@ -9,6 +9,7 @@ declare(strict_types=1);
  * POST { action: "seen_all" }
  * POST { action: "status",    id, status }
  * POST { action: "note",      id, note }
+ * POST { action: "delete",    id }             permanent, no undo
  * GET  ?action=unseen                     poll for the bell
  */
 
@@ -91,6 +92,18 @@ try {
             }
             $note = trim(strip_tags((string) ($in['note'] ?? '')));
             db()->prepare('UPDATE leads SET note = ? WHERE id = ?')->execute([$note, $id]);
+            break;
+
+        case 'delete':
+            // permanent: the row, its message and the private note all go
+            if ($id <= 0) {
+                jsonFail('Which lead?');
+            }
+            $st = db()->prepare('DELETE FROM leads WHERE id = ?');
+            $st->execute([$id]);
+            if ($st->rowCount() === 0) {
+                jsonFail('That enquiry was already deleted.', 404);
+            }
             break;
 
         default:

@@ -144,7 +144,7 @@
       layer.innerHTML =
         '<div class="scrim"></div>' +
         '<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlgT" aria-describedby="dlgM">' +
-          (opts.icon !== false ? '<div class="dialog-icon">' + ico(opts.icon || 'alert') + '</div>' : '') +
+          (opts.icon !== false ? '<div class="dialog-icon' + (opts.icon === 'trash' ? ' is-danger' : '') + '">' + ico(opts.icon || 'alert') + '</div>' : '') +
           '<h2 id="dlgT">' + esc(opts.title) + '</h2>' +
           '<p id="dlgM">' + esc(opts.message || '') + '</p>' +
           '<div class="dialog-actions' + (actions.length === 2 ? ' is-row' : '') + '"></div>' +
@@ -1660,27 +1660,90 @@
     const listEl = $('#leadList');
     const main = $('#leadMain');
     let filter = 'active';
+    let filterSeg = null;
     let current = null;
     let noteSaved = '';
 
     const visible = () => all.filter((l) => filter === 'active' ? l.status !== 'archived' : l.status === filter);
 
     function renderList() {
+      // the New tab carries a live count, so deletes and replies show at once
+      const newBtn = $('#leadFilter [data-filter="new"]');
+      if (newBtn) {
+        const n = all.filter((l) => l.status === 'new').length;
+        const label = 'New' + (n ? ' · ' + n : '');
+        if (newBtn.textContent !== label) { newBtn.textContent = label; if (filterSeg) filterSeg.place(false); }
+      }
       const items = visible();
       if (!items.length) {
         listEl.innerHTML = '<div class="empty" style="padding:40px 16px">' + ico('inbox') + '<h3>Nothing here</h3><p>' +
           (filter === 'archived' ? 'Archived enquiries are kept here.' : filter === 'replied' ? 'Enquiries you’ve marked as replied show here.' : 'New enquiries from the site land here.') + '</p></div>';
         return;
       }
+      // the card is a div acting as a button, so the dustbin inside it can be
+      // a real button of its own
       listEl.innerHTML = items.map((l) =>
-        '<button type="button" class="lead-row' + (l.unseen ? ' is-unseen' : '') + (current && current.id === l.id ? ' is-on' : '') + '" data-id="' + l.id + '">' +
+        '<div class="lead-row' + (l.unseen ? ' is-unseen' : '') + (current && current.id === l.id ? ' is-on' : '') + '" data-id="' + l.id + '" role="button" tabindex="0">' +
           '<span class="dot"></span>' +
           '<b>' + esc(l.name || l.email) + '</b>' +
           '<time>' + esc(l.ago) + '</time>' +
+          '<button type="button" class="lead-del" data-del aria-label="Delete enquiry from ' + esc(l.name || l.email) + '" title="Delete permanently">' + ico('trash') + '</button>' +
           '<p>' + esc(l.message || (l.name ? l.email : 'Left their email address')) + '</p>' +
           '<span class="meta"><span class="pill pill-' + esc(l.status) + '">' + esc(l.status[0].toUpperCase() + l.status.slice(1)) + '</span><span class="faint" style="font-size:12px">' + esc(l.source) + '</span></span>' +
-        '</button>').join('');
-      $$('.lead-row', listEl).forEach((b) => b.addEventListener('click', () => open(+b.dataset.id)));
+        '</div>').join('');
+      $$('.lead-row', listEl).forEach((row) => {
+        const id = +row.dataset.id;
+        row.addEventListener('click', (e) => {
+          if (e.target.closest('[data-del]')) return;
+          open(id);
+        });
+        row.addEventListener('keydown', (e) => {
+          if (e.target !== row) return;
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(id); }
+          if (e.key === 'Delete') { e.preventDefault(); remove(id); }
+        });
+        $('[data-del]', row).addEventListener('click', (e) => { e.stopPropagation(); remove(id); });
+      });
+    }
+
+    const emptyMain = main.innerHTML;
+
+    /** Delete an enquiry for good, after one clear question. */
+    async function remove(id) {
+      const l = all.find((x) => x.id === id);
+      if (!l) return;
+      const ok = await dialog({
+        title: 'Delete this enquiry?',
+        message: (l.name || l.email) + '’s enquiry, their message and your private note will be removed for good. This can’t be undone — to keep it out of the way instead, archive it.',
+        icon: 'trash',
+        actions: [
+          { label: 'Delete permanently', value: true, kind: 'danger' },
+          { label: 'Cancel', value: false, cancel: true }
+        ]
+      });
+      if (!ok) return;
+
+      const row = $('.lead-row[data-id="' + id + '"]', listEl);
+      if (row) row.classList.add('is-deleting');
+      try {
+        const d = await post('api/leads.php', { action: 'delete', id });
+        all.splice(all.indexOf(l), 1);
+        paintCounts(d);
+        lastUnseen = d.unseen;
+        const n = $('.notif-item[href$="open=' + id + '"]');
+        if (n) n.remove();
+        if (current && current.id === id) {
+          current = null;
+          noteSaved = '';
+          main.innerHTML = emptyMain;
+          inbox.classList.remove('is-reading');
+        }
+        const finish = () => { renderList(); toast('Enquiry deleted', 'ok'); };
+        if (row && !reduced) setTimeout(finish, 260); else finish();
+      } catch (err) {
+        if (row) row.classList.remove('is-deleting');
+        toast(err.message, 'bad');
+      }
     }
 
     function fill(s, l) {
@@ -1707,6 +1770,7 @@
           '<div class="lead-actions">' +
             '<button class="btn btn-tinted btn-sm" type="button" data-status="replied">' + ico('check') + 'Mark as replied</button>' +
             '<button class="btn btn-sm" type="button" data-status="' + (l.status === 'archived' ? 'new' : 'archived') + '">' + ico('archive') + (l.status === 'archived' ? 'Move to inbox' : 'Archive') + '</button>' +
+            '<button class="btn btn-danger btn-sm" type="button" data-delete>' + ico('trash') + 'Delete</button>' +
           '</div>' +
           '<dl class="facts">' +
             '<div><dt>Email</dt><dd><a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a></dd></div>' +
@@ -1769,6 +1833,7 @@
       noteBtn.addEventListener('click', () => saveNote().catch(() => {}));
 
       $$('[data-status]', main).forEach((b) => b.addEventListener('click', () => setStatus(b.dataset.status)));
+      $('[data-delete]', main).addEventListener('click', () => remove(l.id));
       const back = $('[data-back]', main);
       if (back) back.addEventListener('click', async () => {
         if (!(await settleNote())) return;
@@ -1832,7 +1897,7 @@
       } catch (e) { toast(e.message, 'bad'); }
     }
 
-    initSeg($('#leadFilter'), async (b) => {
+    filterSeg = initSeg($('#leadFilter'), async (b) => {
       filter = b.dataset.filter;
       renderList();
       return true;
